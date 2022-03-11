@@ -1,0 +1,47 @@
+{
+  "name": "AsyncMQTT_Generic",
+  "version": "1.0.0",
+  "keywords": "communication, iot, home, automation, async, async-tcp, async-tcl-ssl, mqtt, client, esp8266, esp32, stm32, portenta-h7",
+  "description": "Arduino Library for ESP8266, ESP32, Portenta_H7 and STM32 asynchronous MQTT client implementation. This library, ported to support ESP32, WT32_ETH01, ESP8266, Portenta_H7 (Ethernet or WiFi) and STM32 (LAN8742A Ethernet), is currently supporting only ESP32 (SSL and non-SSL), ESP8266 (non-SSL). Support for Portenta_H7 and STM32 will be added gradually",
+  "authors": 
+  [
+    {
+      "name": "Marvin ROGER",
+    	"url": "https://www.marvinroger.fr"
+    },
+    {
+      "name":  "Khoi Hoang",
+      "url":   "https://github.com/khoih-prog",
+      "email": "khoih.prog@gmail.com",
+      "maintainer": true
+    }  
+  ],
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/khoih-prog/AsyncMQTT_Generic.git"
+  },
+  "dependencies": 
+  [
+    {
+      "name": "ESPAsyncTCP",
+      "version": ">=1.2.2",
+      "platforms": "espressif8266"
+    },
+    {
+      "name": "AsyncTCP",
+      "version": ">=1.1.1",
+      "platforms": "espressif32"
+    },
+    {
+      "name": "AsyncTCP_SSL",
+      "version": ">=1.2.0",
+      "platforms": "espressif32"
+    }
+  ],
+  "license": "MIT",
+  "frameworks": "*",
+  "platforms": ["espressif8266", "espressif32", "ststm32", "mbed_portenta"],
+  "examples": "examples/*/*/*.ino",
+  "headers": ["AsyncMQTT_Generic.h"]
+}
