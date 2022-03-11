@@ -28,8 +28,23 @@
 /////////////////////////////////////////////////////////
 
 const char* PacketTypeName[] = 
-{ "RESERVED", 	"CONNECT", 	"CONNACK", 			"PUBLISH", 		"PUBACK", 	"PUBREC", 	"PUBREL", 		"PUBCOMP",
-	"SUBSCRIBE", 	"SUBACK", 	"UNSUBSCRIBE", 	"UNSUBACK", 	"PINGREQ", 	"PINGRESP", "DISCONNECT", "RESERVED2" 
+{ 
+	"RESERVED",
+	"CONNECT",
+	"CONNACK",
+	"PUBLISH",
+	"PUBACK",
+	"PUBREC",
+	"PUBREL",
+	"PUBCOMP",
+	"SUBSCRIBE",
+	"SUBACK",
+	"UNSUBSCRIBE",
+	"UNSUBACK",
+	"PINGREQ",
+	"PINGRESP",
+	"DISCONNECT",
+	"RESERVED2" 
 };
 
 /////////////////////////////////////////////////////////
