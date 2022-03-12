@@ -52,8 +52,6 @@
   * [ 3. FullyFeatureSSL_ESP32 on ESP32_DEV](#3-FullyFeatureSSL_ESP32-on-ESP32_DEV) 
   * [ 4. FullyFeatureSSL_ESP32 on ESP32_DEV with _ASYNC_MQTT_LOGLEVEL_](#4-fullyfeaturessl_esp32-on-esp32_dev-with-async_mqtt_loglevel)
   * [ 5. FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720](#5-FullyFeatureSSL_WT32_ETH01-on-WT32-ETH01-with-ETH_PHY_LAN8720)
-  
-  5. FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Issues](#issues)
