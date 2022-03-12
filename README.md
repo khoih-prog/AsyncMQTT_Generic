@@ -323,7 +323,7 @@ https://github.com/khoih-prog/AsyncMQTT_Generic/blob/a2db21ca2e68487560c0718529e
 
 #### 1. FullyFeature_ESP8266 on ESP8266_NODEMCU_ESP12E
 
-This is terminal debug output when running [FullyFeature_ESP8266](examples/ESP8266/FullyFeature_ESP8266) on **ESP8266_NODEMCU_ESP12E** connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeatured_ESP8266](examples/ESP8266/FullyFeatured_ESP8266) on **ESP8266_NODEMCU_ESP12E** connecting to `broker.emqx.io` MQTT server.
 
 ```
 Starting FullyFeature_ESP8266 on ESP8266_NODEMCU_ESP12E
@@ -385,7 +385,7 @@ Publish acknowledged.
 
 #### 2. FullyFeature_ESP32 on ESP32_DEV
 
-This is terminal debug output when running [FullyFeature_ESP32](examples/ESP32/FullyFeature_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeatured_ESP32](examples/ESP32/FullyFeatured_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` MQTT server.
 
 ```
 Starting FullyFeature_ESP32 on ESP32_DEV
@@ -451,7 +451,7 @@ Publish acknowledged.
 
 #### 3. FullyFeatureSSL_ESP32 on ESP32_DEV
 
-This is terminal debug output when running [FullyFeatureSSL_ESP32](examples/ESP32/FullyFeatureSSL_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` secured MQTT server (port 8883).
+This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP32/FullyFeaturedSSL_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` secured MQTT server (port 8883).
 
 ```
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
@@ -517,7 +517,7 @@ Publish acknowledged
 
 #### 4. FullyFeatureSSL_ESP32 on ESP32_DEV with _ASYNC_MQTT_LOGLEVEL_
 
-This is terminal debug output when running [FullyFeatureSSL_ESP32](examples/ESP32/FullyFeatureSSL_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` secured MQTT server (port 8883). The _ASYNC_MQTT_LOGLEVEL_ is set at 4 to show all the debugging messages.
+This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP32/FullyFeaturedSSL_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` secured MQTT server (port 8883). The _ASYNC_MQTT_LOGLEVEL_ is set at 4 to show all the debugging messages.
 
 
 ```
@@ -687,7 +687,7 @@ Publish acknowledged
 
 #### 5. FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
 
-This is terminal debug output when running [FullyFeatureSSL_WT32_ETH01](examples/WT32_ETH01/FullyFeatureSSL_WT32_ETH01) on **WT32-ETH01** connecting to `broker.emqx.io` secured MQTT server (port 8883).
+This is terminal debug output when running [FullyFeaturedSSL_WT32_ETH01](examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01) on **WT32-ETH01** connecting to `broker.emqx.io` secured MQTT server (port 8883).
 
 
 ```
