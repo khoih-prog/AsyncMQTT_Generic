@@ -27,7 +27,7 @@ extern "C"
 #define ASYNC_TCP_SSL_ENABLED       true
 //#define ASYNC_TCP_SSL_ENABLED       false
 
-#include <AsyncMqttClient_Generic.h>
+#include <AsyncMqtt_Generic.h>
 
 //#define MQTT_HOST         IPAddress(192, 168, 2, 110)
 #define MQTT_HOST         "broker.emqx.io"        // Broker address
@@ -141,6 +141,8 @@ void onMqttConnect(bool sessionPresent)
 
 void onMqttDisconnect(AsyncMqttClientDisconnectReason reason)
 {
+  (void) reason;
+  
   Serial.println("Disconnected from MQTT.");
 
   if (WiFi.isConnected())
@@ -149,21 +151,24 @@ void onMqttDisconnect(AsyncMqttClientDisconnectReason reason)
   }
 }
 
-void onMqttSubscribe(uint16_t packetId, uint8_t qos)
+void onMqttSubscribe(const uint16_t& packetId, const uint8_t& qos)
 {
   Serial.println("Subscribe acknowledged.");
   Serial.print("  packetId: "); Serial.println(packetId);
   Serial.print("  qos: ");      Serial.println(qos);
 }
 
-void onMqttUnsubscribe(uint16_t packetId)
+void onMqttUnsubscribe(const uint16_t& packetId)
 {
   Serial.println("Unsubscribe acknowledged.");
   Serial.print("  packetId: "); Serial.println(packetId);
 }
 
-void onMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties properties, size_t len, size_t index, size_t total)
+void onMqttMessage(char* topic, char* payload, const AsyncMqttClientMessageProperties& properties, 
+                   const size_t& len, const size_t& index, const size_t& total)
 {
+  (void) payload;
+  
   Serial.println("Publish received.");
   Serial.print("  topic: ");  Serial.println(topic);
   Serial.print("  qos: ");    Serial.println(properties.qos);
@@ -174,7 +179,7 @@ void onMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties 
   Serial.print("  total: ");  Serial.println(total);
 }
 
-void onMqttPublish(uint16_t packetId)
+void onMqttPublish(const uint16_t& packetId)
 {
   Serial.println("Publish acknowledged");
   Serial.print("  packetId: "); Serial.println(packetId);
