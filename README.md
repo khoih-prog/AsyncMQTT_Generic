@@ -40,6 +40,9 @@
     * [2. FullyFeaturedSSL_ESP32](examples/ESP32/FullyFeaturedSSL_ESP32)
   * [2. For ESP8266](#1-for-ESP8266)
     * [1. FullyFeatured_ESP8266](examples/ESP8266/FullyFeatured_ESP8266)
+  * [3. For WT32_ETH01](#1-for-WT32_ETH01)
+    * [1. FullyFeatured_WT32_ETH01](examples/WT32_ETH01/FullyFeatured_WT32_ETH01) **New**
+    * [2. FullyFeaturedSSL_WT32_ETH01](examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01) **New**
 * [Example FullyFeaturedSSL_ESP32](#example-FullyFeaturedSSL_ESP32)
   * [1. File FullyFeaturedSSL_ESP32.ino](#1-file-FullyFeaturedSSL_ESP32ino)
   * [2. File defines.h](#2-file-definesh)
@@ -48,6 +51,9 @@
   * [ 2. FullyFeature_ESP32 on ESP32_DEV](#2-FullyFeature_ESP32-on-ESP32_DEV)
   * [ 3. FullyFeatureSSL_ESP32 on ESP32_DEV](#3-FullyFeatureSSL_ESP32-on-ESP32_DEV) 
   * [ 4. FullyFeatureSSL_ESP32 on ESP32_DEV with _ASYNC_MQTT_LOGLEVEL_](#4-fullyfeaturessl_esp32-on-esp32_dev-with-async_mqtt_loglevel)
+  * [ 5. FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720](#5-FullyFeatureSSL_WT32_ETH01-on-WT32-ETH01-with-ETH_PHY_LAN8720)
+  
+  5. FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Issues](#issues)
@@ -91,6 +97,7 @@ This [**AsyncMQTT_Generic** library](https://github.com/khoih-prog/AsyncMQTT_Gen
 
  1. **ESP32**
  2. **ESP8266**
+ 3. **WT32_ETH01 (ESP32 + LAN8720A)** from v1.1.0
  
 --- 
  
@@ -109,9 +116,7 @@ This [**AsyncMQTT_Generic** library](https://github.com/khoih-prog/AsyncMQTT_Gen
   - **Discovery (DISCO_F746NG)**
   - **STM32F4 boards (BLACK_F407VE, BLACK_F407VG, BLACK_F407ZE, BLACK_F407ZG, BLACK_F407VE_Mini, DIYMORE_F407VGT, FK407M1)**
 
- 3. **WT32_ETH01 (ESP32 + LAN8720A)**
-
- 4. **Portenta_H7** using either `Murata WiFi` or `Vision-shield Ethernet`
+ 3. **Portenta_H7** using either `Murata WiFi` or `Vision-shield Ethernet`
 
 
 ---
@@ -125,7 +130,7 @@ This [**AsyncMQTT_Generic** library](https://github.com/khoih-prog/AsyncMQTT_Gen
  3. [`ESP8266 Core 3.0.2+`](https://github.com/esp8266/Arduino) for ESP8266-based boards. [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/esp8266/Arduino/releases/latest/).
  4. [`Arduino Core for STM32 v2.2.0+`](https://github.com/stm32duino/Arduino_Core_STM32) for STM32F/L/H/G/WB/MP1 boards. [![GitHub release](https://img.shields.io/github/release/stm32duino/Arduino_Core_STM32.svg)](https://github.com/stm32duino/Arduino_Core_STM32/releases/latest). **Not ready yet**
  5. [`Arduino mbed_portenta core 2.8.0+`](https://github.com/arduino/ArduinoCore-mbed) for Arduino (Use Arduino Board Manager) Portenta_H7-based boards. [![GitHub release](https://img.shields.io/github/release/arduino/ArduinoCore-mbed.svg)](https://github.com/arduino/ArduinoCore-mbed/releases/latest). **Not ready yet**
- 6. [`WebServer_WT32_ETH01 library v1.4.1+`](https://github.com/khoih-prog/WebServer_WT32_ETH01) to use WT32_ETH01 (ESP32 + LAN8720). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_WT32_ETH01.svg?)](https://www.ardu-badge.com/WebServer_WT32_ETH01). **Not ready yet**
+ 6. [`WebServer_WT32_ETH01 library v1.4.1+`](https://github.com/khoih-prog/WebServer_WT32_ETH01) to use WT32_ETH01 (ESP32 + LAN8720). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_WT32_ETH01.svg?)](https://www.ardu-badge.com/WebServer_WT32_ETH01). **Ready from v1.1.0**
 
 ---
 ---
@@ -292,6 +297,10 @@ Please check [API documentation](https://github.com/khoih-prog/AsyncMQTT_Generic
 
  1. [FullyFeatured_ESP8266](examples/ESP8266/FullyFeatured_ESP8266)
 
+#### 3. For WT32_ETH01
+
+ 1. [FullyFeatured_WT32_ETH01](examples/WT32_ETH01/FullyFeatured_WT32_ETH01) **New**
+ 2. [FullyFeaturedSSL_WT32_ETH01](examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01) **New**
 
 ---
 ---
@@ -320,7 +329,7 @@ This is terminal debug output when running [FullyFeature_ESP8266](examples/ESP82
 
 ```
 Starting FullyFeature_ESP8266 on ESP8266_NODEMCU_ESP12E
-AsyncMQTT_Generic v1.0.1 for ESP8266
+AsyncMQTT_Generic v1.1.0 for ESP8266
 Connecting to Wi-Fi...
 Connected to Wi-Fi. IP address: 192.168.2.82
 Connecting to MQTT...
@@ -382,7 +391,7 @@ This is terminal debug output when running [FullyFeature_ESP32](examples/ESP32/F
 
 ```
 Starting FullyFeature_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.0.1 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.1.0 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -448,7 +457,7 @@ This is terminal debug output when running [FullyFeatureSSL_ESP32](examples/ESP3
 
 ```
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.0.1 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.1.0 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -515,7 +524,7 @@ This is terminal debug output when running [FullyFeatureSSL_ESP32](examples/ESP3
 
 ```
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.0.1 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.1.0 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -677,6 +686,64 @@ Publish acknowledged
 ```
 
 ---
+
+#### 5. FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
+
+This is terminal debug output when running [FullyFeatureSSL_WT32_ETH01](examples/WT32_ETH01/FullyFeatureSSL_WT32_ETH01) on **WT32-ETH01** connecting to `broker.emqx.io` secured MQTT server (port 8883).
+
+
+```
+Starting FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
+WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+AsyncMQTT_Generic v1.1.0 for ESP32 core v2.0.0+
+ETH starting
+ETH connected
+ETH got IP
+IP address: 192.168.2.97
+Connecting to MQTT...
+Connected to MQTT broker: broker.emqx.io, port: 8883
+PubTopic: async-mqtt/WT32_ETH01_SSL_Pub
+************************************************
+Session present: 0
+Subscribing at QoS 2, packetId: 1
+Publishing at QoS 0
+Publishing at QoS 1, packetId: 2
+Publishing at QoS 2, packetId: 3
+************************************************
+Subscribe acknowledged.
+  packetId: 1
+  qos: 2
+Publish received.
+  topic: async-mqtt/WT32_ETH01_SSL_Pub
+  qos: 0
+  dup: 0
+  retain: 0
+  len: 15
+  index: 0
+  total: 15
+Publish acknowledged
+  packetId: 2
+Publish received.
+  topic: async-mqtt/WT32_ETH01_SSL_Pub
+  qos: 1
+  dup: 0
+  retain: 0
+  len: 6
+  index: 0
+  total: 6
+Publish received.
+  topic: async-mqtt/WT32_ETH01_SSL_Pub
+  qos: 2
+  dup: 0
+  retain: 0
+  len: 6
+  index: 0
+  total: 6
+Publish acknowledged
+  packetId: 3
+```
+
+---
 ---
 
 ### Debug
@@ -721,9 +788,9 @@ Submit issues to: [AsyncMQTT_Generic issues](https://github.com/khoih-prog/Async
 
 ### DONE
 
- 1. Add support to ESP32 (SSL and non-SSL)
- 2. Add support to ESP8266 (non-SSL).
-
+ 1. Add support to **ESP32 (SSL and non-SSL)**
+ 2. Add support to **ESP8266 (non-SSL)**
+ 3. Add support to **WT32_ETH01 (SSL and non-SSL)**
 
 ---
 ---

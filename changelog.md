@@ -11,6 +11,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+	* [Releases v1.1.0](#releases-v110)
 	* [Releases v1.0.1](#releases-v101)
   * [Initial Releases v1.0.0](#Initial-Releases-v100)
 
@@ -18,6 +19,12 @@
 ---
 
 ## Changelog
+
+### Releases v1.1.0
+
+1. Add support to **WT32_ETH01 (SSL and non-SSL)**
+2. Add examples for `WT32_ETH01`
+
 
 ### Releases v1.0.1
 
