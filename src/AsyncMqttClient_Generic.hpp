@@ -9,11 +9,12 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.0.0
+  Version: 1.0.1
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
+  1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
  *****************************************************************************************************************************/
 
 #pragma once
@@ -32,7 +33,17 @@
 
 /////////////////////////////////////////////////////////
 
-#define ASYNC_MQTT_GENERIC_SHORT_VERSION				"AsyncMQTT_Generic v1.0.0" 
+#define ASYNC_MQTT_GENERIC_SHORT_VERSION				"AsyncMQTT_Generic v1.0.1" 
+
+/////////////////////////////////////////////////////////
+
+#define ASYNC_MQTT_GENERIC_VERSION_MAJOR       1
+#define ASYNC_MQTT_GENERIC_VERSION_MINOR       0
+#define ASYNC_MQTT_GENERIC_VERSION_PATCH       1
+
+#define ASYNC_MQTT_GENERIC_VERSION_INT         1000001
+
+/////////////////////////////////////////////////////////
 
 #ifdef ESP32
 
@@ -79,13 +90,6 @@
   //#error Platform not supported
 #endif
 
-/////////////////////////////////////////////////////////
-
-#define ASYNC_MQTT_GENERIC_VERSION_MAJOR       1
-#define ASYNC_MQTT_GENERIC_VERSION_MINOR       0
-#define ASYNC_MQTT_GENERIC_VERSION_PATCH       0
-
-#define ASYNC_MQTT_GENERIC_VERSION_INT         1000000
 
 /////////////////////////////////////////////////////////
 

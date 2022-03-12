@@ -1,5 +1,5 @@
 /****************************************************************************************************************************
-  Disconn.cpp
+  AsyncMqtt_Generic.h
   
   AsyncMqttClient_Generic is a library for ESP32, ESP8266, Protenta_H7, STM32F7, etc. with current AsyncTCP support
   
@@ -17,24 +17,12 @@
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
  *****************************************************************************************************************************/
 
-#include "Disconn.hpp"
+#pragma once
 
-using AsyncMqttClientInternals::DisconnOutPacket;
+#ifndef ASYNC_MQTT_GENERIC_H
+#define ASYNC_MQTT_GENERIC_H
 
-DisconnOutPacket::DisconnOutPacket() 
-{
-	_data[0] = AsyncMqttClientInternals::PacketType.DISCONNECT;
-	_data[0] = _data[0] << 4;
-	_data[0] = _data[0] | AsyncMqttClientInternals::HeaderFlag.DISCONNECT_RESERVED;
-	_data[1] = 0;
-}
+#include "AsyncMqttClient_Generic.hpp"
+#include "AsyncMqttClient_Generic_Impl.h"
 
-const uint8_t* DisconnOutPacket::data(size_t index) const 
-{
-  return &_data[index];
-}
-
-size_t DisconnOutPacket::size() const 
-{
-  return 2;
-}
+#endif  // ASYNC_MQTT_GENERIC_H

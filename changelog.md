@@ -11,12 +11,19 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+	* [Releases v1.0.1](#releases-v101)
   * [Initial Releases v1.0.0](#Initial-Releases-v100)
 
 ---
 ---
 
 ## Changelog
+
+### Releases v1.0.1
+
+1. Fix Library Manager warnings
+2. Suppress all compiler warnings
+3. Optimize library code by using `reference-passing` instead of `value-passing`
 
 ### Initial Releases v1.0.0
 

@@ -300,13 +300,13 @@ Please check [API documentation](https://github.com/khoih-prog/AsyncMQTT_Generic
 
 #### 1. File [FullyFeaturedSSL_ESP32.ino](examples/ESP32/FullyFeaturedSSL_ESP32/FullyFeaturedSSL_ESP32.ino)
 
-https://github.com/khoih-prog/AsyncMQTT_Generic/blob/61ead13f2192fb3a21c4f8c26692642799382276/examples/ESP32/FullyFeaturedSSL_ESP32/FullyFeaturedSSL_ESP32.ino#L13-L220
+https://github.com/khoih-prog/AsyncMQTT_Generic/blob/a2db21ca2e68487560c0718529e5e83dee4d6b3f/examples/ESP32/FullyFeaturedSSL_ESP32/FullyFeaturedSSL_ESP32.ino#L13-L225
 
 
 
 #### 2. File [defines.h](examples/ESP32/FullyFeaturedSSL_ESP32/defines.h)
 
-https://github.com/khoih-prog/AsyncMQTT_Generic/blob/61ead13f2192fb3a21c4f8c26692642799382276/examples/ESP32/FullyFeaturedSSL_ESP32/defines.h#L12-L20
+https://github.com/khoih-prog/AsyncMQTT_Generic/blob/a2db21ca2e68487560c0718529e5e83dee4d6b3f/examples/ESP32/FullyFeaturedSSL_ESP32/defines.h#L12-L20
 
 
 ---
@@ -320,7 +320,7 @@ This is terminal debug output when running [FullyFeature_ESP8266](examples/ESP82
 
 ```
 Starting FullyFeature_ESP8266 on ESP8266_NODEMCU_ESP12E
-AsyncMQTT_Generic v1.0.0 for ESP8266
+AsyncMQTT_Generic v1.0.1 for ESP8266
 Connecting to Wi-Fi...
 Connected to Wi-Fi. IP address: 192.168.2.82
 Connecting to MQTT...
@@ -382,7 +382,7 @@ This is terminal debug output when running [FullyFeature_ESP32](examples/ESP32/F
 
 ```
 Starting FullyFeature_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.0.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.0.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -448,7 +448,7 @@ This is terminal debug output when running [FullyFeatureSSL_ESP32](examples/ESP3
 
 ```
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.0.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.0.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -515,7 +515,7 @@ This is terminal debug output when running [FullyFeatureSSL_ESP32](examples/ESP3
 
 ```
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.0.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.0.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
