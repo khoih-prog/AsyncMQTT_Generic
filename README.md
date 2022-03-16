@@ -323,12 +323,16 @@ Connect as follows. To program, use **STM32CubeProgrammer** or Arduino IDE with
 - **U(S)ART Support: "Enabled (generic Serial)"**
 - **Upload Method : "STM32CubeProgrammer (SWD)"**
 
-- Jumper settings to program via STLink
+- Jumper settings to program via STLInk
 
+|From|<--->|To|
+|:-:|:-:|:-:|
 |BOOT0|<--->|3.3V|
 
 - Jumper settings twhen running normally to avoid accidentally reprogram
 
+|From|<--->|To|
+|:-:|:-:|:-:|
 |BOOT0|<--->|GND|
 
 
