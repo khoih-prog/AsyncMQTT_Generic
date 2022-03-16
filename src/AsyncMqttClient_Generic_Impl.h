@@ -177,7 +177,7 @@ AsyncMqttClient::AsyncMqttClient()
 #elif defined(ESP8266)
   sprintf(_generatedClientId, "esp8266-%06x", ESP.getChipId());
 #elif ASYNC_MQTT_USING_STM32
-	// Will create _clientId from macAddress later in connect() as ID not available now
+  // Will create _clientId from macAddress later in connect() as ID not available now
 #endif
 	
   _clientId = _generatedClientId;
@@ -1125,21 +1125,21 @@ void AsyncMqttClient::connect()
     return;
 
 #if ASYNC_MQTT_USING_STM32
-	// 6 HEX bytes + NULL
-	char buffer[13];
-	
-	macAddressToClientID(buffer, Ethernet.MACAddress()); 
-	snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%s", buffer); 
-	
-  //snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%s", macAddressToClientID(Ethernet.MACAddress())); 
-  
+  // 6 HEX bytes + NULL
+  char buffer[13];
+
+  macAddressToClientID(buffer, Ethernet.MACAddress());
+  snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%s", buffer);
+
+  //snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%s", macAddressToClientID(Ethernet.MACAddress()));
+
   _clientId = _generatedClientId;
 #endif
 
   AMQTT_LOGINFO("CONNECTING");
-  
+
   AMQTT_LOGINFO1("ClientID =", _clientId);
-  
+
   _state = CONNECTING;
   _disconnectReason = AsyncMqttClientDisconnectReason::TCP_DISCONNECTED;  // reset any previous
 
@@ -1257,15 +1257,16 @@ const char* AsyncMqttClient::getClientId() const
 
 char* AsyncMqttClient::macAddressToClientID(char* buffer, const uint8_t* _macAddress)
 {
-	// 6 HEX bytes + NULL = min(13) for buffer
-	// static char buffer[13];
-	memset((void*) buffer, 0, sizeof(buffer));
-		
-	for (int i = 0; i < 6; i++)
-		sprintf(&buffer[i * 2], "%02X", _macAddress[i]); //convert number to hex
-		
+  // 6 HEX bytes + NULL = min(13) for buffer
+  // static char buffer[13];
+  memset((void*) buffer, 0, sizeof(buffer));
+
+  for (int i = 0; i < 6; i++)
+    sprintf(&buffer[i * 2], "%02X", _macAddress[i]); //convert number to hex
+
   return ( buffer );
 }
+
 /////////////////////////////////////////////////////////
 
 #endif		// ASYNC_MQTT_CLIENT_IMPL_H

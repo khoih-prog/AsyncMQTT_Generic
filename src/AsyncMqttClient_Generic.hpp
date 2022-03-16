@@ -49,23 +49,23 @@
 
 #ifdef ESP32
 
-	#if ( ( defined(ESP_ARDUINO_VERSION_MAJOR) && (ESP_ARDUINO_VERSION_MAJOR >= 2) ) && ( ARDUINO_ESP32_GIT_VER != 0x46d5afb1 ) )
-		#define USING_CORE_ESP32_CORE_V200_PLUS      true
-		
-		#if (_ASYNC_MQTT_LOGLEVEL_ > 3)
-		  #warning Using code for ESP32 core v2.0.0+ in AsyncMqttClient_Generic.hpp
-		#endif
-		  
-		#define ASYNC_MQTT_GENERIC_VERSION				(ASYNC_MQTT_GENERIC_SHORT_VERSION " for ESP32 core v2.0.0+")
+  #if ( ( defined(ESP_ARDUINO_VERSION_MAJOR) && (ESP_ARDUINO_VERSION_MAJOR >= 2) ) && ( ARDUINO_ESP32_GIT_VER != 0x46d5afb1 ) )
+    #define USING_CORE_ESP32_CORE_V200_PLUS      true
+    
+    #if (_ASYNC_MQTT_LOGLEVEL_ > 3)
+      #warning Using code for ESP32 core v2.0.0+ in AsyncMqttClient_Generic.hpp
+    #endif
+      
+    #define ASYNC_MQTT_GENERIC_VERSION        (ASYNC_MQTT_GENERIC_SHORT_VERSION " for ESP32 core v2.0.0+")
 
-	#else
-		#if (_ASYNC_MQTT_LOGLEVEL_ > 3)
-		  #warning Using code for ESP32 core v1.0.6- in AsyncMqttClient_Generic.hpp
-		#endif
-		
-		#define ASYNC_MQTT_GENERIC_VERSION				(ASYNC_MQTT_GENERIC_SHORT_VERSION " for ESP32 core v1.0.6-")
-		
-	#endif
+  #else
+    #if (_ASYNC_MQTT_LOGLEVEL_ > 3)
+      #warning Using code for ESP32 core v1.0.6- in AsyncMqttClient_Generic.hpp
+    #endif
+    
+    #define ASYNC_MQTT_GENERIC_VERSION        (ASYNC_MQTT_GENERIC_SHORT_VERSION " for ESP32 core v1.0.6-")
+    
+  #endif
 
   #if ASYNC_TCP_SSL_ENABLED
     #include <AsyncTCP_SSL.h>
@@ -86,7 +86,7 @@
   #else
     #include <ESPAsyncTCP.h>
     
-    #define ASYNC_MQTT_GENERIC_VERSION				(ASYNC_MQTT_GENERIC_SHORT_VERSION " for ESP8266")
+    #define ASYNC_MQTT_GENERIC_VERSION        (ASYNC_MQTT_GENERIC_SHORT_VERSION " for ESP8266")
   #endif
   
 #elif ( defined(STM32F0) || defined(STM32F1) || defined(STM32F2) || defined(STM32F3)  ||defined(STM32F4) || defined(STM32F7) || \
@@ -94,16 +94,16 @@
         defined(STM32WB) || defined(STM32MP1) )
        
   #if ASYNC_TCP_SSL_ENABLED
-  	#error STM32 ASYNC_TCP_SSL_ENABLED not ready yet
+    #error STM32 ASYNC_TCP_SSL_ENABLED not ready yet
     #include <STM32AsyncTCP_SSL.h>
     #warning STM32 ASYNC_TCP_SSL_ENABLED   
   #else
     #include <STM32AsyncTCP.h>
     
-    #define ASYNC_MQTT_GENERIC_VERSION				(ASYNC_MQTT_GENERIC_SHORT_VERSION " for STM32")
+    #define ASYNC_MQTT_GENERIC_VERSION        (ASYNC_MQTT_GENERIC_SHORT_VERSION " for STM32")
   #endif
   
-  #define ASYNC_MQTT_USING_STM32			true
+  #define ASYNC_MQTT_USING_STM32      true
            
 #else
   #error Platform not supported
@@ -302,7 +302,6 @@ class AsyncMqttClient
 
   void _sendPing();
   
-  //const char* macAddressToClientID(const uint8_t* _macAddress);
   char* macAddressToClientID(char* buffer, const uint8_t* _macAddress);
 };
 
