@@ -72,7 +72,7 @@
   ],
   "license": "MIT",
   "frameworks": "*",
-  "platforms": ["espressif8266", "espressif32", "ststm32", "mbed_portenta"],
+  "platforms": ["espressif8266", "espressif32", "ststm32"],
   "examples": "examples/*/*/*.ino",
   "headers": ["AsyncMQTT_Generic.h"]
 }

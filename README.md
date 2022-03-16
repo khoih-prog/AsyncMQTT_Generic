@@ -51,9 +51,9 @@
     * [1. FullyFeatured_STM32](examples/STM32/FullyFeatured_STM32) **New**
   * [5. For STM32 using LAN8720](#5-For-STM32-using-LAN8720)
     * [1. FullyFeatured_STM32_LAN8720](examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720) **New**
-  * [6. For Portenta_H7 using Murata WiFi](#6-For Portenta_H7-using-Murata-WiFi)
+  * [6. For Portenta_H7 using Murata WiFi](#6-For-Portenta_H7-using-Murata-WiFi)
     * [1. FullyFeatured_PortentaH7_WiFi](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi) **New** 
-  * [7. For Portenta_H7 using built-in Ethernet](#7-For Portenta_H7-using-built-in-Ethernet)
+  * [7. For Portenta_H7 using built-in Ethernet](#7-For-Portenta_H7-using-built-in-Ethernet)
     * [1. FullyFeatured_PortentaH7_Ethernet](examples/PortentaH7_Ethernet/FullyFeatured_PortentaH7_Ethernet) **New**
 * [Example FullyFeaturedSSL_ESP32](#example-FullyFeaturedSSL_ESP32)
   * [1. File FullyFeaturedSSL_ESP32.ino](#1-file-FullyFeaturedSSL_ESP32ino)
@@ -67,6 +67,8 @@
   * [ 6. FullyFeature_STM32 on NUCLEO_F767ZI](#6-FullyFeature_STM32-on-NUCLEO_F767ZI)
   * [ 7. FullyFeature_STM32 on NUCLEO_F767ZI with _ASYNC_MQTT_LOGLEVEL_](#7-fullyfeature_stm32-on-nucleo_f767zi-with-async_mqtt_loglevel)
   * [ 8. FullyFeatured_STM32_LAN8720 on BLACK_F407VE](#8-FullyFeatured_STM32_LAN8720-on-BLACK_F407VE)
+  * [ 9. FullyFeatured_PortentaH7_WiFi on PORTENTA_H7_M7](#9-FullyFeatured_PortentaH7_WiFi-on-PORTENTA_H7_M7)
+  * [10. FullyFeatured_Portenta_H7_Ethernet on PORTENTA_H7_M7](#10-FullyFeatured_Portenta_H7_Ethernet-on-PORTENTA_H7_M7)
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Issues](#issues)
