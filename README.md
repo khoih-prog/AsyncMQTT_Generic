@@ -55,7 +55,7 @@
   * [ 4. FullyFeatureSSL_ESP32 on ESP32_DEV with _ASYNC_MQTT_LOGLEVEL_](#4-fullyfeaturessl_esp32-on-esp32_dev-with-async_mqtt_loglevel)
   * [ 5. FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720](#5-FullyFeatureSSL_WT32_ETH01-on-WT32-ETH01-with-ETH_PHY_LAN8720)
   * [ 6. FullyFeature_STM32 on NUCLEO_F767ZI](#6-FullyFeature_STM32-on-NUCLEO_F767ZI)
-  * [ 7. FullyFeature_STM32 on NUCLEO_F767ZI with _ASYNC_MQTT_LOGLEVEL_](#7-FullyFeature_STM32-on-NUCLEO_F767ZI-with-_ASYNC_MQTT_LOGLEVEL_)
+  * [ 7. FullyFeature_STM32 on NUCLEO_F767ZI with _ASYNC_MQTT_LOGLEVEL_](#7-fullyfeature_stm32-on-nucleo_f767zi-with-async_mqtt_loglevel)
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Issues](#issues)
