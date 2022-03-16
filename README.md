@@ -34,6 +34,10 @@
   * [2. ESP32 ADCs functions](#2-esp32-adcs-functions)
   * [3. ESP32 WiFi uses ADC2 for WiFi functions](#3-esp32-wifi-uses-adc2-for-wifi-functions)
 * [Basic Usage](#Basic-Usage)
+* [HOWTO use STM32F4 with LAN8720](#howto-use-stm32f4-with-lan8720)
+  * [1. Wiring](#1-wiring)
+  * [2. HOWTO program using STLink V-2 or V-3](#2-howto-program-using-stlink-v-2-or-v-3)
+  * [3. HOWTO use Serial Port for Debugging](#3-howto-use-serial-port-for-debugging)
 * [Examples](#examples)
   * [1. For ESP32](#1-for-ESP32)
     * [1. FullyFeatured_ESP32](examples/ESP32/FullyFeatured_ESP32)
@@ -283,6 +287,76 @@ Look in file [**adc_common.c**](https://github.com/espressif/esp-idf/blob/master
 ## Basic Usage
 
 Please check [API documentation](https://github.com/khoih-prog/AsyncMQTT_Generic/blob/main/docs/2.-API-reference.md).
+
+
+
+---
+---
+
+### HOWTO use STM32F4 with LAN8720
+
+#### 1. Wiring
+
+This is the Wiring for STM32F4 (BLACK_F407VE, etc.) using LAN8720
+
+
+|LAN8720 PHY|<--->|STM32F4|
+|:-:|:-:|:-:|
+|TX1|<--->|PB_13|
+|TX_EN|<--->|PB_11|
+|TX0|<--->|PB_12|
+|RX0|<--->|PC_4|
+|RX1|<--->|PC_5|
+|nINT/RETCLK|<--->|PA_1|
+|CRS|<--->|PA_7|
+|MDIO|<--->|PA_2|
+|MDC|<--->|PC_1|
+|GND|<--->|GND|
+|VCC|<--->|+3.3V|
+
+---
+
+#### 2. HOWTO program using STLink V-2 or V-3
+
+Connect as follows. To program, use **STM32CubeProgrammer** or Arduino IDE with 
+
+- **U(S)ART Support: "Enabled (generic Serial)"**
+- **Upload Method : "STM32CubeProgrammer (SWD)"**
+
+- Jumper settings to program via STLink
+
+|BOOT0|<--->|3.3V|
+
+- Jumper settings twhen running normally to avoid accidentally reprogram
+
+|BOOT0|<--->|GND|
+
+
+|STLink|<--->|STM32F4|
+|:-:|:-:|:-:|
+|SWCLK|<--->|SWCLK|
+|SWDIO|<--->|SWDIO|
+|RST|<--->|NRST|
+|GND|<--->|GND|
+|5v|<--->|5V|
+
+
+<p align="center">
+    <img src="https://github.com/khoih-prog/AsyncMQTT_Generic/blob/main/pics/STM32F407VET6.png">
+</p>
+
+---
+
+#### 3. HOWTO use Serial Port for Debugging
+
+Connect FDTI (USB to Serial) as follows:
+
+|FDTI|<--->|STM32F4|
+|:-:|:-:|:-:|
+|RX|<--->|TX=PA_9|
+|TX|<--->|RX=PA_10|
+|GND|<--->|GND|
+
 
 
 ---
