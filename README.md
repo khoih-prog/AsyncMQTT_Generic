@@ -329,12 +329,13 @@ Connect as follows. To program, use **STM32CubeProgrammer** or Arduino IDE with
 |:-:|:-:|:-:|
 |BOOT0|<--->|3.3V|
 
-- Jumper settings twhen running normally to avoid accidentally reprogram
+- Jumper settings when running normally to avoid accidentally reprogram
 
 |From|<--->|To|
 |:-:|:-:|:-:|
 |BOOT0|<--->|GND|
 
+---
 
 |STLink|<--->|STM32F4|
 |:-:|:-:|:-:|
