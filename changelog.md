@@ -11,6 +11,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+	* [Releases v1.2.1](#releases-v121)
 	* [Releases v1.2.0](#releases-v120)
 	* [Releases v1.1.0](#releases-v110)
 	* [Releases v1.0.1](#releases-v101)
@@ -20,6 +21,11 @@
 ---
 
 ## Changelog
+
+### Releases v1.2.1
+
+1. Add support to many **STM32F4 and STM32F7 (without TLS/SSL)** using `LAN8720` Ethernet, such as F407xx, NUCLEO_F429ZI, DISCO_F746NG, NUCLEO_F746ZG, NUCLEO_F756ZG, etc.
+2. Add examples for `STM32_LAN8720`
 
 ### Releases v1.2.0
 

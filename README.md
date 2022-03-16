@@ -45,6 +45,8 @@
     * [2. FullyFeaturedSSL_WT32_ETH01](examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01)
   * [4. For STM32 using LAN8742A](#4-For-STM32-using-LAN8742A)
     * [1. FullyFeatured_STM32](examples/STM32/FullyFeatured_STM32) **New**
+  * [5. For STM32 using LAN8720](#5-For-STM32-using-LAN8720)
+    * [1. FullyFeatured_STM32_LAN8720](examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720) **New**
 * [Example FullyFeaturedSSL_ESP32](#example-FullyFeaturedSSL_ESP32)
   * [1. File FullyFeaturedSSL_ESP32.ino](#1-file-FullyFeaturedSSL_ESP32ino)
   * [2. File defines.h](#2-file-definesh)
@@ -56,6 +58,7 @@
   * [ 5. FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720](#5-FullyFeatureSSL_WT32_ETH01-on-WT32-ETH01-with-ETH_PHY_LAN8720)
   * [ 6. FullyFeature_STM32 on NUCLEO_F767ZI](#6-FullyFeature_STM32-on-NUCLEO_F767ZI)
   * [ 7. FullyFeature_STM32 on NUCLEO_F767ZI with _ASYNC_MQTT_LOGLEVEL_](#7-fullyfeature_stm32-on-nucleo_f767zi-with-async_mqtt_loglevel)
+  * [ 8. FullyFeatured_STM32_LAN8720 on BLACK_F407VE](#8-FullyFeatured_STM32_LAN8720-on-BLACK_F407VE)
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Issues](#issues)
@@ -105,18 +108,17 @@ This [**AsyncMQTT_Generic** library](https://github.com/khoih-prog/AsyncMQTT_Gen
   - **Nucleo-144 (F429ZI, F767ZI)**
   - **Discovery (STM32F746G-DISCOVERY)**
   - **All STM32 boards (STM32F/L/H/G/WB/MP1) with 32K+ Flash, with Built-in Ethernet**
+ 5. **STM32F4/F7 boards using Ethernet LAN8720** such as :
+
+  - **Nucleo-144 (F429ZI, NUCLEO_F746NG, NUCLEO_F746ZG, NUCLEO_F756ZG)**
+  - **Discovery (DISCO_F746NG)**
+  - **STM32F4 boards (BLACK_F407VE, BLACK_F407VG, BLACK_F407ZE, BLACK_F407ZG, BLACK_F407VE_Mini, DIYMORE_F407VGT, FK407M1)** 
   
 --- 
  
 #### To-be-supported Boards
   
- 1. **STM32F4/F7 boards using Ethernet LAN8720** such as :
-
-  - **Nucleo-144 (F429ZI, NUCLEO_F746NG, NUCLEO_F746ZG, NUCLEO_F756ZG)**
-  - **Discovery (DISCO_F746NG)**
-  - **STM32F4 boards (BLACK_F407VE, BLACK_F407VG, BLACK_F407ZE, BLACK_F407ZG, BLACK_F407VE_Mini, DIYMORE_F407VGT, FK407M1)**
-
- 2. **Portenta_H7** using either `Murata WiFi` or `Vision-shield Ethernet`
+ 1. **Portenta_H7** using either `Murata WiFi` or `Vision-shield Ethernet`
 
 
 ---
@@ -305,6 +307,10 @@ Please check [API documentation](https://github.com/khoih-prog/AsyncMQTT_Generic
 #### 4. For STM32 using LAN8742A
 
  1. [FullyFeatured_STM32](examples/STM32/FullyFeatured_STM32) **New**
+ 
+#### 5. For STM32 using LAN8720
+
+ 1. [FullyFeatured_STM32_LAN8720](examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720) **New** 
 
 ---
 ---
@@ -333,7 +339,7 @@ This is terminal debug output when running [FullyFeatured_ESP8266](examples/ESP8
 
 ```
 Starting FullyFeature_ESP8266 on ESP8266_NODEMCU_ESP12E
-AsyncMQTT_Generic v1.2.0 for ESP8266
+AsyncMQTT_Generic v1.2.1 for ESP8266
 Connecting to Wi-Fi...
 Connected to Wi-Fi. IP address: 192.168.2.82
 Connecting to MQTT...
@@ -395,7 +401,7 @@ This is terminal debug output when running [FullyFeatured_ESP32](examples/ESP32/
 
 ```
 Starting FullyFeature_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.2.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.2.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -461,7 +467,7 @@ This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP
 
 ```
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.2.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.2.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -528,7 +534,7 @@ This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP
 
 ```
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.2.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.2.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -699,7 +705,7 @@ This is terminal debug output when running [FullyFeaturedSSL_WT32_ETH01](example
 ```
 Starting FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
-AsyncMQTT_Generic v1.2.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.2.1 for ESP32 core v2.0.0+
 ETH starting
 ETH connected
 ETH got IP
@@ -756,7 +762,7 @@ This is terminal debug output when running [FullyFeature_STM32](examples/STM32/F
 
 ```
 Starting FullyFeature_STM32 on NUCLEO_F767ZI
-AsyncMQTT_Generic v1.2.0 for STM32
+AsyncMQTT_Generic v1.2.1 for STM32
 Connected to network. IP = 192.168.2.118
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -877,7 +883,7 @@ Publish acknowledged.
 
 ```
 Starting FullyFeature_STM32 on NUCLEO_F767ZI
-AsyncMQTT_Generic v1.2.0 for STM32
+AsyncMQTT_Generic v1.2.1 for STM32
 Connected to network. IP = 192.168.2.126
 Connecting to MQTT...
 [AMQTT] CONNECTING
@@ -1039,9 +1045,75 @@ Publish acknowledged.
 [AMQTT] _onData : data rcv len = 2
 [AMQTT] _onData: rcv PINGRESP
 [AMQTT] PINGRESP
-
 ```
 
+---
+
+
+#### 8. FullyFeatured_STM32_LAN8720 on BLACK_F407VE
+
+
+This is terminal debug output when running [FullyFeatured_STM32_LAN8720](examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720) on **STM32F4 BLACK_F407VE** connecting to `broker.emqx.io` MQTT server.
+
+
+```
+Starting FullyFeatured_STM32_LAN8720 on BLACK_F407VE
+AsyncMQTT_Generic v1.2.1 for STM32
+Connected to network. IP = 192.168.2.132
+Connecting to MQTT...
+Connected to MQTT broker: broker.emqx.io, port: 1883
+PubTopic: async-mqtt/STM32_Pub
+************************************************
+Session present: 0
+Subscribing at QoS 2, packetId: 1
+Publishing at QoS 0
+Publishing at QoS 1, packetId: 2
+Publishing at QoS 2, packetId: 3
+************************************************
+Subscribe acknowledged.
+  packetId: 1
+  qos: 2
+Publish received.
+  topic: async-mqtt/STM32_Pub
+  message: STM32 Test3
+  qos: 2
+  dup: 0
+  retain: 1
+  len: 11
+  index: 0
+  total: 11
+Publish acknowledged.
+  packetId: 2
+Publish received.
+  topic: async-mqtt/STM32_Pub
+  message: STM32 Test1
+  qos: 0
+  dup: 0
+  retain: 0
+  len: 11
+  index: 0
+  total: 11
+Publish received.
+  topic: async-mqtt/STM32_Pub
+  message: STM32 Test2
+  qos: 1
+  dup: 0
+  retain: 0
+  len: 11
+  index: 0
+  total: 11
+Publish received.
+  topic: async-mqtt/STM32_Pub
+  message: STM32 Test3
+  qos: 2
+  dup: 0
+  retain: 0
+  len: 11
+  index: 0
+  total: 11
+Publish acknowledged.
+  packetId: 3
+```
 ---
 ---
 
@@ -1079,9 +1151,8 @@ Submit issues to: [AsyncMQTT_Generic issues](https://github.com/khoih-prog/Async
 ### TO DO
 
  1. Add support to **Portenta_H7**, using either `Murata WiFi` or `Vision-shield Ethernet`
- 2. Add support to many **STM32F4 and STM32F7 (without TLS/SSL)** using `LAN8720` Ethernet, such as F407xx, NUCLEO_F429ZI, DISCO_F746NG, NUCLEO_F746ZG, NUCLEO_F756ZG, etc.
- 3. Support ESP8266 using SSL/TLS
- 4. Bug fixing.
+ 2. Support ESP8266 using SSL/TLS
+ 3. Bug fixing.
 
 ---
 
@@ -1091,6 +1162,8 @@ Submit issues to: [AsyncMQTT_Generic issues](https://github.com/khoih-prog/Async
  2. Add support to **ESP8266 (non-SSL)**
  3. Add support to **WT32_ETH01 (SSL and non-SSL)**
  4. Add support to **Ethernet LAN8742A (non-SSL)**, using [`STM32Ethernet library`](https://github.com/stm32duino/STM32Ethernet) and [`STM32duino_LwIP library`](https://github.com/stm32duino/LwIP).
+ 5. Add support to many **STM32F4 and STM32F7 (without TLS/SSL)** using `LAN8720` Ethernet, such as F407xx, NUCLEO_F429ZI, DISCO_F746NG, NUCLEO_F746ZG, NUCLEO_F756ZG, etc.
+
 
 ---
 ---

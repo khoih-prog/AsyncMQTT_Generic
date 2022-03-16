@@ -9,14 +9,15 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.2.0
+  Version: 1.2.1
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
-  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A or LAN8720 (without TLS/SSL)
+  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A (without TLS/SSL)
+  1.2.1    K Hoang     16/03/2022 Add support to STM32 using LAN8720 (without TLS/SSL)
  *****************************************************************************************************************************/
 
 #pragma once
@@ -26,17 +27,17 @@
 
 enum class AsyncMqttClientDisconnectReason : uint8_t 
 {
-	TCP_DISCONNECTED = 0,
+  TCP_DISCONNECTED                    = 0,
 
-	MQTT_UNACCEPTABLE_PROTOCOL_VERSION = 1,
-	MQTT_IDENTIFIER_REJECTED = 2,
-	MQTT_SERVER_UNAVAILABLE = 3,
-	MQTT_MALFORMED_CREDENTIALS = 4,
-	MQTT_NOT_AUTHORIZED = 5,
+  MQTT_UNACCEPTABLE_PROTOCOL_VERSION  = 1,
+  MQTT_IDENTIFIER_REJECTED            = 2,
+  MQTT_SERVER_UNAVAILABLE             = 3,
+  MQTT_MALFORMED_CREDENTIALS          = 4,
+  MQTT_NOT_AUTHORIZED                 = 5,
 
-	ESP8266_NOT_ENOUGH_SPACE = 6,
+  ESP8266_NOT_ENOUGH_SPACE            = 6,
 
-	TLS_BAD_FINGERPRINT = 7
+  TLS_BAD_FINGERPRINT                 = 7
 };
 
-#endif		// DISCONNECT_REASONS_HPP
+#endif    // DISCONNECT_REASONS_HPP

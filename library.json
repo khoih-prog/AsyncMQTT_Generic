@@ -1,8 +1,8 @@
 {
   "name": "AsyncMQTT_Generic",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "keywords": "communication, iot, home, automation, async, async-tcp, async-tcp-ssl, async-mqtt, mqtt, async-mqtt-client, esp8266, esp32, stm32, portenta-h7, wt32-eth01, tls",
-  "description": "Arduino Library for ESP8266, ESP32, Portenta_H7 and STM32 asynchronous MQTT client implementation. This library, ported to support ESP32, WT32_ETH01, ESP8266, Portenta_H7 (Ethernet or WiFi) and STM32 (LAN8742A Ethernet), is currently supporting ESP32, WT32_ETH01 (SSL and non-SSL), ESP8266 (non-SSL), STM32 using LAN8742A (non-SSL). Support for Portenta_H7 and STM32 using LAN8720 will be added gradually",
+  "description": "Arduino Library for ESP8266, ESP32, Portenta_H7 and STM32 asynchronous MQTT client implementation. This library, ported to support ESP32, WT32_ETH01, ESP8266, Portenta_H7 (Ethernet or WiFi) and STM32 (LAN8742A Ethernet), is currently supporting ESP32, WT32_ETH01 (SSL and non-SSL), ESP8266 (non-SSL), STM32 using LAN8742A or LAN8720 (non-SSL). Support for Portenta_H7 will be added",
   "authors": 
   [
     {

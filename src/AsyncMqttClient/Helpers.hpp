@@ -9,14 +9,15 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.2.0
+  Version: 1.2.1
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
-  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A or LAN8720 (without TLS/SSL)
+  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A (without TLS/SSL)
+  1.2.1    K Hoang     16/03/2022 Add support to STM32 using LAN8720 (without TLS/SSL)
  *****************************************************************************************************************************/
 
 #pragma once
@@ -69,23 +70,6 @@ class Helpers
     }
 };
 
-#if defined(ARDUINO_ARCH_ESP32)
-  #define SEMAPHORE_TAKE() 			xSemaphoreTake(_xSemaphore, portMAX_DELAY)
-  #define SEMAPHORE_GIVE() 			xSemaphoreGive(_xSemaphore)
-  #define GET_FREE_MEMORY() 		ESP.getMaxAllocHeap()
-  #include <esp32-hal-log.h>
-#elif defined(ARDUINO_ARCH_ESP8266)
-  #define SEMAPHORE_TAKE(X) while (_xSemaphore) { /*ESP.wdtFeed();*/ } _xSemaphore = true
-  #define SEMAPHORE_GIVE() 			_xSemaphore = false
-  #define GET_FREE_MEMORY() 		ESP.getMaxFreeBlockSize()
-#elif ASYNC_MQTT_USING_STM32 
-	#define SEMAPHORE_TAKE(X) while (_xSemaphore) {  } _xSemaphore = true
-  #define SEMAPHORE_GIVE() 			_xSemaphore = false
-  #define GET_FREE_MEMORY() 		MQTT_MIN_FREE_MEMORY
-#else
-  //#pragma error "No valid architecture"
-#endif
-
 }  // namespace AsyncMqttClientInternals
 
-#endif		// HELPERS_HPP
+#endif    // HELPERS_HPP

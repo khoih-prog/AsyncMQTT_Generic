@@ -9,14 +9,15 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.2.0
+  Version: 1.2.1
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
-  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A or LAN8720 (without TLS/SSL)
+  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A (without TLS/SSL)
+  1.2.1    K Hoang     16/03/2022 Add support to STM32 using LAN8720 (without TLS/SSL)
  *****************************************************************************************************************************/
 
 #pragma once
@@ -34,16 +35,16 @@
 
 namespace AsyncMqttClientInternals 
 {
-	class UnsubscribeOutPacket : public OutPacket 
-	{
-		public:
-			explicit UnsubscribeOutPacket(const char* topic);
-			const uint8_t* data(size_t index = 0) const;
-			size_t size() const;
+  class UnsubscribeOutPacket : public OutPacket 
+  {
+    public:
+      explicit UnsubscribeOutPacket(const char* topic);
+      const uint8_t* data(size_t index = 0) const;
+      size_t size() const;
 
-		private:
-			std::vector<uint8_t> _data;
-	};
+    private:
+      std::vector<uint8_t> _data;
+  };
 }  // namespace AsyncMqttClientInternals
 
-#endif		// UNSUBSCRIBE_HPP
+#endif    // UNSUBSCRIBE_HPP

@@ -9,14 +9,15 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.2.0
+  Version: 1.2.1
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
-  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A or LAN8720 (without TLS/SSL)
+  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A (without TLS/SSL)
+  1.2.1    K Hoang     16/03/2022 Add support to STM32 using LAN8720 (without TLS/SSL)
  *****************************************************************************************************************************/
  
 #pragma once
@@ -32,35 +33,35 @@
 
 namespace AsyncMqttClientInternals 
 {
-	class PublishPacket : public Packet 
-	{
-	 public:
-		explicit PublishPacket(ParsingInformation* parsingInformation, OnMessageInternalCallback dataCallback, OnPublishInternalCallback completeCallback);
-		~PublishPacket();
+  class PublishPacket : public Packet 
+  {
+   public:
+    explicit PublishPacket(ParsingInformation* parsingInformation, OnMessageInternalCallback dataCallback, OnPublishInternalCallback completeCallback);
+    ~PublishPacket();
 
-		void parseVariableHeader(char* data, size_t len, size_t* currentBytePosition);
-		void parsePayload(char* data, size_t len, size_t* currentBytePosition);
+    void parseVariableHeader(char* data, size_t len, size_t* currentBytePosition);
+    void parsePayload(char* data, size_t len, size_t* currentBytePosition);
 
-	 private:
-		ParsingInformation* _parsingInformation;
-		OnMessageInternalCallback _dataCallback;
-		OnPublishInternalCallback _completeCallback;
+   private:
+    ParsingInformation* _parsingInformation;
+    OnMessageInternalCallback _dataCallback;
+    OnPublishInternalCallback _completeCallback;
 
-		void _preparePayloadHandling(uint32_t payloadLength);
+    void _preparePayloadHandling(uint32_t payloadLength);
 
-		bool _dup;
-		uint8_t _qos;
-		bool _retain;
+    bool _dup;
+    uint8_t _qos;
+    bool _retain;
 
-		uint8_t _bytePosition;
-		char _topicLengthMsb;
-		uint16_t _topicLength;
-		bool _ignore;
-		char _packetIdMsb;
-		uint16_t _packetId;
-		uint32_t _payloadLength;
-		uint32_t _payloadBytesRead;
-	};
+    uint8_t _bytePosition;
+    char _topicLengthMsb;
+    uint16_t _topicLength;
+    bool _ignore;
+    char _packetIdMsb;
+    uint16_t _packetId;
+    uint32_t _payloadLength;
+    uint32_t _payloadBytesRead;
+  };
 }  // namespace AsyncMqttClientInternals
 
-#endif		// PUBLISH_PACKET_HPP
+#endif    // PUBLISH_PACKET_HPP

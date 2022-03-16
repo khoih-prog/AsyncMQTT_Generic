@@ -9,14 +9,15 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.2.0
+  Version: 1.2.1
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
-  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A or LAN8720 (without TLS/SSL)
+  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A (without TLS/SSL)
+  1.2.1    K Hoang     16/03/2022 Add support to STM32 using LAN8720 (without TLS/SSL)
  *****************************************************************************************************************************/
  
 #include "PublishPacket.hpp"
@@ -63,8 +64,8 @@ PublishPacket::~PublishPacket()
 
 void PublishPacket::parseVariableHeader(char* data, size_t len, size_t* currentBytePosition) 
 {
-	(void)len;
-	
+  (void)len;
+  
   char currentByte = data[(*currentBytePosition)++];
   
   if (_bytePosition == 0) 
@@ -88,8 +89,8 @@ void PublishPacket::parseVariableHeader(char* data, size_t len, size_t* currentB
   {
     // Starting from here, _ignore might be true
     if (!_ignore) 
-    	_parsingInformation->topicBuffer[_bytePosition - 2] = currentByte;
-    	
+      _parsingInformation->topicBuffer[_bytePosition - 2] = currentByte;
+      
     if (_bytePosition == 2 + _topicLength - 1 && _qos == 0) 
     {
       _preparePayloadHandling(_parsingInformation->remainingLength - (_bytePosition + 1));
@@ -133,12 +134,12 @@ void PublishPacket::parsePayload(char* data, size_t len, size_t* currentBytePosi
   size_t remainToRead = len - (*currentBytePosition);
   
   if (_payloadBytesRead + remainToRead > 
-  	_payloadLength) remainToRead = _payloadLength - _payloadBytesRead;
+    _payloadLength) remainToRead = _payloadLength - _payloadBytesRead;
 
   if (!_ignore) 
-  	_dataCallback(_parsingInformation->topicBuffer, data + (*currentBytePosition), 
-  	              _qos, _dup, _retain, remainToRead, _payloadBytesRead, _payloadLength, _packetId);
-  	              
+    _dataCallback(_parsingInformation->topicBuffer, data + (*currentBytePosition), 
+                  _qos, _dup, _retain, remainToRead, _payloadBytesRead, _payloadLength, _packetId);
+                  
   _payloadBytesRead += remainToRead;
   (*currentBytePosition) += remainToRead;
 
@@ -147,6 +148,6 @@ void PublishPacket::parsePayload(char* data, size_t len, size_t* currentBytePosi
     _parsingInformation->bufferState = BufferState::NONE;
     
     if (!_ignore) 
-    	_completeCallback(_packetId, _qos);
+      _completeCallback(_packetId, _qos);
   }
 }

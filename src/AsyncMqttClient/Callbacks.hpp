@@ -9,14 +9,15 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.2.0
+  Version: 1.2.1
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
-  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A or LAN8720 (without TLS/SSL)
+  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A (without TLS/SSL)
+  1.2.1    K Hoang     16/03/2022 Add support to STM32 using LAN8720 (without TLS/SSL)
  *****************************************************************************************************************************/
 
 #pragma once
@@ -32,26 +33,26 @@
 
 namespace AsyncMqttClientInternals 
 {
-	// user callbacks
-	typedef std::function<void(bool sessionPresent)> OnConnectUserCallback;
-	typedef std::function<void(AsyncMqttClientDisconnectReason reason)> OnDisconnectUserCallback;
-	typedef std::function<void(uint16_t packetId, uint8_t qos)> OnSubscribeUserCallback;
-	typedef std::function<void(uint16_t packetId)> OnUnsubscribeUserCallback;
-	typedef std::function<void(char* topic, char* payload, AsyncMqttClientMessageProperties properties, size_t len, size_t index, size_t total)> OnMessageUserCallback;
-	typedef std::function<void(uint16_t packetId)> OnPublishUserCallback;
-	typedef std::function<void(uint16_t packetId, AsyncMqttClientError error)> OnErrorUserCallback;
+  // user callbacks
+  typedef std::function<void(bool sessionPresent)> OnConnectUserCallback;
+  typedef std::function<void(AsyncMqttClientDisconnectReason reason)> OnDisconnectUserCallback;
+  typedef std::function<void(uint16_t packetId, uint8_t qos)> OnSubscribeUserCallback;
+  typedef std::function<void(uint16_t packetId)> OnUnsubscribeUserCallback;
+  typedef std::function<void(char* topic, char* payload, AsyncMqttClientMessageProperties properties, size_t len, size_t index, size_t total)> OnMessageUserCallback;
+  typedef std::function<void(uint16_t packetId)> OnPublishUserCallback;
+  typedef std::function<void(uint16_t packetId, AsyncMqttClientError error)> OnErrorUserCallback;
 
-	// internal callbacks
-	typedef std::function<void(bool sessionPresent, uint8_t connectReturnCode)> OnConnAckInternalCallback;
-	typedef std::function<void()> OnPingRespInternalCallback;
-	typedef std::function<void(uint16_t packetId, char status)> OnSubAckInternalCallback;
-	typedef std::function<void(uint16_t packetId)> OnUnsubAckInternalCallback;
-	typedef std::function<void(char* topic, char* payload, uint8_t qos, bool dup, bool retain, size_t len, size_t index, size_t total, uint16_t packetId)> OnMessageInternalCallback;
-	typedef std::function<void(uint16_t packetId, uint8_t qos)> OnPublishInternalCallback;
-	typedef std::function<void(uint16_t packetId)> OnPubRelInternalCallback;
-	typedef std::function<void(uint16_t packetId)> OnPubAckInternalCallback;
-	typedef std::function<void(uint16_t packetId)> OnPubRecInternalCallback;
-	typedef std::function<void(uint16_t packetId)> OnPubCompInternalCallback;
+  // internal callbacks
+  typedef std::function<void(bool sessionPresent, uint8_t connectReturnCode)> OnConnAckInternalCallback;
+  typedef std::function<void()> OnPingRespInternalCallback;
+  typedef std::function<void(uint16_t packetId, char status)> OnSubAckInternalCallback;
+  typedef std::function<void(uint16_t packetId)> OnUnsubAckInternalCallback;
+  typedef std::function<void(char* topic, char* payload, uint8_t qos, bool dup, bool retain, size_t len, size_t index, size_t total, uint16_t packetId)> OnMessageInternalCallback;
+  typedef std::function<void(uint16_t packetId, uint8_t qos)> OnPublishInternalCallback;
+  typedef std::function<void(uint16_t packetId)> OnPubRelInternalCallback;
+  typedef std::function<void(uint16_t packetId)> OnPubAckInternalCallback;
+  typedef std::function<void(uint16_t packetId)> OnPubRecInternalCallback;
+  typedef std::function<void(uint16_t packetId)> OnPubCompInternalCallback;
 }  // namespace AsyncMqttClientInternals
 
 #endif		// CALLBACKS_HPP
