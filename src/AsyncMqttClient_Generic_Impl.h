@@ -9,7 +9,7 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.2.1
+  Version: 1.3.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -18,6 +18,7 @@
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
   1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A (without TLS/SSL)
   1.2.1    K Hoang     16/03/2022 Add support to STM32 using LAN8720 (without TLS/SSL)
+  1.3.0    K Hoang     16/03/2022 Add support to Portenta_H7 using built-in Ethernet or Murata WiFi (without TLS/SSL)
  *****************************************************************************************************************************/
 
 #pragma once
@@ -33,22 +34,22 @@
 
 const char* PacketTypeName[] = 
 { 
-	"RESERVED",
-	"CONNECT",
-	"CONNACK",
-	"PUBLISH",
-	"PUBACK",
-	"PUBREC",
-	"PUBREL",
-	"PUBCOMP",
-	"SUBSCRIBE",
-	"SUBACK",
-	"UNSUBSCRIBE",
-	"UNSUBACK",
-	"PINGREQ",
-	"PINGRESP",
-	"DISCONNECT",
-	"RESERVED2" 
+  "RESERVED",
+  "CONNECT",
+  "CONNACK",
+  "PUBLISH",
+  "PUBACK",
+  "PUBREC",
+  "PUBREL",
+  "PUBCOMP",
+  "SUBSCRIBE",
+  "SUBACK",
+  "UNSUBSCRIBE",
+  "UNSUBACK",
+  "PINGREQ",
+  "PINGRESP",
+  "DISCONNECT",
+  "RESERVED2" 
 };
 
 /////////////////////////////////////////////////////////
@@ -96,18 +97,18 @@ AsyncMqttClient::AsyncMqttClient()
   , _remainingLengthBuffer{0}
   , _pendingPubRels()
 {
-	_parsingInformation.bufferState = AsyncMqttClientInternals::BufferState::NONE;
-	
+  _parsingInformation.bufferState = AsyncMqttClientInternals::BufferState::NONE;
+  
 #if ASYNC_TCP_SSL_ENABLED
   _client.onConnect([](void* obj, AsyncSSLClient * c) 
   {
-  	(void) c;
+    (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onConnect();
   }, this);
   
   _client.onDisconnect([](void* obj, AsyncSSLClient * c) 
   {
-  	(void) c;
+    (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onDisconnect();
   }, this);
   
@@ -116,19 +117,19 @@ AsyncMqttClient::AsyncMqttClient()
   
   _client.onAck([](void* obj, AsyncSSLClient * c, size_t len, uint32_t time) 
   {
-  	(void) c;
+    (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onAck(len);
   }, this);
   
   _client.onData([](void* obj, AsyncSSLClient * c, void* data, size_t len) 
   {
-  	(void) c;
+    (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onData(static_cast<char*>(data), len);
   }, this);
   
   _client.onPoll([](void* obj, AsyncSSLClient * c) 
   {
-  	(void) c;
+    (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onPoll();
   }, this);
   
@@ -136,13 +137,13 @@ AsyncMqttClient::AsyncMqttClient()
 
   _client.onConnect([](void* obj, AsyncClient * c) 
   {
-  	(void) c;
+    (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onConnect();
   }, this);
   
   _client.onDisconnect([](void* obj, AsyncClient * c) 
   {
-  	(void) c;
+    (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onDisconnect();
   }, this);
   
@@ -151,20 +152,20 @@ AsyncMqttClient::AsyncMqttClient()
   
   _client.onAck([](void* obj, AsyncClient * c, size_t len, uint32_t time) 
   {
-  	(void) c;
-  	(void) time;
+    (void) c;
+    (void) time;
     (static_cast<AsyncMqttClient*>(obj))->_onAck(len);
   }, this);
   
   _client.onData([](void* obj, AsyncClient * c, void* data, size_t len) 
   {
-  	(void) c;
+    (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onData(static_cast<char*>(data), len);
   }, this);
   
   _client.onPoll([](void* obj, AsyncClient * c) 
   {
-  	(void) c;
+    (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onPoll();
   }, this);
   
@@ -177,10 +178,12 @@ AsyncMqttClient::AsyncMqttClient()
   _xSemaphore = xSemaphoreCreateMutex();
 #elif defined(ESP8266)
   sprintf(_generatedClientId, "esp8266-%06x", ESP.getChipId());
+#elif ASYNC_MQTT_USING_PORTENTA_H7
+  // Will create _clientId from macAddress later in connect() as ID not available now  
 #elif ASYNC_MQTT_USING_STM32
   // Will create _clientId from macAddress later in connect() as ID not available now
 #endif
-	
+  
   _clientId = _generatedClientId;
 
   setMaxTopicLength(128);
@@ -1125,7 +1128,32 @@ void AsyncMqttClient::connect()
   if (_state != DISCONNECTED)
     return;
 
-#if ASYNC_MQTT_USING_STM32
+#if (ASYNC_MQTT_USING_PORTENTA_H7)
+
+  #if (USE_ETHERNET_PORTENTA_H7)
+  
+  // 6 HEX bytes + NULL
+  uint8_t macPortenta[6];
+  char buffer[13];
+  
+  Ethernet.MACAddress((uint8_t*) macPortenta);
+
+  macAddressToClientID(buffer, macPortenta);
+  snprintf(_generatedClientId, sizeof(_generatedClientId), "h7m7-%s", buffer);
+  
+  _clientId = _generatedClientId;
+  
+  #else
+   
+  // For WiFi. TODO Get Portenta unique hardwareID to use for both Ethernet and WiFi
+  
+  snprintf(_generatedClientId, sizeof(_generatedClientId), "h7m7-%06lx", micros());
+
+  _clientId = _generatedClientId;
+  
+  #endif
+  
+#elif ASYNC_MQTT_USING_STM32
   // 6 HEX bytes + NULL
   char buffer[13];
 
@@ -1135,6 +1163,7 @@ void AsyncMqttClient::connect()
   //snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%s", macAddressToClientID(Ethernet.MACAddress()));
 
   _clientId = _generatedClientId;
+ 
 #endif
 
   AMQTT_LOGINFO("CONNECTING");
@@ -1221,9 +1250,9 @@ uint16_t AsyncMqttClient::unsubscribe(const char* topic)
 
 uint16_t AsyncMqttClient::publish(const char* topic, uint8_t qos, bool retain, const char* payload, size_t length, bool dup, uint16_t message_id)
 {
-	(void) dup;
-	(void) message_id;
-	
+  (void) dup;
+  (void) message_id;
+  
   if (_state != CONNECTED || GET_FREE_MEMORY() < MQTT_MIN_FREE_MEMORY)
     return 0;
 
@@ -1270,4 +1299,4 @@ char* AsyncMqttClient::macAddressToClientID(char* buffer, const uint8_t* _macAdd
 
 /////////////////////////////////////////////////////////
 
-#endif		// ASYNC_MQTT_CLIENT_IMPL_H
+#endif    // ASYNC_MQTT_CLIENT_IMPL_H

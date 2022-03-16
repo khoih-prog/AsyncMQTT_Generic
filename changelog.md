@@ -11,6 +11,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+	* [Releases v1.3.0](#releases-v130)
 	* [Releases v1.2.1](#releases-v121)
 	* [Releases v1.2.0](#releases-v120)
 	* [Releases v1.1.0](#releases-v110)
@@ -21,6 +22,11 @@
 ---
 
 ## Changelog
+
+### Releases v1.3.0
+
+1. Add support to **Portenta_H7**, using either `Murata WiFi` or `Vision-shield Ethernet`
+2. Add examples for `Portenta_H7_Ethernet` and `Portenta_H7_WiFi`
 
 ### Releases v1.2.1
 
