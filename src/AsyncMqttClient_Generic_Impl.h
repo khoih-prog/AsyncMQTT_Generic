@@ -9,13 +9,14 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.1.0
+  Version: 1.2.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
+  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A or LAN8720 (without TLS/SSL)
  *****************************************************************************************************************************/
 
 #pragma once
@@ -88,20 +89,24 @@ AsyncMqttClient::AsyncMqttClient()
   , _onUnsubscribeUserCallbacks()
   , _onMessageUserCallbacks()
   , _onPublishUserCallbacks()
-  , _parsingInformation { .bufferState = AsyncMqttClientInternals::BufferState::NONE }
+  , _parsingInformation() 
   , _currentParsedPacket(nullptr)
   , _remainingLengthBufferPosition(0)
   , _remainingLengthBuffer{0}
   , _pendingPubRels()
 {
+	_parsingInformation.bufferState = AsyncMqttClientInternals::BufferState::NONE;
+	
 #if ASYNC_TCP_SSL_ENABLED
   _client.onConnect([](void* obj, AsyncSSLClient * c) 
   {
+  	(void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onConnect();
   }, this);
   
   _client.onDisconnect([](void* obj, AsyncSSLClient * c) 
   {
+  	(void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onDisconnect();
   }, this);
   
@@ -110,16 +115,19 @@ AsyncMqttClient::AsyncMqttClient()
   
   _client.onAck([](void* obj, AsyncSSLClient * c, size_t len, uint32_t time) 
   {
+  	(void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onAck(len);
   }, this);
   
   _client.onData([](void* obj, AsyncSSLClient * c, void* data, size_t len) 
   {
+  	(void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onData(static_cast<char*>(data), len);
   }, this);
   
   _client.onPoll([](void* obj, AsyncSSLClient * c) 
   {
+  	(void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onPoll();
   }, this);
   
@@ -127,11 +135,13 @@ AsyncMqttClient::AsyncMqttClient()
 
   _client.onConnect([](void* obj, AsyncClient * c) 
   {
+  	(void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onConnect();
   }, this);
   
   _client.onDisconnect([](void* obj, AsyncClient * c) 
   {
+  	(void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onDisconnect();
   }, this);
   
@@ -140,16 +150,20 @@ AsyncMqttClient::AsyncMqttClient()
   
   _client.onAck([](void* obj, AsyncClient * c, size_t len, uint32_t time) 
   {
+  	(void) c;
+  	(void) time;
     (static_cast<AsyncMqttClient*>(obj))->_onAck(len);
   }, this);
   
   _client.onData([](void* obj, AsyncClient * c, void* data, size_t len) 
   {
+  	(void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onData(static_cast<char*>(data), len);
   }, this);
   
   _client.onPoll([](void* obj, AsyncClient * c) 
   {
+  	(void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onPoll();
   }, this);
   
@@ -162,8 +176,10 @@ AsyncMqttClient::AsyncMqttClient()
   _xSemaphore = xSemaphoreCreateMutex();
 #elif defined(ESP8266)
   sprintf(_generatedClientId, "esp8266-%06x", ESP.getChipId());
+#elif ASYNC_MQTT_USING_STM32
+	// Will create _clientId from macAddress later in connect() as ID not available now
 #endif
-
+	
   _clientId = _generatedClientId;
 
   setMaxTopicLength(128);
@@ -1108,8 +1124,22 @@ void AsyncMqttClient::connect()
   if (_state != DISCONNECTED)
     return;
 
-  AMQTT_LOGINFO("CONNECTING");
+#if ASYNC_MQTT_USING_STM32
+	// 6 HEX bytes + NULL
+	char buffer[13];
+	
+	macAddressToClientID(buffer, Ethernet.MACAddress()); 
+	snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%s", buffer); 
+	
+  //snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%s", macAddressToClientID(Ethernet.MACAddress())); 
+  
+  _clientId = _generatedClientId;
+#endif
 
+  AMQTT_LOGINFO("CONNECTING");
+  
+  AMQTT_LOGINFO1("ClientID =", _clientId);
+  
   _state = CONNECTING;
   _disconnectReason = AsyncMqttClientDisconnectReason::TCP_DISCONNECTED;  // reset any previous
 
@@ -1190,6 +1220,9 @@ uint16_t AsyncMqttClient::unsubscribe(const char* topic)
 
 uint16_t AsyncMqttClient::publish(const char* topic, uint8_t qos, bool retain, const char* payload, size_t length, bool dup, uint16_t message_id)
 {
+	(void) dup;
+	(void) message_id;
+	
   if (_state != CONNECTED || GET_FREE_MEMORY() < MQTT_MIN_FREE_MEMORY)
     return 0;
 
@@ -1220,6 +1253,19 @@ const char* AsyncMqttClient::getClientId() const
   return _clientId;
 }
 
+/////////////////////////////////////////////////////////
+
+char* AsyncMqttClient::macAddressToClientID(char* buffer, const uint8_t* _macAddress)
+{
+	// 6 HEX bytes + NULL = min(13) for buffer
+	// static char buffer[13];
+	memset((void*) buffer, 0, sizeof(buffer));
+		
+	for (int i = 0; i < 6; i++)
+		sprintf(&buffer[i * 2], "%02X", _macAddress[i]); //convert number to hex
+		
+  return ( buffer );
+}
 /////////////////////////////////////////////////////////
 
 #endif		// ASYNC_MQTT_CLIENT_IMPL_H

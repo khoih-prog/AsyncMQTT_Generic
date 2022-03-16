@@ -9,13 +9,14 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.1.0
+  Version: 1.2.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
+  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A or LAN8720 (without TLS/SSL)
  *****************************************************************************************************************************/
  
 #include "ConnAckPacket.hpp"
@@ -27,24 +28,35 @@ ConnAckPacket::ConnAckPacket(ParsingInformation* parsingInformation, OnConnAckIn
 , _callback(callback)
 , _bytePosition(0)
 , _sessionPresent(false)
-, _connectReturnCode(0) {
+, _connectReturnCode(0) 
+{
 }
 
-ConnAckPacket::~ConnAckPacket() {
+ConnAckPacket::~ConnAckPacket() 
+{
 }
 
-void ConnAckPacket::parseVariableHeader(char* data, size_t len, size_t* currentBytePosition) {
+void ConnAckPacket::parseVariableHeader(char* data, size_t len, size_t* currentBytePosition) 
+{
+	(void)len;
+	
   char currentByte = data[(*currentBytePosition)++];
-  if (_bytePosition++ == 0) {
+  
+  if (_bytePosition++ == 0) 
+  {
     _sessionPresent = (currentByte << 7) >> 7;
-  } else {
+  } 
+  else 
+  {
     _connectReturnCode = currentByte;
     _parsingInformation->bufferState = BufferState::NONE;
     _callback(_sessionPresent, _connectReturnCode);
   }
 }
 
-void ConnAckPacket::parsePayload(char* data, size_t len, size_t* currentBytePosition) {
+void ConnAckPacket::parsePayload(char* data, size_t len, size_t* currentBytePosition) 
+{
   (void)data;
+  (void)len;
   (void)currentBytePosition;
 }

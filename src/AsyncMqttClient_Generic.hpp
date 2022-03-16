@@ -9,13 +9,14 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.1.0
+  Version: 1.2.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
+  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A or LAN8720 (without TLS/SSL)
  *****************************************************************************************************************************/
 
 #pragma once
@@ -34,15 +35,15 @@
 
 /////////////////////////////////////////////////////////
 
-#define ASYNC_MQTT_GENERIC_SHORT_VERSION				"AsyncMQTT_Generic v1.1.0" 
+#define ASYNC_MQTT_GENERIC_SHORT_VERSION				"AsyncMQTT_Generic v1.2.0" 
 
 /////////////////////////////////////////////////////////
 
 #define ASYNC_MQTT_GENERIC_VERSION_MAJOR       1
-#define ASYNC_MQTT_GENERIC_VERSION_MINOR       1
+#define ASYNC_MQTT_GENERIC_VERSION_MINOR       2
 #define ASYNC_MQTT_GENERIC_VERSION_PATCH       0
 
-#define ASYNC_MQTT_GENERIC_VERSION_INT         1001000
+#define ASYNC_MQTT_GENERIC_VERSION_INT         1002000
 
 /////////////////////////////////////////////////////////
 
@@ -87,8 +88,25 @@
     
     #define ASYNC_MQTT_GENERIC_VERSION				(ASYNC_MQTT_GENERIC_SHORT_VERSION " for ESP8266")
   #endif
+  
+#elif ( defined(STM32F0) || defined(STM32F1) || defined(STM32F2) || defined(STM32F3)  ||defined(STM32F4) || defined(STM32F7) || \
+        defined(STM32L0) || defined(STM32L1) || defined(STM32L4) || defined(STM32H7)  ||defined(STM32G0) || defined(STM32G4) || \
+        defined(STM32WB) || defined(STM32MP1) )
+       
+  #if ASYNC_TCP_SSL_ENABLED
+  	#error STM32 ASYNC_TCP_SSL_ENABLED not ready yet
+    #include <STM32AsyncTCP_SSL.h>
+    #warning STM32 ASYNC_TCP_SSL_ENABLED   
+  #else
+    #include <STM32AsyncTCP.h>
+    
+    #define ASYNC_MQTT_GENERIC_VERSION				(ASYNC_MQTT_GENERIC_SHORT_VERSION " for STM32")
+  #endif
+  
+  #define ASYNC_MQTT_USING_STM32			true
+           
 #else
-  //#error Platform not supported
+  #error Platform not supported
 #endif
 
 
@@ -98,6 +116,8 @@
   #if (ESP32)
     #include <tcp_mbedtls.h>
   #elif defined(ESP8266)
+    #include <tcp_axtls.h>
+  #elif ASYNC_MQTT_USING_STM32
     #include <tcp_axtls.h>
   #endif
   
@@ -201,7 +221,7 @@ class AsyncMqttClient
   uint32_t _lastServerActivity;
   uint32_t _lastPingRequestTime;
 
-  char _generatedClientId[18 + 1];  // esp8266-abc123 and esp32-abcdef123456
+  char _generatedClientId[18 + 1];  // esp8266-abc123, esp32-abcdef123456 or stm32-abcdef123456
   IPAddress _ip;
   const char* _host;
   bool _useIp;
@@ -244,6 +264,8 @@ class AsyncMqttClient
   SemaphoreHandle_t _xSemaphore = nullptr;
 #elif defined(ESP8266)
   bool _xSemaphore = false;
+#elif ASYNC_MQTT_USING_STM32 
+	bool _xSemaphore = false;
 #endif
 
   void _clear();
@@ -279,6 +301,9 @@ class AsyncMqttClient
   void _onPubComp(uint16_t packetId);
 
   void _sendPing();
+  
+  //const char* macAddressToClientID(const uint8_t* _macAddress);
+  char* macAddressToClientID(char* buffer, const uint8_t* _macAddress);
 };
 
 #endif    // ASYNC_MQTT_CLIENT_HPP

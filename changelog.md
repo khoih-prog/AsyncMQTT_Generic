@@ -11,6 +11,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+	* [Releases v1.2.0](#releases-v120)
 	* [Releases v1.1.0](#releases-v110)
 	* [Releases v1.0.1](#releases-v101)
   * [Initial Releases v1.0.0](#Initial-Releases-v100)
@@ -19,6 +20,11 @@
 ---
 
 ## Changelog
+
+### Releases v1.2.0
+
+1. Add support to **STM32F/L/H/G/WB/MP1 (without TLS/SSL)** using `built-in LAN8742A` Ethernet, such as Nucleo-144, DISCOVERY, etc.
+2. Add examples for `STM32`
 
 ### Releases v1.1.0
 

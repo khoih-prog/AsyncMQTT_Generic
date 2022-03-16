@@ -9,13 +9,14 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.1.0
+  Version: 1.2.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
   1.0.1    K Hoang     10/03/2022 Fix Library Manager warnings
   1.1.0    K Hoang     11/03/2022 Add support to WT32_ETH01 (with or without TLS/SSL)
+  1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A or LAN8720 (without TLS/SSL)
  *****************************************************************************************************************************/
  
 #include "PublishPacket.hpp"
@@ -36,11 +37,14 @@ PublishPacket::PublishPacket(ParsingInformation* parsingInformation, OnMessageIn
 , _packetIdMsb(0)
 , _packetId(0)
 , _payloadLength(0)
-, _payloadBytesRead(0) {
+, _payloadBytesRead(0) 
+{
     _dup = _parsingInformation->packetFlags & HeaderFlag.PUBLISH_DUP;
     _retain = _parsingInformation->packetFlags & HeaderFlag.PUBLISH_RETAIN;
     char qosMasked = _parsingInformation->packetFlags & 0x06;
-    switch (qosMasked) {
+    
+    switch (qosMasked) 
+    {
       case HeaderFlag.PUBLISH_QOS0:
         _qos = 0;
         break;
@@ -53,59 +57,96 @@ PublishPacket::PublishPacket(ParsingInformation* parsingInformation, OnMessageIn
     }
 }
 
-PublishPacket::~PublishPacket() {
+PublishPacket::~PublishPacket() 
+{
 }
 
-void PublishPacket::parseVariableHeader(char* data, size_t len, size_t* currentBytePosition) {
+void PublishPacket::parseVariableHeader(char* data, size_t len, size_t* currentBytePosition) 
+{
+	(void)len;
+	
   char currentByte = data[(*currentBytePosition)++];
-  if (_bytePosition == 0) {
+  
+  if (_bytePosition == 0) 
+  {
     _topicLengthMsb = currentByte;
-  } else if (_bytePosition == 1) {
+  } 
+  else if (_bytePosition == 1) 
+  {
     _topicLength = currentByte | _topicLengthMsb << 8;
-    if (_topicLength > _parsingInformation->maxTopicLength) {
+    
+    if (_topicLength > _parsingInformation->maxTopicLength) 
+    {
       _ignore = true;
-    } else {
+    } 
+    else 
+    {
       _parsingInformation->topicBuffer[_topicLength] = '\0';
     }
-  } else if (_bytePosition >= 2 && _bytePosition < 2 + _topicLength) {
+  } 
+  else if (_bytePosition >= 2 && _bytePosition < 2 + _topicLength) 
+  {
     // Starting from here, _ignore might be true
-    if (!_ignore) _parsingInformation->topicBuffer[_bytePosition - 2] = currentByte;
-    if (_bytePosition == 2 + _topicLength - 1 && _qos == 0) {
+    if (!_ignore) 
+    	_parsingInformation->topicBuffer[_bytePosition - 2] = currentByte;
+    	
+    if (_bytePosition == 2 + _topicLength - 1 && _qos == 0) 
+    {
       _preparePayloadHandling(_parsingInformation->remainingLength - (_bytePosition + 1));
       return;
     }
-  } else if (_bytePosition == 2 + _topicLength) {
+  } 
+  else if (_bytePosition == 2 + _topicLength) 
+  {
     _packetIdMsb = currentByte;
-  } else {
+  } 
+  else 
+  {
     _packetId = currentByte | _packetIdMsb << 8;
     _preparePayloadHandling(_parsingInformation->remainingLength - (_bytePosition + 1));
   }
   _bytePosition++;
 }
 
-void PublishPacket::_preparePayloadHandling(uint32_t payloadLength) {
+void PublishPacket::_preparePayloadHandling(uint32_t payloadLength) 
+{
   _payloadLength = payloadLength;
-  if (payloadLength == 0) {
+  
+  if (payloadLength == 0) 
+  {
     _parsingInformation->bufferState = BufferState::NONE;
-    if (!_ignore) {
+    
+    if (!_ignore) 
+    {
       _dataCallback(_parsingInformation->topicBuffer, nullptr, _qos, _dup, _retain, 0, 0, 0, _packetId);
       _completeCallback(_packetId, _qos);
     }
-  } else {
+  } 
+  else 
+  {
     _parsingInformation->bufferState = BufferState::PAYLOAD;
   }
 }
 
-void PublishPacket::parsePayload(char* data, size_t len, size_t* currentBytePosition) {
+void PublishPacket::parsePayload(char* data, size_t len, size_t* currentBytePosition) 
+{
   size_t remainToRead = len - (*currentBytePosition);
-  if (_payloadBytesRead + remainToRead > _payloadLength) remainToRead = _payloadLength - _payloadBytesRead;
+  
+  if (_payloadBytesRead + remainToRead > 
+  	_payloadLength) remainToRead = _payloadLength - _payloadBytesRead;
 
-  if (!_ignore) _dataCallback(_parsingInformation->topicBuffer, data + (*currentBytePosition), _qos, _dup, _retain, remainToRead, _payloadBytesRead, _payloadLength, _packetId);
+  if (!_ignore) 
+  	_dataCallback(_parsingInformation->topicBuffer, data + (*currentBytePosition), 
+  	              _qos, _dup, _retain, remainToRead, _payloadBytesRead, _payloadLength, _packetId);
+  	              
   _payloadBytesRead += remainToRead;
   (*currentBytePosition) += remainToRead;
 
-  if (_payloadBytesRead == _payloadLength) {
+  if (_payloadBytesRead == _payloadLength) 
+  {
     _parsingInformation->bufferState = BufferState::NONE;
-    if (!_ignore) _completeCallback(_packetId, _qos);
+    
+    if (!_ignore) 
+    	_completeCallback(_packetId, _qos);
   }
 }
