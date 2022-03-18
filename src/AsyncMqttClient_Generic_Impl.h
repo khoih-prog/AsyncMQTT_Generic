@@ -9,7 +9,7 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.3.0
+  Version: 1.4.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -19,6 +19,7 @@
   1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A (without TLS/SSL)
   1.2.1    K Hoang     16/03/2022 Add support to STM32 using LAN8720 (without TLS/SSL)
   1.3.0    K Hoang     16/03/2022 Add support to Portenta_H7 using built-in Ethernet or Murata WiFi (without TLS/SSL)
+  1.4.0    K Hoang     17/03/2022 Add support to Teensy 4.1 using QNEthernet Library
  *****************************************************************************************************************************/
 
 #pragma once
@@ -182,6 +183,8 @@ AsyncMqttClient::AsyncMqttClient()
   // Will create _clientId from macAddress later in connect() as ID not available now  
 #elif ASYNC_MQTT_USING_STM32
   // Will create _clientId from macAddress later in connect() as ID not available now
+#elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
+  // Will create _clientId from TensyID
 #endif
   
   _clientId = _generatedClientId;
@@ -1134,12 +1137,11 @@ void AsyncMqttClient::connect()
   
   // 6 HEX bytes + NULL
   uint8_t macPortenta[6];
-  char buffer[13];
   
-  Ethernet.MACAddress((uint8_t*) macPortenta);
-
-  macAddressToClientID(buffer, macPortenta);
-  snprintf(_generatedClientId, sizeof(_generatedClientId), "h7m7-%s", buffer);
+	Ethernet.MACAddress(macPortenta);
+	
+	snprintf(_generatedClientId, sizeof(_generatedClientId), "h7m7-%02X%02X%02X%02X%02X%02X", 
+           macPortenta[0], macPortenta[1], macPortenta[2], macPortenta[3], macPortenta[4], macPortenta[5]);
   
   _clientId = _generatedClientId;
   
@@ -1154,16 +1156,27 @@ void AsyncMqttClient::connect()
   #endif
   
 #elif ASYNC_MQTT_USING_STM32
-  // 6 HEX bytes + NULL
-  char buffer[13];
 
-  macAddressToClientID(buffer, Ethernet.MACAddress());
-  snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%s", buffer);
-
-  //snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%s", macAddressToClientID(Ethernet.MACAddress()));
-
+	uint8_t* macSTM32ptr;
+	
+	macSTM32ptr = Ethernet.MACAddress();
+	
+	snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%02X%02X%02X%02X%02X%02X", 
+           macSTM32ptr[0], macSTM32ptr[1], macSTM32ptr[2], macSTM32ptr[3], macSTM32ptr[4], macSTM32ptr[5]);
+  Serial.printf("Array MAC Address: %02X:%02X:%02X:%02X:%02X:%02X \n", 
+                macSTM32ptr[0], macSTM32ptr[1], macSTM32ptr[2], macSTM32ptr[3], macSTM32ptr[4], macSTM32ptr[5]);
+		
   _clientId = _generatedClientId;
- 
+  
+#elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
+  uint8_t macTeensy[6];
+  
+  getTeensyMac(macTeensy);   
+  snprintf(_generatedClientId, sizeof(_generatedClientId), "t41-%02X%02X%02X%02X%02X%02X", 
+           macTeensy[0], macTeensy[1], macTeensy[2], macTeensy[3], macTeensy[4], macTeensy[5]);
+  
+  _clientId = _generatedClientId;
+  
 #endif
 
   AMQTT_LOGINFO("CONNECTING");
@@ -1285,17 +1298,23 @@ const char* AsyncMqttClient::getClientId() const
 
 /////////////////////////////////////////////////////////
 
-char* AsyncMqttClient::macAddressToClientID(char* buffer, const uint8_t* _macAddress)
+#if ASYNC_MQTT_USING_TEENSY41_QNETHERNET
+uint8_t* AsyncMqttClient::getTeensyMac(uint8_t* _macAddress)
 {
-  // 6 HEX bytes + NULL = min(13) for buffer
-  // static char buffer[13];
-  memset((void*) buffer, 0, sizeof(buffer));
-
-  for (int i = 0; i < 6; i++)
-    sprintf(&buffer[i * 2], "%02X", _macAddress[i]); //convert number to hex
-
-  return ( buffer );
+  // 6 bytes
+  uint32_t m1 = HW_OCOTP_MAC1;
+  uint32_t m2 = HW_OCOTP_MAC0;
+  
+  _macAddress[0] = m1 >> 8;
+  _macAddress[1] = m1 >> 0;
+  _macAddress[2] = m2 >> 24;
+  _macAddress[3] = m2 >> 16;
+  _macAddress[4] = m2 >> 8;
+  _macAddress[5] = m2 >> 0;
+  
+  return _macAddress;
 }
+#endif
 
 /////////////////////////////////////////////////////////
 

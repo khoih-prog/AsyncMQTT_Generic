@@ -9,7 +9,7 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.3.0
+  Version: 1.4.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -19,6 +19,7 @@
   1.2.0    K Hoang     15/03/2022 Add support to STM32 using LAN8742A (without TLS/SSL)
   1.2.1    K Hoang     16/03/2022 Add support to STM32 using LAN8720 (without TLS/SSL)
   1.3.0    K Hoang     16/03/2022 Add support to Portenta_H7 using built-in Ethernet or Murata WiFi (without TLS/SSL)
+  1.4.0    K Hoang     17/03/2022 Add support to Teensy 4.1 using QNEthernet Library
  *****************************************************************************************************************************/
 
 #pragma once
@@ -37,15 +38,15 @@
 
 /////////////////////////////////////////////////////////
 
-#define ASYNC_MQTT_GENERIC_SHORT_VERSION        "AsyncMQTT_Generic v1.3.0" 
+#define ASYNC_MQTT_GENERIC_SHORT_VERSION        "AsyncMQTT_Generic v1.4.0" 
 
 /////////////////////////////////////////////////////////
 
 #define ASYNC_MQTT_GENERIC_VERSION_MAJOR       1
-#define ASYNC_MQTT_GENERIC_VERSION_MINOR       3
+#define ASYNC_MQTT_GENERIC_VERSION_MINOR       4
 #define ASYNC_MQTT_GENERIC_VERSION_PATCH       0
 
-#define ASYNC_MQTT_GENERIC_VERSION_INT         1003000
+#define ASYNC_MQTT_GENERIC_VERSION_INT         1004000
 
 /////////////////////////////////////////////////////////
 
@@ -124,7 +125,20 @@
   #endif
   
   #define ASYNC_MQTT_USING_STM32      true
-        
+
+#elif ( defined(CORE_TEENSY) && defined(__IMXRT1062__) && defined(ARDUINO_TEENSY41) )
+
+  #if ASYNC_TCP_SSL_ENABLED
+    #error Teensy 4.1 QNEthernet ASYNC_TCP_SSL_ENABLED not ready yet
+    #include <Teensy41_AsyncTCP_SSL.h>
+    #warning Teensy 4.1 QNEthernet ASYNC_TCP_SSL_ENABLED   
+  #else
+    #include <Teensy41_AsyncTCP.h>
+    
+    #define ASYNC_MQTT_GENERIC_VERSION        (ASYNC_MQTT_GENERIC_SHORT_VERSION " for Teensy 4.1 QNEthernet")
+  #endif
+  
+  #define ASYNC_MQTT_USING_TEENSY41_QNETHERNET      true        
 #else
   #error Platform not supported
 #endif
@@ -140,7 +154,9 @@
   #elif ASYNC_MQTT_USING_PORTENTA_H7
     #include <tcp_axtls.h>  
   #elif ASYNC_MQTT_USING_STM32
-    #include <tcp_axtls.h>  
+    #include <tcp_axtls.h>
+  #elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
+    #include <tcp_axtls.h>
   #endif
   
   #define SHA1_SIZE 20
@@ -165,6 +181,10 @@
   #define SEMAPHORE_TAKE(X) while (_xSemaphore) {  } _xSemaphore = true
   #define SEMAPHORE_GIVE()      _xSemaphore = false
   #define GET_FREE_MEMORY()     MQTT_MIN_FREE_MEMORY
+#elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
+  #define SEMAPHORE_TAKE(X) while (_xSemaphore) {  } _xSemaphore = true
+  #define SEMAPHORE_GIVE()      _xSemaphore = false
+  #define GET_FREE_MEMORY()     MQTT_MIN_FREE_MEMORY  
 #else
   #pragma error "No valid architecture"
 #endif
@@ -313,6 +333,8 @@ class AsyncMqttClient
   bool _xSemaphore = false;  
 #elif ASYNC_MQTT_USING_STM32 
   bool _xSemaphore = false;
+#elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
+  bool _xSemaphore = false;  
 #endif
 
   void _clear();
@@ -349,7 +371,9 @@ class AsyncMqttClient
 
   void _sendPing();
   
-  char* macAddressToClientID(char* buffer, const uint8_t* _macAddress);
+#if ASYNC_MQTT_USING_TEENSY41_QNETHERNET
+  uint8_t* getTeensyMac(uint8_t* _macAddress);
+#endif  
 };
 
 #endif    // ASYNC_MQTT_CLIENT_HPP

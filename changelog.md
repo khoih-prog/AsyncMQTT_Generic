@@ -11,6 +11,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+	* [Releases v1.4.0](#releases-v140)
 	* [Releases v1.3.0](#releases-v130)
 	* [Releases v1.2.1](#releases-v121)
 	* [Releases v1.2.0](#releases-v120)
@@ -22,6 +23,11 @@
 ---
 
 ## Changelog
+
+### Releases v1.4.0
+
+1. Add support to **Teensy 4.1 using QNEthernet Library**
+2. Add example for `QNEthernet`
 
 ### Releases v1.3.0
 

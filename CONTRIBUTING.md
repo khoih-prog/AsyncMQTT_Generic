@@ -15,7 +15,7 @@ If you don't find anything, please [open a new issue](https://github.com/khoih-p
 Please ensure to specify the following:
 
 * Arduino IDE version (e.g. 1.8.19) or Platform.io version
-* `ESP8266`,`ESP32` or `STM32` Core Version (e.g. ESP8266 core v3.0.2, ESP32 v2.0.2 or STM32 v2.2.0)
+* `ESP8266`,`ESP32`, `STM32` or `Teensyduino` Core Version (e.g. ESP8266 core v3.0.2, ESP32 v2.0.2, STM32 v2.2.0 or Teensyduino v1.56)
 * Contextual information (e.g. what you were trying to achieve)
 * Simplest possible steps to reproduce
 * Anything that might be relevant in your opinion, such as:
