@@ -11,6 +11,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+	* [Releases v1.5.0](#releases-v150)
 	* [Releases v1.4.0](#releases-v140)
 	* [Releases v1.3.0](#releases-v130)
 	* [Releases v1.2.1](#releases-v121)
@@ -23,6 +24,13 @@
 ---
 
 ## Changelog
+
+### Releases v1.5.0
+
+1. Add support to ESP8266 W5x00 using [lwIP_w5100](https://github.com/esp8266/Arduino/tree/master/libraries/lwIP_w5100) or [lwIP_w5500](https://github.com/esp8266/Arduino/tree/master/libraries/lwIP_w5500) library
+2. Add support to ESP8266 ENC28J60 using [lwIP_enc28j60](https://github.com/esp8266/Arduino/tree/master/libraries/lwIP_enc28j60) library
+3. Add example [FullyFeatured_ESP8266_Ethernet](examples/ESP8266/FullyFeatured_ESP8266_Ethernet)
+4. Update `Packages' Patches`
 
 ### Releases v1.4.0
 
