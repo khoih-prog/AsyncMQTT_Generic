@@ -421,7 +421,7 @@ Connect FDTI (USB to Serial) as follows:
 
 This is the wiring for EP8266 `W5x00` or `ENC28J60` Ethernet when using `SS = GPIO16`
 
-https://github.com/khoih-prog/AsyncHTTPRequest_Generic/blob/e3dd512e7aa9e60c85043893d4527d3b052077c0/examples/AsyncHTTPRequest_ESP8266_Ethernet/AsyncHTTPRequest_ESP8266_Ethernet.ino#L65
+https://github.com/khoih-prog/AsyncMQTT_Generic/blob/6a9d4e6e3701f35e3c7a4619599032f2541c4c3a/examples/ESP8266/FullyFeatured_ESP8266_Ethernet/defines.h#L25
 
 
 |W5x00/ENC28J60 Ethernet|<--->|ESP8266|
