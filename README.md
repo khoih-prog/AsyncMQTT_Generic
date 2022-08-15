@@ -1697,7 +1697,6 @@ Debug is enabled by default on Serial. Debug Level from 0 to 4. To disable, chan
 #define ASYNC_MQTT_DEBUG_PORT               Serial
 
 // Debug Level from 0 to 4
-#define _TEENSY41_ASYNC_TCP_LOGLEVEL_       1
 #define _ASYNC_MQTT_LOGLEVEL_               1
 ```
 
@@ -1723,7 +1722,7 @@ Submit issues to: [AsyncMQTT_Generic issues](https://github.com/khoih-prog/Async
 
 ### TO DO
 
- 1. Support ESP8266, STM32, Portenta_H7, Teensy 4.1 using `SSL/TLS`
+ 1. Support ESP8266, STM32, Portenta_H7, Teensy 4.1, RASPBERRY_PI_PICO_W using `SSL/TLS`
  2. Bug fixing.
 
 ---
