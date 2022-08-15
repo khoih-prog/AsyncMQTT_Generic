@@ -9,7 +9,7 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.5.0
+  Version: 1.6.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -21,6 +21,7 @@
   1.3.0    K Hoang     16/03/2022 Add support to Portenta_H7 using built-in Ethernet or Murata WiFi (without TLS/SSL)
   1.4.0    K Hoang     17/03/2022 Add support to Teensy 4.1 using QNEthernet Library
   1.5.0    K Hoang     14/04/2022 Add support to ESP8266 W5x00/ENC28J60 using lwip_W5100/lwip_W5500 or lwip_enc28j60 library
+  1.6.0    K Hoang     14/08/2022 Add support to RP2040W with CYW43439 WiFi using arduino-pico core
  *****************************************************************************************************************************/
 
 #pragma once
@@ -39,15 +40,15 @@
 
 /////////////////////////////////////////////////////////
 
-#define ASYNC_MQTT_GENERIC_SHORT_VERSION        "AsyncMQTT_Generic v1.5.0" 
+#define ASYNC_MQTT_GENERIC_SHORT_VERSION        "AsyncMQTT_Generic v1.6.0" 
 
 /////////////////////////////////////////////////////////
 
 #define ASYNC_MQTT_GENERIC_VERSION_MAJOR       1
-#define ASYNC_MQTT_GENERIC_VERSION_MINOR       5
+#define ASYNC_MQTT_GENERIC_VERSION_MINOR       6
 #define ASYNC_MQTT_GENERIC_VERSION_PATCH       0
 
-#define ASYNC_MQTT_GENERIC_VERSION_INT         1005000
+#define ASYNC_MQTT_GENERIC_VERSION_INT         1006000
 
 /////////////////////////////////////////////////////////
 
@@ -139,7 +140,22 @@
     #define ASYNC_MQTT_GENERIC_VERSION        (ASYNC_MQTT_GENERIC_SHORT_VERSION " for Teensy 4.1 QNEthernet")
   #endif
   
-  #define ASYNC_MQTT_USING_TEENSY41_QNETHERNET      true        
+  #define ASYNC_MQTT_USING_TEENSY41_QNETHERNET      true
+  
+#elif ( defined(ARDUINO_RASPBERRY_PI_PICO_W) )
+
+  #if ASYNC_TCP_SSL_ENABLED
+    #error RASPBERRY_PI_PICO_W ASYNC_TCP_SSL_ENABLED not ready yet
+    #include <AsyncTCP_SSL_RP2040W.h>
+    #warning RASPBERRY_PI_PICO_W ASYNC_TCP_SSL_ENABLED   
+  #else
+    #include <AsyncTCP_RP2040W.h>
+    
+    #define ASYNC_MQTT_GENERIC_VERSION        (ASYNC_MQTT_GENERIC_SHORT_VERSION " for RP2040W CYW43439 WiFi")
+  #endif
+  
+  #define ASYNC_MQTT_USING_RP2040W      			true  
+        
 #else
   #error Platform not supported
 #endif
@@ -158,6 +174,8 @@
     #include <tcp_axtls.h>
   #elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
     #include <tcp_axtls.h>
+  #elif ASYNC_MQTT_USING_RP2040W
+    #include <tcp_axtls.h>  
   #endif
   
   #define SHA1_SIZE 20
@@ -185,7 +203,11 @@
 #elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
   #define SEMAPHORE_TAKE(X) while (_xSemaphore) {  } _xSemaphore = true
   #define SEMAPHORE_GIVE()      _xSemaphore = false
-  #define GET_FREE_MEMORY()     MQTT_MIN_FREE_MEMORY  
+  #define GET_FREE_MEMORY()     MQTT_MIN_FREE_MEMORY
+#elif ASYNC_MQTT_USING_RP2040W
+  #define SEMAPHORE_TAKE(X) while (_xSemaphore) {  } _xSemaphore = true
+  #define SEMAPHORE_GIVE()      _xSemaphore = false
+  #define GET_FREE_MEMORY()     MQTT_MIN_FREE_MEMORY   
 #else
   #pragma error "No valid architecture"
 #endif
@@ -335,6 +357,8 @@ class AsyncMqttClient
 #elif ASYNC_MQTT_USING_STM32 
   bool _xSemaphore = false;
 #elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
+  bool _xSemaphore = false;
+#elif ASYNC_MQTT_USING_RP2040W
   bool _xSemaphore = false;  
 #endif
 

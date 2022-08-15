@@ -9,7 +9,7 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.5.0
+  Version: 1.6.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -21,6 +21,7 @@
   1.3.0    K Hoang     16/03/2022 Add support to Portenta_H7 using built-in Ethernet or Murata WiFi (without TLS/SSL)
   1.4.0    K Hoang     17/03/2022 Add support to Teensy 4.1 using QNEthernet Library
   1.5.0    K Hoang     14/04/2022 Add support to ESP8266 W5x00/ENC28J60 using lwip_W5100/lwip_W5500 or lwip_enc28j60 library
+  1.6.0    K Hoang     14/08/2022 Add support to RP2040W with CYW43439 WiFi using arduino-pico core
  *****************************************************************************************************************************/
 
 #pragma once
@@ -186,6 +187,8 @@ AsyncMqttClient::AsyncMqttClient()
   // Will create _clientId from macAddress later in connect() as ID not available now
 #elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
   // Will create _clientId from TensyID
+#elif ASYNC_MQTT_USING_RP2040W
+  // Will create _clientId from unique hardware ID later in connect() as ID not available now 
 #endif
   
   _clientId = _generatedClientId;
@@ -1177,7 +1180,14 @@ void AsyncMqttClient::connect()
            macTeensy[0], macTeensy[1], macTeensy[2], macTeensy[3], macTeensy[4], macTeensy[5]);
   
   _clientId = _generatedClientId;
+
+#elif ASYNC_MQTT_USING_RP2040W
+  // For WiFi. TODO Get RP2040 unique hardwareID to use for WiFi
   
+  snprintf(_generatedClientId, sizeof(_generatedClientId), "2040w-%06lx", micros());
+
+  _clientId = _generatedClientId;
+    
 #endif
 
   AMQTT_LOGINFO("CONNECTING");

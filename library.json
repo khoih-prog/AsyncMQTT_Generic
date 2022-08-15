@@ -1,8 +1,8 @@
 {
   "name": "AsyncMQTT_Generic",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "keywords": "communication, iot, automation, async, async-tcp, async-tcp-ssl, async-mqtt, mqtt, async-mqtt-client, esp8266, esp32, stm32, portenta-h7, wt32-eth01, tls, teensy-41, qn-ethernet, lwip, lan8742a, lan8720",
-  "description": "Arduino Library for ESP8266, ESP32, Portenta_H7 and STM32 asynchronous MQTT client implementation. This library, ported to support ESP32, WT32_ETH01 (ESP32 + LAN8720), ESP8266, Portenta_H7 (Ethernet or WiFi) and STM32 (LAN8742A or LAN8720 Ethernet), Teensy 4.1 using QNEthernet. Currently supporting TLS/SSL for ESP32 only",
+  "description": "Arduino Arduino Library for ESP8266, ESP32, Portenta_H7, STM32 and RP2040W asynchronous MQTT client implementation. This library, ported to support ESP32, WT32_ETH01 (ESP32 + LAN8720), ESP8266, Portenta_H7 (Ethernet or WiFi) and STM32 (LAN8742A or LAN8720 Ethernet), Teensy 4.1 using QNEthernet, RASPBERRY_PI_PICO_W with CYW43439 WiFi. Currently supporting TLS/SSL for ESP32 only",
   "authors": 
   [
     {
@@ -44,7 +44,7 @@
     {
       "owner": "khoih-prog",
       "name": "Portenta_H7_AsyncTCP",
-      "version": ">=1.3.0",
+      "version": ">=1.3.2",
       "platforms": "ststm32"
     },
     {
@@ -55,6 +55,12 @@
     },
     {
       "owner": "khoih-prog",
+      "name": "AsyncTCP_RP2040W",
+      "version": ">=1.0.0",
+      "platforms": ["raspberrypi"]
+    },
+    {
+      "owner": "khoih-prog",
       "name": "ESPAsync_WiFiManager",
       "version": ">=1.12.2",
       "platforms": ["espressif32", "espressif8266"]
@@ -62,7 +68,7 @@
     {
       "owner": "khoih-prog",
       "name": "WebServer_WT32_ETH01",
-      "version": ">=1.4.1",
+      "version": ">=1.5.0",
       "platforms": ["espressif32"]
     },
     {
@@ -74,7 +80,7 @@
     {
       "owner": "stm32duino",
       "name": "STM32Ethernet",
-      "version": "^1.2.0",
+      "version": "^1.3.0",
       "platforms": "ststm32"
     },
     {

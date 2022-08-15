@@ -1,21 +1,21 @@
-## Contributing to AsyncHTTPRequest_Generic
+## Contributing to AsyncMQTT_Generic
 
 ### Reporting Bugs
 
-Please report bugs in [AsyncHTTPRequest_Generic](https://github.com/khoih-prog/AsyncHTTPRequest_Generic/issues/new) if you find them.
+Please report bugs in [AsyncMQTT_Generic](https://github.com/khoih-prog/AsyncMQTT_Generic/issues/new) if you find them.
 
 However, before reporting a bug please check through the following:
 
-* [Existing Open Issues](https://github.com/khoih-prog/AsyncHTTPRequest_Generic/issues) - someone might have already encountered this.
+* [Existing Open Issues](https://github.com/khoih-prog/AsyncMQTT_Generic/issues) - someone might have already encountered this.
 
-If you don't find anything, please [open a new issue](https://github.com/khoih-prog/AsyncHTTPRequest_Generic/issues/new).
+If you don't find anything, please [open a new issue](https://github.com/khoih-prog/AsyncMQTT_Generic/issues/new).
 
 ### How to submit a bug report
 
 Please ensure to specify the following:
 
 * Arduino IDE version (e.g. 1.8.19) or Platform.io version
-* `ESP8266`,`ESP32`, `STM32` or `Teensyduino` Core Version (e.g. ESP8266 core v3.0.2, ESP32 v2.0.2, STM32 v2.2.0 or Teensyduino v1.56)
+* `ESP8266`,`ESP32`, `STM32`, `arduino-pico` or `Teensyduino` Core Version (e.g. ESP8266 core v3.0.2, ESP32 v2.0.4, STM32 v2.3.0, arduino-pico v2.4.0 or Teensyduino v1.57)
 * Contextual information (e.g. what you were trying to achieve)
 * Simplest possible steps to reproduce
 * Anything that might be relevant in your opinion, such as:
@@ -27,9 +27,9 @@ Please ensure to specify the following:
 
 ```
 Arduino IDE version: 1.8.19
-ESP32 Core Version 2.0.2
+ESP32 Core Version 2.0.4
 OS: Ubuntu 20.04 LTS
-Linux xy-Inspiron-3593 5.13.0-39-generic #44~20.04.1-Ubuntu SMP Thu Mar 24 16:43:35 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+Linux xy-Inspiron-3593 5.15.0-41-generic #44~20.04.1-Ubuntu SMP Fri Jun 24 13:27:29 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
 
 Context:
 I encountered an endless loop while trying to connect to Local WiFi.
@@ -45,7 +45,7 @@ Steps to reproduce:
 
 Feel free to post feature requests. It's helpful if you can explain exactly why the feature would be useful.
 
-There are usually some outstanding feature requests in the [existing issues list](https://github.com/khoih-prog/AsyncHTTPRequest_Generic/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement), feel free to add comments to them.
+There are usually some outstanding feature requests in the [existing issues list](https://github.com/khoih-prog/AsyncMQTT_Generic/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement), feel free to add comments to them.
 
 ### Sending Pull Requests
 

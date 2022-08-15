@@ -11,6 +11,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+	* [Releases v1.6.0](#releases-v160)
 	* [Releases v1.5.0](#releases-v150)
 	* [Releases v1.4.0](#releases-v140)
 	* [Releases v1.3.0](#releases-v130)
@@ -24,6 +25,12 @@
 ---
 
 ## Changelog
+
+### Releases v1.6.0
+
+1. Add support to **RASPBERRY_PI_PICO_W with CYW43439 WiFi**, using [**arduino-pico core v2.4.0+**](https://github.com/earlephilhower/arduino-pico)
+2. Add example [FullyFeatured_RP2040W](examples/RP2040W/FullyFeatured_RP2040W)
+3. Update `Packages' Patches`
 
 ### Releases v1.5.0
 
