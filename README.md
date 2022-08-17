@@ -81,7 +81,6 @@
   * [12. FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_ENC28J60 Ethernet](#12-FullyFeatured_ESP8266_Ethernet-on-ESP8266_NODEMCU_ESP12E-using-ESP8266_ENC28J60-Ethernet)
   * [13. FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_W5500 Ethernet](#13-FullyFeatured_ESP8266_Ethernet-on-ESP8266_NODEMCU_ESP12E-using-ESP8266_W5500-Ethernet)
   * [14. FullyFeature_RP2040W on RASPBERRY_PI_PICO_W](#14-FullyFeature_RP2040W-on-RASPBERRY_PI_PICO_W)
-  #### 14. FullyFeature_RP2040W on RASPBERRY_PI_PICO_W
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Issues](#issues)
