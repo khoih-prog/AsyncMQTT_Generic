@@ -100,9 +100,25 @@ bool connectToWifi()
   return (status == WL_CONNECTED);
 }
 
+bool isWiFiConnected()
+{
+  // You can change longer or shorter depending on your network response
+  // Shorter => more responsive, but more ping traffic
+  static uint8_t theTTL = 10;
+
+  // Use ping() to test TCP connections
+  if (WiFi.ping(WiFi.gatewayIP(), theTTL) == theTTL)
+  {
+    return true;
+  }
+
+  return false;
+}
+
 void connectToMqttLoop()
 {
-  if ( (WiFi.status() == WL_CONNECTED) && (WiFi.RSSI() != 0) )      // temporary workaround
+  //if ( (WiFi.status() == WL_CONNECTED) && (WiFi.RSSI() != 0) )      // temporary workaround
+  if (isWiFiConnected())
   {     
     if (!connectedMQTT)
     {
@@ -152,13 +168,13 @@ void onMqttConnect(bool sessionPresent)
   uint16_t packetIdSub = mqttClient.subscribe(PubTopic, 2);
   Serial.print("Subscribing at QoS 2, packetId: "); Serial.println(packetIdSub);
   
-  mqttClient.publish(PubTopic, 0, true, "STM32 Test1");
+  mqttClient.publish(PubTopic, 0, true, "RP2040W Test1");
   Serial.println("Publishing at QoS 0");
   
-  uint16_t packetIdPub1 = mqttClient.publish(PubTopic, 1, true, "STM32 Test2");
+  uint16_t packetIdPub1 = mqttClient.publish(PubTopic, 1, true, "RP2040W Test2");
   Serial.print("Publishing at QoS 1, packetId: "); Serial.println(packetIdPub1);
   
-  uint16_t packetIdPub2 = mqttClient.publish(PubTopic, 2, true, "STM32 Test3");
+  uint16_t packetIdPub2 = mqttClient.publish(PubTopic, 2, true, "RP2040W Test3");
   Serial.print("Publishing at QoS 2, packetId: "); Serial.println(packetIdPub2);
 
   printSeparationLine();

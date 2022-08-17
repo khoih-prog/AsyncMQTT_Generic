@@ -20,7 +20,7 @@
 
 // Debug Level from 0 to 4
 #define _ASYNCTCP_RP2040W_LOGLEVEL_         1
-#define _ASYNC_MQTT_LOGLEVEL_               4
+#define _ASYNC_MQTT_LOGLEVEL_               1
 
 #if (_ASYNC_MQTT_LOGLEVEL_ > 3)
   #warning Using RASPBERRY_PI_PICO_W with CYC43439 WiFi
