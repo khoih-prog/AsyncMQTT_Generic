@@ -1,6 +1,6 @@
 {
   "name": "AsyncMQTT_Generic",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "keywords": "communication, iot, automation, async, async-tcp, async-tcp-ssl, async-mqtt, mqtt, async-mqtt-client, esp8266, esp32, stm32, portenta-h7, wt32-eth01, tls, teensy-41, qn-ethernet, lwip, lan8742a, lan8720",
   "description": "Arduino Arduino Library for ESP8266, ESP32, Portenta_H7, STM32 and RP2040W asynchronous MQTT client implementation. This library, ported to support ESP32, WT32_ETH01 (ESP32 + LAN8720), ESP8266, Portenta_H7 (Ethernet or WiFi) and STM32 (LAN8742A or LAN8720 Ethernet), Teensy 4.1 using QNEthernet, RASPBERRY_PI_PICO_W with CYW43439 WiFi. Currently supporting TLS/SSL for ESP32 only",
   "authors": 

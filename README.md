@@ -80,6 +80,8 @@
   * [11. FullyFeatured_QNEthernet on TEENSY 4.1 using QNEthernet](#11-FullyFeatured_QNEthernet-on-TEENSY-41-using-QNEthernet)
   * [12. FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_ENC28J60 Ethernet](#12-FullyFeatured_ESP8266_Ethernet-on-ESP8266_NODEMCU_ESP12E-using-ESP8266_ENC28J60-Ethernet)
   * [13. FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_W5500 Ethernet](#13-FullyFeatured_ESP8266_Ethernet-on-ESP8266_NODEMCU_ESP12E-using-ESP8266_W5500-Ethernet)
+  * [14. FullyFeature_RP2040W on RASPBERRY_PI_PICO_W](#14-FullyFeature_RP2040W-on-RASPBERRY_PI_PICO_W)
+  #### 14. FullyFeature_RP2040W on RASPBERRY_PI_PICO_W
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Issues](#issues)
@@ -511,7 +513,7 @@ This is terminal debug output when running [FullyFeatured_ESP8266](examples/ESP8
 
 ```
 Starting FullyFeature_ESP8266 on ESP8266_NODEMCU_ESP12E
-AsyncMQTT_Generic v1.6.0 for ESP8266
+AsyncMQTT_Generic v1.6.1 for ESP8266
 Connecting to Wi-Fi...
 Connected to Wi-Fi. IP address: 192.168.2.82
 Connecting to MQTT...
@@ -573,7 +575,7 @@ This is terminal debug output when running [FullyFeatured_ESP32](examples/ESP32/
 
 ```
 Starting FullyFeature_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.6.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.6.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -639,7 +641,7 @@ This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP
 
 ```
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.6.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.6.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -706,7 +708,7 @@ This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP
 
 ```
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.6.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.6.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -877,7 +879,7 @@ This is terminal debug output when running [FullyFeaturedSSL_WT32_ETH01](example
 ```
 Starting FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
-AsyncMQTT_Generic v1.6.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.6.1 for ESP32 core v2.0.0+
 ETH starting
 ETH connected
 ETH got IP
@@ -934,7 +936,7 @@ This is terminal debug output when running [FullyFeature_STM32](examples/STM32/F
 
 ```
 Starting FullyFeature_STM32 on NUCLEO_F767ZI
-AsyncMQTT_Generic v1.6.0 for STM32
+AsyncMQTT_Generic v1.6.1 for STM32
 Connected to network. IP = 192.168.2.118
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1055,7 +1057,7 @@ Publish acknowledged.
 
 ```
 Starting FullyFeature_STM32 on NUCLEO_F767ZI
-AsyncMQTT_Generic v1.6.0 for STM32
+AsyncMQTT_Generic v1.6.1 for STM32
 Connected to network. IP = 192.168.2.126
 Connecting to MQTT...
 [AMQTT] CONNECTING
@@ -1230,7 +1232,7 @@ This is terminal debug output when running [FullyFeatured_STM32_LAN8720](example
 
 ```
 Starting FullyFeatured_STM32_LAN8720 on BLACK_F407VE
-AsyncMQTT_Generic v1.6.0 for STM32
+AsyncMQTT_Generic v1.6.1 for STM32
 Connected to network. IP = 192.168.2.132
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1297,7 +1299,7 @@ This is terminal debug output when running [FullyFeatured_PortentaH7_WiFi](examp
 
 ```
 Starting FullyFeatured_PortentaH7_WiFi on PORTENTA_H7_M7
-AsyncMQTT_Generic v1.6.0 for Portenta_H7_M7
+AsyncMQTT_Generic v1.6.1 for Portenta_H7_M7
 Connecting to SSID: HueNet1
 Connected to SSID: HueNet1
 Local IP Address: 192.168.2.134
@@ -1366,7 +1368,7 @@ This is terminal debug output when running [FullyFeatured_PortentaH7_Ethernet](e
 
 ```
 Starting FullyFeatured_PortentaH7_Ethernet on PORTENTA_H7_M7
-AsyncMQTT_Generic v1.6.0 for Portenta_H7_M7
+AsyncMQTT_Generic v1.6.1 for Portenta_H7_M7
 Connected to network. IP = 192.168.2.133
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1492,7 +1494,7 @@ This is terminal debug output when running [FullyFeatured_QNEthernet](examples/Q
 
 ```
 Starting FullyFeatured_QNEthernet on TEENSY 4.1
-AsyncMQTT_Generic v1.6.0 for Teensy 4.1 QNEthernet
+AsyncMQTT_Generic v1.6.1 for Teensy 4.1 QNEthernet
 Initialize Ethernet using static IP => Connected! IP address:192.168.2.222
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1559,7 +1561,7 @@ This is terminal debug output when running [FullyFeatured_ESP8266_Ethernet](exam
 
 ```
 Starting FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_ENC28J60 Ethernet
-AsyncMQTT_Generic v1.6.0 for ESP8266
+AsyncMQTT_Generic v1.6.1 for ESP8266
 Connecting to network : .....................................
 Ethernet DHCP IP address: 192.168.2.187
 Connecting to MQTT...
@@ -1628,7 +1630,7 @@ This is terminal debug output when running [FullyFeatured_ESP8266_Ethernet](exam
 
 ```
 Starting FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_W5500 Ethernet
-AsyncMQTT_Generic v1.6.0 for ESP8266
+AsyncMQTT_Generic v1.6.1 for ESP8266
 Connecting to network : .
 Ethernet DHCP IP address: 192.168.2.188
 Connecting to MQTT...
@@ -1684,6 +1686,77 @@ Publish received.
   total: 22
 Publish acknowledged.
   packetId: 3
+```
+
+---
+
+
+#### 14. FullyFeature_RP2040W on RASPBERRY_PI_PICO_W
+
+This is terminal debug output when running [FullyFeature_RP2040W](examples/RP2040W/FullyFeature_RP2040W) on **RASPBERRY_PI_PICO_W**, using `CYW43439 WiFi`, connecting to `broker.emqx.io` MQTT server.
+
+
+```
+Starting FullyFeature_RP2040W on RASPBERRY_PI_PICO_W
+AsyncMQTT_Generic v1.6.1 for RP2040W CYW43439 WiFi
+Connecting to SSID: HueNet2
+Connected to SSID: HueNet2
+Local IP Address: 192.168.2.180
+Signal strength (RSSI):0 dBm
+Connecting to MQTT...
+Connected to MQTT broker: broker.emqx.io, port: 1883
+PubTopic: async-mqtt/RP2040W_Pub
+************************************************
+Session present: 0
+Subscribing at QoS 2, packetId: 1
+Publishing at QoS 0
+Publishing at QoS 1, packetId: 2
+Publishing at QoS 2, packetId: 3
+************************************************
+Subscribe acknowledged.
+  packetId: 1
+  qos: 2
+Publish received.
+  topic: async-mqtt/RP2040W_Pub
+  message: RP2040W Test3
+  qos: 2
+  dup: 0
+  retain: 1
+  len: 13
+  index: 0
+  total: 13
+Publish acknowledged.
+  packetId: 2
+Publish received.
+  topic: async-mqtt/RP2040W_Pub
+  message: RP2040W Test1
+  qos: 0
+  dup: 0
+  retain: 0
+  len: 13
+  index: 0
+  total: 13
+Publish received.
+  topic: async-mqtt/RP2040W_Pub
+  message: RP2040W Test2
+  qos: 1
+  dup: 0
+  retain: 0
+  len: 13
+  index: 0
+  total: 13
+Publish received.
+  topic: async-mqtt/RP2040W_Pub
+  message: RP2040W Test3
+  qos: 2
+  dup: 0
+  retain: 0
+  len: 13
+  index: 0
+  total: 13
+Publish acknowledged.
+  packetId: 3
+
 ```
 
 ---

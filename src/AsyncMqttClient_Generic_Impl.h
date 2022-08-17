@@ -9,7 +9,7 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.6.0
+  Version: 1.6.1
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -22,6 +22,7 @@
   1.4.0    K Hoang     17/03/2022 Add support to Teensy 4.1 using QNEthernet Library
   1.5.0    K Hoang     14/04/2022 Add support to ESP8266 W5x00/ENC28J60 using lwip_W5100/lwip_W5500 or lwip_enc28j60 library
   1.6.0    K Hoang     14/08/2022 Add support to RP2040W with CYW43439 WiFi using arduino-pico core
+  1.6.1    K Hoang     17/08/2022 Better workaround for RP2040W WiFi.status() bug using ping() to local gateway
  *****************************************************************************************************************************/
 
 #pragma once
@@ -1139,7 +1140,7 @@ void AsyncMqttClient::connect()
 
   #if (USE_ETHERNET_PORTENTA_H7)
   
-  // 6 HEX bytes + NULL
+  // 6 HEX bytes
   uint8_t macPortenta[6];
   
 	Ethernet.MACAddress(macPortenta);
@@ -1182,10 +1183,15 @@ void AsyncMqttClient::connect()
   _clientId = _generatedClientId;
 
 #elif ASYNC_MQTT_USING_RP2040W
-  // For WiFi. TODO Get RP2040 unique hardwareID to use for WiFi
+  // For WiFi. Use macAddress for WiFi  
+  // 6 HEX bytes
+  uint8_t macRP2040W[6];
   
-  snprintf(_generatedClientId, sizeof(_generatedClientId), "2040w-%06lx", micros());
-
+	WiFi.macAddress(macRP2040W);
+	
+	snprintf(_generatedClientId, sizeof(_generatedClientId), "2040w-%02X%02X%02X%02X%02X%02X", 
+           macRP2040W[0], macRP2040W[1], macRP2040W[2], macRP2040W[3], macRP2040W[4], macRP2040W[5]);
+  
   _clientId = _generatedClientId;
     
 #endif

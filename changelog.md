@@ -11,6 +11,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+	* [Releases v1.6.1](#releases-v161)
 	* [Releases v1.6.0](#releases-v160)
 	* [Releases v1.5.0](#releases-v150)
 	* [Releases v1.4.0](#releases-v140)
@@ -25,6 +26,11 @@
 ---
 
 ## Changelog
+
+### Releases v1.6.1
+
+1. Workaround for RP2040W `WiFi.status()` bug using `ping()` to local gateway for example [FullyFeatured_RP2040W](examples/RP2040W/FullyFeatured_RP2040W)
+2. Use WiFi macAddress for RP2040W `_clientId`
 
 ### Releases v1.6.0
 
