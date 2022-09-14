@@ -509,13 +509,13 @@ https://github.com/khoih-prog/AsyncMQTT_Generic/blob/6a9d4e6e3701f35e3c7a4619599
 
 #### 1. File [FullyFeaturedSSL_ESP32.ino](examples/ESP32/FullyFeaturedSSL_ESP32/FullyFeaturedSSL_ESP32.ino)
 
-https://github.com/khoih-prog/AsyncMQTT_Generic/blob/a2db21ca2e68487560c0718529e5e83dee4d6b3f/examples/ESP32/FullyFeaturedSSL_ESP32/FullyFeaturedSSL_ESP32.ino#L13-L225
+https://github.com/khoih-prog/AsyncMQTT_Generic/blob/e6b4541542e4190c5d765017c3d4fe43d5faa84f/examples/ESP32/FullyFeaturedSSL_ESP32/FullyFeaturedSSL_ESP32.ino#L13-L225
 
 
 
 #### 2. File [defines.h](examples/ESP32/FullyFeaturedSSL_ESP32/defines.h)
 
-https://github.com/khoih-prog/AsyncMQTT_Generic/blob/a2db21ca2e68487560c0718529e5e83dee4d6b3f/examples/ESP32/FullyFeaturedSSL_ESP32/defines.h#L12-L20
+https://github.com/khoih-prog/AsyncMQTT_Generic/blob/e6b4541542e4190c5d765017c3d4fe43d5faa84f/examples/ESP32/FullyFeaturedSSL_ESP32/defines.h#L12-L20
 
 
 ---
