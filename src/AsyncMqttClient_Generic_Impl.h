@@ -9,7 +9,7 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.6.1
+  Version: 1.7.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -23,6 +23,7 @@
   1.5.0    K Hoang     14/04/2022 Add support to ESP8266 W5x00/ENC28J60 using lwip_W5100/lwip_W5500 or lwip_enc28j60 library
   1.6.0    K Hoang     14/08/2022 Add support to RP2040W with CYW43439 WiFi using arduino-pico core
   1.6.1    K Hoang     17/08/2022 Better workaround for RP2040W WiFi.status() bug using ping() to local gateway
+  1.7.0    K Hoang     13/09/2022 Fix ESP32 and ESP8266 compile error
  *****************************************************************************************************************************/
 
 #pragma once
@@ -509,56 +510,86 @@ void AsyncMqttClient::_onData(char* data, size_t len)
           case AsyncMqttClientInternals::PacketType.CONNACK:
             AMQTT_LOGINFO("_onData: rcv CONNACK");
 
-            _currentParsedPacket = new AsyncMqttClientInternals::ConnAckPacket(&_parsingInformation, std::bind(&AsyncMqttClient::_onConnAck, this, std::placeholders::_1, std::placeholders::_2));
+            _currentParsedPacket = 
+              new AsyncMqttClientInternals::ConnAckPacket(&_parsingInformation, 
+                                                          std::bind(&AsyncMqttClient::_onConnAck, this, 
+                                                          std::placeholders::_1, std::placeholders::_2));
             _client.setRxTimeout(0);
             break;
 
           case AsyncMqttClientInternals::PacketType.PINGRESP:
             AMQTT_LOGINFO("_onData: rcv PINGRESP");
 
-            _currentParsedPacket = new AsyncMqttClientInternals::PingRespPacket(&_parsingInformation, std::bind(&AsyncMqttClient::_onPingResp, this));
+            _currentParsedPacket = 
+              new AsyncMqttClientInternals::PingRespPacket(&_parsingInformation, 
+                                                           std::bind(&AsyncMqttClient::_onPingResp, this));
             break;
 
           case AsyncMqttClientInternals::PacketType.SUBACK:
             AMQTT_LOGINFO("_onData: rcv SUBACK");
 
-            _currentParsedPacket = new AsyncMqttClientInternals::SubAckPacket(&_parsingInformation, std::bind(&AsyncMqttClient::_onSubAck, this, std::placeholders::_1, std::placeholders::_2));
+            _currentParsedPacket = 
+              new AsyncMqttClientInternals::SubAckPacket(&_parsingInformation, 
+                                                         std::bind(&AsyncMqttClient::_onSubAck, this, 
+                                                         std::placeholders::_1, std::placeholders::_2));
             break;
 
           case AsyncMqttClientInternals::PacketType.UNSUBACK:
             AMQTT_LOGINFO("_onData: rcv UNSUBACK");
 
-            _currentParsedPacket = new AsyncMqttClientInternals::UnsubAckPacket(&_parsingInformation, std::bind(&AsyncMqttClient::_onUnsubAck, this, std::placeholders::_1));
+            _currentParsedPacket = 
+              new AsyncMqttClientInternals::UnsubAckPacket(&_parsingInformation, 
+                                                           std::bind(&AsyncMqttClient::_onUnsubAck, this, 
+                                                           std::placeholders::_1));
             break;
 
           case AsyncMqttClientInternals::PacketType.PUBLISH:
             AMQTT_LOGINFO("_onData: rcv PUBLISH");
 
-            _currentParsedPacket = new AsyncMqttClientInternals::PublishPacket(&_parsingInformation, std::bind(&AsyncMqttClient::_onMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7, std::placeholders::_8, std::placeholders::_9), std::bind(&AsyncMqttClient::_onPublish, this, std::placeholders::_1, std::placeholders::_2));
+            _currentParsedPacket = 
+              new AsyncMqttClientInternals::PublishPacket(&_parsingInformation, 
+                                                          std::bind(&AsyncMqttClient::_onMessage, this, 
+                                                          std::placeholders::_1, std::placeholders::_2, std::placeholders::_3,
+                                                          std::placeholders::_4, std::placeholders::_5, std::placeholders::_6,
+                                                          std::placeholders::_7, std::placeholders::_8, std::placeholders::_9),
+                                                          std::bind(&AsyncMqttClient::_onPublish, this, std::placeholders::_1,
+                                                          std::placeholders::_2));
             break;
 
           case AsyncMqttClientInternals::PacketType.PUBREL:
             AMQTT_LOGINFO("_onData: rcv PUBREL");
 
-            _currentParsedPacket = new AsyncMqttClientInternals::PubRelPacket(&_parsingInformation, std::bind(&AsyncMqttClient::_onPubRel, this, std::placeholders::_1));
+            _currentParsedPacket = 
+              new AsyncMqttClientInternals::PubRelPacket(&_parsingInformation, 
+                                                         std::bind(&AsyncMqttClient::_onPubRel, this,
+                                                         std::placeholders::_1));
             break;
 
           case AsyncMqttClientInternals::PacketType.PUBACK:
             AMQTT_LOGINFO("_onData: rcv PUBACK");
 
-            _currentParsedPacket = new AsyncMqttClientInternals::PubAckPacket(&_parsingInformation, std::bind(&AsyncMqttClient::_onPubAck, this, std::placeholders::_1));
+            _currentParsedPacket = 
+              new AsyncMqttClientInternals::PubAckPacket(&_parsingInformation, 
+                                                         std::bind(&AsyncMqttClient::_onPubAck, this,
+                                                         std::placeholders::_1));
             break;
 
           case AsyncMqttClientInternals::PacketType.PUBREC:
             AMQTT_LOGINFO("_onData: rcv PUBREC");
 
-            _currentParsedPacket = new AsyncMqttClientInternals::PubRecPacket(&_parsingInformation, std::bind(&AsyncMqttClient::_onPubRec, this, std::placeholders::_1));
+            _currentParsedPacket = 
+              new AsyncMqttClientInternals::PubRecPacket(&_parsingInformation, 
+                                                         std::bind(&AsyncMqttClient::_onPubRec, this, 
+                                                         std::placeholders::_1));
             break;
 
           case AsyncMqttClientInternals::PacketType.PUBCOMP:
             AMQTT_LOGINFO("_onData: rcv PUBCOMP");
 
-            _currentParsedPacket = new AsyncMqttClientInternals::PubCompPacket(&_parsingInformation, std::bind(&AsyncMqttClient::_onPubComp, this, std::placeholders::_1));
+            _currentParsedPacket = 
+              new AsyncMqttClientInternals::PubCompPacket(&_parsingInformation, 
+                                                          std::bind(&AsyncMqttClient::_onPubComp, this, 
+                                                          std::placeholders::_1));
             break;
 
           default:
@@ -590,6 +621,7 @@ void AsyncMqttClient::_onData(char* data, size_t len)
             _onPingResp();
           }
         }
+        
         break;
         
       case AsyncMqttClientInternals::BufferState::VARIABLE_HEADER:
@@ -602,6 +634,7 @@ void AsyncMqttClient::_onData(char* data, size_t len)
         
       default:
         currentBytePosition = len;
+        break;
     }
   } while (currentBytePosition != len);
 }

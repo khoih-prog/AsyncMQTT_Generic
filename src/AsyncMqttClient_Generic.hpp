@@ -9,7 +9,7 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.6.1
+  Version: 1.7.0
   
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -23,6 +23,7 @@
   1.5.0    K Hoang     14/04/2022 Add support to ESP8266 W5x00/ENC28J60 using lwip_W5100/lwip_W5500 or lwip_enc28j60 library
   1.6.0    K Hoang     14/08/2022 Add support to RP2040W with CYW43439 WiFi using arduino-pico core
   1.6.1    K Hoang     17/08/2022 Better workaround for RP2040W WiFi.status() bug using ping() to local gateway
+  1.7.0    K Hoang     13/09/2022 Fix ESP32 and ESP8266 compile error
  *****************************************************************************************************************************/
 
 #pragma once
@@ -41,15 +42,15 @@
 
 /////////////////////////////////////////////////////////
 
-#define ASYNC_MQTT_GENERIC_SHORT_VERSION        "AsyncMQTT_Generic v1.6.1" 
+#define ASYNC_MQTT_GENERIC_SHORT_VERSION        "AsyncMQTT_Generic v1.7.0" 
 
 /////////////////////////////////////////////////////////
 
 #define ASYNC_MQTT_GENERIC_VERSION_MAJOR       1
-#define ASYNC_MQTT_GENERIC_VERSION_MINOR       6
-#define ASYNC_MQTT_GENERIC_VERSION_PATCH       1
+#define ASYNC_MQTT_GENERIC_VERSION_MINOR       7
+#define ASYNC_MQTT_GENERIC_VERSION_PATCH       0
 
-#define ASYNC_MQTT_GENERIC_VERSION_INT         1006001
+#define ASYNC_MQTT_GENERIC_VERSION_INT         1007000
 
 /////////////////////////////////////////////////////////
 
@@ -81,19 +82,46 @@
   #endif
   
   #include <freertos/semphr.h>
+
+/////////////////////////////////////////////////////////
   
 #elif defined(ESP8266)
-
+  // Use ESP8266 core v2.7.4- for SSL as new cores don't use axtls anymore
+  // Use core v3.0.2+ for LwIP Ethernet W5500lwIP, W5100lwIP and ENC28J60lwIP libraries 
+  // Must use KH forked ESPAsyncTCP library or compile error
+  #if ( (USING_W5500 || USING_W5100 || USING_ENC28J60) && (ARDUINO_ESP8266_GIT_VER != 0xcf6ff4c4) )
+    #error You must use LwIP Ethernet with ESP8266 core v3.0.2+ or error
+  #endif
+  
+  #if ( (ARDUINO_ESP8266_GIT_VER == 0xcf6ff4c4) || (ARDUINO_ESP8266_GIT_VER == 0xcbf44fb3) || \
+        (ARDUINO_ESP8266_GIT_VER == 0xefb0341a) )
+    #if ASYNC_TCP_SSL_ENABLED
+      // Can't use SSL yet with core v3.0.0, v3.0.1 and v3.0.2. axtls replaced by bearssl
+      // To be supported in the future ???
+      #undef ASYNC_TCP_SSL_ENABLED
+      #define ASYNC_TCP_SSL_ENABLED    false
+      #warning Disable ESP8266 ASYNC_TCP_SSL_ENABLED for core v3.0.0+
+    #endif      
+  #endif      
+   
   #if ASYNC_TCP_SSL_ENABLED
     //#include <ESPAsyncTCP_SSL.h>
-    #include <ESPAsyncTCP.h>
+    
+    // Must use the forked version or error
+    #include <ESPAsyncTCP.h>      // https://github.com/khoih-prog/ESPAsyncTCP
+    
     //#warning ESP8266 ASYNC_TCP_SSL_ENABLED
     #error ESP8266 ASYNC_TCP_SSL_ENABLED not ready yet
+    
   #else
-    #include <ESPAsyncTCP.h>
+  
+    // Must use the forked version or error
+    #include <ESPAsyncTCP.h>      // https://github.com/khoih-prog/ESPAsyncTCP
     
     #define ASYNC_MQTT_GENERIC_VERSION        (ASYNC_MQTT_GENERIC_SHORT_VERSION " for ESP8266")
   #endif
+
+/////////////////////////////////////////////////////////
   
 #elif ( ( defined(ARDUINO_PORTENTA_H7_M7) || defined(ARDUINO_PORTENTA_H7_M4) ) && defined(ARDUINO_ARCH_MBED) )
 
@@ -112,6 +140,8 @@
   #endif
   
   #define ASYNC_MQTT_USING_PORTENTA_H7    true   
+
+/////////////////////////////////////////////////////////
     
 #elif ( defined(STM32F0) || defined(STM32F1) || defined(STM32F2) || defined(STM32F3)  ||defined(STM32F4) || defined(STM32F7) || \
         defined(STM32L0) || defined(STM32L1) || defined(STM32L4) || defined(STM32H7)  ||defined(STM32G0) || defined(STM32G4) || \
@@ -129,6 +159,8 @@
   
   #define ASYNC_MQTT_USING_STM32      true
 
+/////////////////////////////////////////////////////////
+
 #elif ( defined(CORE_TEENSY) && defined(__IMXRT1062__) && defined(ARDUINO_TEENSY41) )
 
   #if ASYNC_TCP_SSL_ENABLED
@@ -142,6 +174,8 @@
   #endif
   
   #define ASYNC_MQTT_USING_TEENSY41_QNETHERNET      true
+
+/////////////////////////////////////////////////////////
   
 #elif ( defined(ARDUINO_RASPBERRY_PI_PICO_W) )
 
@@ -155,19 +189,21 @@
     #define ASYNC_MQTT_GENERIC_VERSION        (ASYNC_MQTT_GENERIC_SHORT_VERSION " for RP2040W CYW43439 WiFi")
   #endif
   
-  #define ASYNC_MQTT_USING_RP2040W      			true  
+  #define ASYNC_MQTT_USING_RP2040W            true  
+
+/////////////////////////////////////////////////////////
         
 #else
   #error Platform not supported
 #endif
-
 
 /////////////////////////////////////////////////////////
 
 #if ASYNC_TCP_SSL_ENABLED
   #if (ESP32)
     #include <tcp_mbedtls.h>
-  #elif defined(ESP8266)
+  #elif ( defined(ESP8266) && (ARDUINO_ESP8266_GIT_VER == 0x2843a5ac) )
+    // ESP8266 core v2.7.4 still has tcp_axtls support
     #include <tcp_axtls.h>
   #elif ASYNC_MQTT_USING_PORTENTA_H7
     #include <tcp_axtls.h>  
@@ -176,7 +212,10 @@
   #elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
     #include <tcp_axtls.h>
   #elif ASYNC_MQTT_USING_RP2040W
-    #include <tcp_axtls.h>  
+    #include <tcp_axtls.h>
+  #else
+    #undef ASYNC_TCP_SSL_ENABLED
+    #define ASYNC_TCP_SSL_ENABLED     false
   #endif
   
   #define SHA1_SIZE 20
