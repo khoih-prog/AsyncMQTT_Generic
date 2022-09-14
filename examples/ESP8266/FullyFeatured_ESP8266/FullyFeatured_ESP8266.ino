@@ -1,5 +1,5 @@
 /****************************************************************************************************************************
-  FullyFeatureSSL_ESP8266.ino
+  FullyFeature_ESP8266.ino
   
   AsyncMqttClient_Generic is a library for ESP32, ESP8266, Protenta_H7, STM32F7, etc. with current AsyncTCP support
   
@@ -9,6 +9,10 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  *****************************************************************************************************************************/
+
+// Use ESP8266 core v2.7.4- for SSL as new cores don't use axtls anymore
+// Use core v3.0.2+ for LwIP Ethernet W5500lwIP, W5100lwIP and ENC28J60lwIP libraries 
+// Must use KH forked ESPAsyncTCP library or compile error
 
 #include "defines.h"
  
@@ -137,7 +141,7 @@ void onMqttPublish(const uint16_t& packetId)
 void setup() 
 {
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial && millis() < 5000);
 
   delay(300);
   

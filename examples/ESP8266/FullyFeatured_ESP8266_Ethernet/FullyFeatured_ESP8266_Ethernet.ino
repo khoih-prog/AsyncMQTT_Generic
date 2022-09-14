@@ -10,6 +10,10 @@
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  *****************************************************************************************************************************/
 
+// Use ESP8266 core v2.7.4- for SSL as new cores don't use axtls anymore
+// Use core v3.0.2+ for LwIP Ethernet W5500lwIP, W5100lwIP and ENC28J60lwIP libraries 
+// Must use KH forked ESPAsyncTCP library or compile error
+
 #include "defines.h"
  
 // Check connection every 2s

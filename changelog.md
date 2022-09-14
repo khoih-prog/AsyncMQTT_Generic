@@ -11,6 +11,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+  * [Releases v1.7.0](#releases-v170)
 	* [Releases v1.6.1](#releases-v161)
 	* [Releases v1.6.0](#releases-v160)
 	* [Releases v1.5.0](#releases-v150)
@@ -26,6 +27,11 @@
 ---
 
 ## Changelog
+
+### Releases v1.7.0
+
+1. Fix ESP32 compile error. Check [Missing default case in switch causes #10](https://github.com/khoih-prog/AsyncMQTT_Generic/issues/10)
+2. Change to new [Forked ESPAsyncTCP library](https://github.com/khoih-prog/ESPAsyncTCP) for ESP8266 boards, using WiFi or LwIP Ethernet, with [ESP8266 core v3.0.2+](https://github.com/esp8266/Arduino/releases/tag/3.0.2) or WiFi with [ESP8266 core v2.7.4](https://github.com/esp8266/Arduino/releases/tag/2.7.4) to avoid compile errors
 
 ### Releases v1.6.1
 

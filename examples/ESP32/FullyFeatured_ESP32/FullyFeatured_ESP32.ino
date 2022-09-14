@@ -86,6 +86,8 @@ void WiFiEvent(WiFiEvent_t event)
       xTimerStart(wifiReconnectTimer, 0);
       break;
 #endif
+    default:
+      break;
   }
 }
 
@@ -167,7 +169,7 @@ void onMqttPublish(const uint16_t& packetId)
 void setup()
 {
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial && millis() < 5000);
 
   Serial.print("\nStarting FullyFeature_ESP32 on "); Serial.println(ARDUINO_BOARD);
   Serial.println(ASYNC_MQTT_GENERIC_VERSION);

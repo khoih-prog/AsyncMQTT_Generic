@@ -159,7 +159,7 @@ void onMqttPublish(const uint16_t& packetId)
 void setup()
 {
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial && millis() < 5000);
 
   Serial.print("\nStarting FullyFeature_STM32 on "); Serial.println(BOARD_NAME);
   Serial.println(ASYNC_MQTT_GENERIC_VERSION);

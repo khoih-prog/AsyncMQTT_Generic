@@ -101,6 +101,8 @@ void ETH_event(WiFiEvent_t event)
 
       break;
 #endif
+    default:
+      break;
   }
 }
 
@@ -182,7 +184,7 @@ void onMqttPublish(const uint16_t& packetId)
 void setup()
 {
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial && millis() < 5000);
 
   Serial.print("\nStarting FullyFeatureSSL_WT32_ETH01 on "); Serial.print(BOARD_NAME);
   Serial.println(" with " + String(SHIELD_TYPE));
