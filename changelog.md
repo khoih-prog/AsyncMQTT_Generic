@@ -17,7 +17,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
-  * [Releases v1.7.0](#releases-v170)
+	* [Releases v1.7.0](#releases-v170)
 	* [Releases v1.6.1](#releases-v161)
 	* [Releases v1.6.0](#releases-v160)
 	* [Releases v1.5.0](#releases-v150)
