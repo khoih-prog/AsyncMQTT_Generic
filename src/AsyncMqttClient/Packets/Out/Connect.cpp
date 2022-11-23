@@ -1,12 +1,12 @@
 /****************************************************************************************************************************
   Connect.cpp
-  
+
   AsyncMqttClient_Generic is a library for ESP32, ESP8266, Protenta_H7, STM32F7, etc. with current AsyncTCP support
-  
+
   Based on and modified from :
-  
+
   1) async-mqtt-client (https://github.com/marvinroger/async-mqtt-client)
-  
+
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  *****************************************************************************************************************************/
 
@@ -131,7 +131,8 @@ ConnectOutPacket::ConnectOutPacket(bool cleanSession,
   if (password != nullptr)
     remainingLength += 2 + passwordLength;
 
-  uint8_t remainingLengthLength = AsyncMqttClientInternals::Helpers::encodeRemainingLength(remainingLength, fixedHeader + 1);
+  uint8_t remainingLengthLength = AsyncMqttClientInternals::Helpers::encodeRemainingLength(remainingLength,
+                                                                                           fixedHeader + 1);
 
   uint32_t neededSpace = 1 + remainingLengthLength;
   neededSpace += 2;
@@ -192,7 +193,9 @@ ConnectOutPacket::ConnectOutPacket(bool cleanSession,
     _data.insert(_data.end(), willTopic, willTopic + willTopicLength);
 
     _data.insert(_data.end(), willPayloadLengthBytes, willPayloadLengthBytes + 2);
-    if (willPayload != nullptr) _data.insert(_data.end(), willPayload, willPayload + willPayloadLength);
+
+    if (willPayload != nullptr)
+      _data.insert(_data.end(), willPayload, willPayload + willPayloadLength);
   }
 
   if (username != nullptr)

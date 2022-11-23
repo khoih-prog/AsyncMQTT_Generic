@@ -13,7 +13,7 @@
 #define defines_h
 
 #if !( defined(CORE_TEENSY) && defined(__IMXRT1062__) && defined(ARDUINO_TEENSY41) )
-#error Only Teensy 4.1 supported
+  #error Only Teensy 4.1 supported
 #endif
 
 // Debug Level from 0 to 4
@@ -26,18 +26,18 @@
 using namespace qindesign::network;
 
 #if (_ASYNC_MQTT_LOGLEVEL_ > 3)
-#warning Using QNEthernet lib for Teensy 4.1. Must also use Teensy Packages Patch or error
+  #warning Using QNEthernet lib for Teensy 4.1. Must also use Teensy Packages Patch or error
 #endif
 #define USING_DHCP            true
 //#define USING_DHCP            false
 
 #if !USING_DHCP
-// Set the static IP address to use if the DHCP fails to assign
-IPAddress myIP(192, 168, 2, 222);
-IPAddress myNetmask(255, 255, 255, 0);
-IPAddress myGW(192, 168, 2, 1);
-//IPAddress mydnsServer(192, 168, 2, 1);
-IPAddress mydnsServer(8, 8, 8, 8);
+  // Set the static IP address to use if the DHCP fails to assign
+  IPAddress myIP(192, 168, 2, 222);
+  IPAddress myNetmask(255, 255, 255, 0);
+  IPAddress myGW(192, 168, 2, 1);
+  //IPAddress mydnsServer(192, 168, 2, 1);
+  IPAddress mydnsServer(8, 8, 8, 8);
 #endif
 
 #endif    //defines_h

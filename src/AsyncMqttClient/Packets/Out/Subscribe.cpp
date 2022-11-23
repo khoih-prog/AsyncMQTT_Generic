@@ -1,12 +1,12 @@
 /****************************************************************************************************************************
   Subscribe.cpp
-  
+
   AsyncMqttClient_Generic is a library for ESP32, ESP8266, Protenta_H7, STM32F7, etc. with current AsyncTCP support
-  
+
   Based on and modified from :
-  
+
   1) async-mqtt-client (https://github.com/marvinroger/async-mqtt-client)
-  
+
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  *****************************************************************************************************************************/
 
@@ -14,7 +14,7 @@
 
 using AsyncMqttClientInternals::SubscribeOutPacket;
 
-SubscribeOutPacket::SubscribeOutPacket(const char* topic, uint8_t qos) 
+SubscribeOutPacket::SubscribeOutPacket(const char* topic, uint8_t qos)
 {
   char fixedHeader[5];
   fixedHeader[0] = AsyncMqttClientInternals::PacketType.SUBSCRIBE;
@@ -29,7 +29,8 @@ SubscribeOutPacket::SubscribeOutPacket(const char* topic, uint8_t qos)
   char qosByte[1];
   qosByte[0] = qos;
 
-  uint8_t remainingLengthLength = AsyncMqttClientInternals::Helpers::encodeRemainingLength(2 + 2 + topicLength + 1, fixedHeader + 1);
+  uint8_t remainingLengthLength = AsyncMqttClientInternals::Helpers::encodeRemainingLength(2 + 2 + topicLength + 1,
+                                                                                           fixedHeader + 1);
 
   size_t neededSpace = 0;
   neededSpace += 1 + remainingLengthLength;
@@ -53,12 +54,12 @@ SubscribeOutPacket::SubscribeOutPacket(const char* topic, uint8_t qos)
   _released = false;
 }
 
-const uint8_t* SubscribeOutPacket::data(size_t index) const 
+const uint8_t* SubscribeOutPacket::data(size_t index) const
 {
   return &_data.data()[index];
 }
 
-size_t SubscribeOutPacket::size() const 
+size_t SubscribeOutPacket::size() const
 {
   return _data.size();
 }

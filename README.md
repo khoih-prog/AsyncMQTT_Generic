@@ -1,12 +1,15 @@
-# AsyncMQTT_Generic
+# AsyncMQTT_Generic Library (Async MQTT Client for ESP8266, ESP32, etc.)
 
 [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncMQTT_Generic.svg?)](https://www.ardu-badge.com/AsyncMQTT_Generic)
 [![GitHub release](https://img.shields.io/github/release/khoih-prog/AsyncMQTT_Generic.svg)](https://github.com/khoih-prog/AsyncMQTT_Generic/releases)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](#Contributing)
 [![GitHub issues](https://img.shields.io/github/issues/khoih-prog/AsyncMQTT_Generic.svg)](http://github.com/khoih-prog/AsyncMQTT_Generic/issues)
 
+
 <a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Donate to my libraries using BuyMeACoffee" style="height: 50px !important;width: 181px !important;" ></a>
 <a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange.svg?logo=buy-me-a-coffee&logoColor=FFDD00" style="height: 20px !important;width: 200px !important;" ></a>
+<a href="https://profile-counter.glitch.me/khoih-prog/count.svg" title="Total khoih-prog Visitor count"><img src="https://profile-counter.glitch.me/khoih-prog/count.svg" style="height: 30px;width: 200px;"></a>
+<a href="https://profile-counter.glitch.me/khoih-prog-AsyncMQTT_Generic/count.svg" title="AsyncMQTT_Generic Visitor count"><img src="https://profile-counter.glitch.me/khoih-prog-AsyncMQTT_Generic/count.svg" style="height: 30px;width: 200px;"></a>
 
 ---
 ---
@@ -166,31 +169,29 @@ This [**AsyncMQTT_Generic** library](https://github.com/khoih-prog/AsyncMQTT_Gen
   
  1. Any future board with supporting AsyncTCP library
 
-
 ---
 ---
-
  
 ## Prerequisites
 
  1. [`Arduino IDE 1.8.19+` for Arduino](https://github.com/arduino/Arduino). [![GitHub release](https://img.shields.io/github/release/arduino/Arduino.svg)](https://github.com/arduino/Arduino/releases/latest)
- 2. [`ESP32 Core 2.0.4+`](https://github.com/espressif/arduino-esp32) for ESP32-based boards. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
+ 2. [`ESP32 Core 2.0.5+`](https://github.com/espressif/arduino-esp32) for ESP32-based boards. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
  3. [`ESP8266 Core 3.0.2+`](https://github.com/esp8266/Arduino) for ESP8266-based boards. [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/esp8266/Arduino/releases/latest/).
  4. [`Arduino Core for STM32 v2.3.0+`](https://github.com/stm32duino/Arduino_Core_STM32) for STM32F/L/H/G/WB/MP1 boards using built-in LAN8742A. [![GitHub release](https://img.shields.io/github/release/stm32duino/Arduino_Core_STM32.svg)](https://github.com/stm32duino/Arduino_Core_STM32/releases/latest). Use core v2.2.0- for LAN8720.
- 5. [`Arduino mbed_portenta core 3.3.0+`](https://github.com/arduino/ArduinoCore-mbed) for Arduino (Use Arduino Board Manager) Portenta_H7-based boards. [![GitHub release](https://img.shields.io/github/release/arduino/ArduinoCore-mbed.svg)](https://github.com/arduino/ArduinoCore-mbed/releases/latest)
- 6. [`Earle Philhower's arduino-pico core v2.5.2+`](https://github.com/earlephilhower/arduino-pico) for **RASPBERRY_PI_PICO_W with CYW43439 WiFi**, etc. [![GitHub release](https://img.shields.io/github/release/earlephilhower/arduino-pico.svg)](https://github.com/earlephilhower/arduino-pico/releases/latest)
+ 5. [`Arduino mbed_portenta core 3.4.1+`](https://github.com/arduino/ArduinoCore-mbed) for Arduino (Use Arduino Board Manager) Portenta_H7-based boards. [![GitHub release](https://img.shields.io/github/release/arduino/ArduinoCore-mbed.svg)](https://github.com/arduino/ArduinoCore-mbed/releases/latest)
+ 6. [`Earle Philhower's arduino-pico core v2.6.3+`](https://github.com/earlephilhower/arduino-pico) for **RASPBERRY_PI_PICO_W with CYW43439 WiFi**, etc. [![GitHub release](https://img.shields.io/github/release/earlephilhower/arduino-pico.svg)](https://github.com/earlephilhower/arduino-pico/releases/latest)
  7. [`Teensy core v1.57+`](https://www.pjrc.com/teensy/td_download.html) for Teensy 4.1
- 8. [`Forked ESPAsyncTCP v1.3.0+`](https://github.com/khoih-prog/ESPAsyncTCP) for ESP8266. **To install manually for Arduino IDE**
+ 8. [`KH_Forked ESPAsyncTCP v1.3.0+`](https://github.com/khoih-prog/ESPAsyncTCP) for ESP8266. **To install manually for Arduino IDE**
  9. [`AsyncTCP v1.1.1+`](https://github.com/me-no-dev/AsyncTCP) for ESP32.
 10. [`STM32Ethernet library v1.3.0+`](https://github.com/stm32duino/STM32Ethernet) for STM32 using built-in Ethernet LAN8742A on (Nucleo-144, Discovery). [![GitHub release](https://img.shields.io/github/release/stm32duino/STM32Ethernet.svg)](https://github.com/stm32duino/STM32Ethernet/releases/latest)
 11. [`LwIP library v2.1.2+`](https://github.com/stm32duino/LwIP) for STM32 using built-in Ethernet LAN8742A on (Nucleo-144, Discovery). [![GitHub release](https://img.shields.io/github/release/stm32duino/LwIP.svg)](https://github.com/stm32duino/LwIP/releases/latest)
-12. [`Forked STM32AsyncTCP library v1.0.1+`](https://github.com/khoih-prog/STM32AsyncTCP) for built-in Ethernet on (Nucleo-144, Discovery). **To install manually for Arduino IDE**
+12. [`KH_Forked STM32AsyncTCP library v1.0.1+`](https://github.com/khoih-prog/STM32AsyncTCP) for built-in Ethernet on (Nucleo-144, Discovery). **To install manually for Arduino IDE**
 13. [`WebServer_WT32_ETH01 library v1.5.1+`](https://github.com/khoih-prog/WebServer_WT32_ETH01) to use WT32_ETH01 (ESP32 + LAN8720). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_WT32_ETH01.svg?)](https://www.ardu-badge.com/WebServer_WT32_ETH01).
-14. [`Portenta_H7_AsyncTCP library v1.3.2+`](https://github.com/khoih-prog/Portenta_H7_AsyncTCP) to use **Portenta_H7 using either Murata WiFi or Vision-shield Ethernet**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/Portenta_H7_AsyncTCP.svg?)](https://www.ardu-badge.com/Portenta_H7_AsyncTCP).
-15. [`Teensy41_AsyncTCP library v1.0.0+`](https://github.com/khoih-prog/Teensy41_AsyncTCP) to use **Teensy 4.1 using QNEthernet Library**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/Teensy41_AsyncTCP.svg?)](https://www.ardu-badge.com/Teensy41_AsyncTCP).
-16. [`AsyncTCP_RP2040W library v1.0.0+`](https://github.com/khoih-prog/AsyncTCP_RP2040W) to use **RASPBERRY_PI_PICO_W with CYW43439 WiFi**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncTCP_RP2040W.svg?)](https://www.ardu-badge.com/AsyncTCP_RP2040W).
-17. [`AsyncTCP_SSL library v1.3.0+`](https://github.com/khoih-prog/AsyncTCP_SSL) to use **TLS/SSL for ESP32**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncTCP_SSL.svg?)](https://www.ardu-badge.com/AsyncTCP_SSL).
-18. [`ESPAsync_WiFiManager library v1.14.0+`](https://github.com/khoih-prog/ESPAsync_WiFiManager) for ESP32/ESP8266 using some examples. [![GitHub release](https://img.shields.io/github/release/khoih-prog/ESPAsync_WiFiManager.svg)](https://github.com/khoih-prog/ESPAsync_WiFiManager/releases)
+14. [`Portenta_H7_AsyncTCP library v1.4.0+`](https://github.com/khoih-prog/Portenta_H7_AsyncTCP) to use **Portenta_H7 using either Murata WiFi or Vision-shield Ethernet**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/Portenta_H7_AsyncTCP.svg?)](https://www.ardu-badge.com/Portenta_H7_AsyncTCP).
+15. [`Teensy41_AsyncTCP library v1.1.0+`](https://github.com/khoih-prog/Teensy41_AsyncTCP) to use **Teensy 4.1 using QNEthernet Library**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/Teensy41_AsyncTCP.svg?)](https://www.ardu-badge.com/Teensy41_AsyncTCP).
+16. [`AsyncTCP_RP2040W library v1.1.0+`](https://github.com/khoih-prog/AsyncTCP_RP2040W) to use **RASPBERRY_PI_PICO_W with CYW43439 WiFi**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncTCP_RP2040W.svg?)](https://www.ardu-badge.com/AsyncTCP_RP2040W).
+17. [`AsyncTCP_SSL library v1.3.1+`](https://github.com/khoih-prog/AsyncTCP_SSL) to use **TLS/SSL for ESP32**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncTCP_SSL.svg?)](https://www.ardu-badge.com/AsyncTCP_SSL).
+18. [`ESPAsync_WiFiManager library v1.15.1+`](https://github.com/khoih-prog/ESPAsync_WiFiManager) for ESP32/ESP8266 using some examples. [![GitHub release](https://img.shields.io/github/release/khoih-prog/ESPAsync_WiFiManager.svg)](https://github.com/khoih-prog/ESPAsync_WiFiManager/releases)
 
 ---
 ---
@@ -206,9 +207,9 @@ You can also use this link [![arduino-library-badge](https://www.ardu-badge.com/
 Another way to install is to:
 
 1. Navigate to [**AsyncMQTT_Generic**](https://github.com/khoih-prog/AsyncMQTT_Generic) page.
-2. Download the latest release `AsyncMQTT_Generic-master.zip`.
-3. Extract the zip file to `AsyncMQTT_Generic-master` directory 
-4. Copy whole `AsyncMQTT_Generic-master` folder to Arduino libraries' directory such as `~/Arduino/libraries/`.
+2. Download the latest release `AsyncMQTT_Generic-main.zip`.
+3. Extract the zip file to `AsyncMQTT_Generic-main` directory 
+4. Copy whole `AsyncMQTT_Generic-main` folder to Arduino libraries' directory such as `~/Arduino/libraries/`.
 
 ### VS Code & PlatformIO:
 
@@ -227,18 +228,22 @@ Another way to install is to:
 
 #### 1.1 For STM32 boards to use LAN8720
 
+For `Generic STM32F4 series` boards, such as `STM32F407VE`, using `LAN8720`, please use STM32 core `v2.2.0` as breaking core `v2.3.0` creates the compile error.
+
+---
+
 To use LAN8720 on some STM32 boards 
 
 - **Nucleo-144 (F429ZI, NUCLEO_F746NG, NUCLEO_F746ZG, NUCLEO_F756ZG)**
 - **Discovery (DISCO_F746NG)**
 - **STM32F4 boards (BLACK_F407VE, BLACK_F407VG, BLACK_F407ZE, BLACK_F407ZG, BLACK_F407VE_Mini, DIYMORE_F407VGT, FK407M1)**
 
-you have to copy the files [stm32f4xx_hal_conf_default.h](Packages_Patches/STM32/hardware/stm32/2.3.0/system/STM32F4xx) and [stm32f7xx_hal_conf_default.h](Packages_Patches/STM32/hardware/stm32/2.3.0/system/STM32F7xx) into STM32 stm32 directory (~/.arduino15/packages/STM32/hardware/stm32/2.3.0/system) to overwrite the old files.
+you have to copy the files [stm32f4xx_hal_conf_default.h](Packages_Patches/STM32/hardware/stm32/2.2.0/system/STM32F4xx) and [stm32f7xx_hal_conf_default.h](Packages_Patches/STM32/hardware/stm32/2.2.0/system/STM32F7xx) into STM32 stm32 directory (~/.arduino15/packages/STM32/hardware/stm32/2.2.0/system) to overwrite the old files.
 
-Supposing the STM32 stm32 core version is 2.3.0. These files must be copied into the directory:
+Supposing the STM32 stm32 core version is 2.2.0. These files must be copied into the directory:
 
-- `~/.arduino15/packages/STM32/hardware/stm32/2.3.0/system/STM32F4xx/stm32f4xx_hal_conf_default.h` for STM32F4.
-- `~/.arduino15/packages/STM32/hardware/stm32/2.3.0/system/STM32F7xx/stm32f7xx_hal_conf_default.h` for Nucleo-144 STM32F7.
+- `~/.arduino15/packages/STM32/hardware/stm32/2.2.0/system/STM32F4xx/stm32f4xx_hal_conf_default.h` for STM32F4.
+- `~/.arduino15/packages/STM32/hardware/stm32/2.2.0/system/STM32F7xx/stm32f7xx_hal_conf_default.h` for Nucleo-144 STM32F7.
 
 Whenever a new version is installed, remember to copy this file into the new version directory. For example, new version is x.yy.zz,
 these files must be copied into the corresponding directory:
@@ -285,12 +290,12 @@ These files must be copied into the directory:
 
 #### 3. For Portenta_H7 boards using Arduino IDE in Linux
 
-  **To be able to upload firmware to Portenta_H7 using Arduino IDE in Linux (Ubuntu, etc.)**, you have to copy the file [portenta_post_install.sh](Packages_Patches/arduino/hardware/mbed_portenta/3.3.0/portenta_post_install.sh) into mbed_portenta directory (~/.arduino15/packages/arduino/hardware/mbed_portenta/3.3.0/portenta_post_install.sh). 
+  **To be able to upload firmware to Portenta_H7 using Arduino IDE in Linux (Ubuntu, etc.)**, you have to copy the file [portenta_post_install.sh](Packages_Patches/arduino/hardware/mbed_portenta/3.4.1/portenta_post_install.sh) into mbed_portenta directory (~/.arduino15/packages/arduino/hardware/mbed_portenta/3.4.1/portenta_post_install.sh). 
   
   Then run the following command using `sudo`
   
 ```
-$ cd ~/.arduino15/packages/arduino/hardware/mbed_portenta/3.3.0
+$ cd ~/.arduino15/packages/arduino/hardware/mbed_portenta/3.4.1
 $ chmod 755 portenta_post_install.sh
 $ sudo ./portenta_post_install.sh
 ```
@@ -303,9 +308,9 @@ This will create the file `/etc/udev/rules.d/49-portenta_h7.rules` as follows:
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="035b", GROUP="plugdev", MODE="0666"
 ```
 
-Supposing the ArduinoCore-mbed core version is 3.3.0. Now only one file must be copied into the directory:
+Supposing the ArduinoCore-mbed core version is 3.4.1. Now only one file must be copied into the directory:
 
-- `~/.arduino15/packages/arduino/hardware/mbed_portenta/3.3.0/portenta_post_install.sh`
+- `~/.arduino15/packages/arduino/hardware/mbed_portenta/3.4.1/portenta_post_install.sh`
 
 Whenever a new version is installed, remember to copy this files into the new version directory. For example, new version is x.yy.zz
 
@@ -420,7 +425,7 @@ Connect as follows. To program, use **STM32CubeProgrammer** or Arduino IDE with
 
 
 <p align="center">
-    <img src="https://github.com/khoih-prog/AsyncMQTT_Generic/blob/main/pics/STM32F407VET6.png">
+    <img src="https://github.com/khoih-prog/AsyncMQTT_Generic/raw/main/pics/STM32F407VET6.png">
 </p>
 
 ---
@@ -527,7 +532,7 @@ https://github.com/khoih-prog/AsyncMQTT_Generic/blob/e6b4541542e4190c5d765017c3d
 
 This is terminal debug output when running [FullyFeatured_ESP8266](examples/ESP8266/FullyFeatured_ESP8266) on **ESP8266_NODEMCU_ESP12E** connecting to `broker.emqx.io` MQTT server.
 
-```
+```cpp
 Starting FullyFeature_ESP8266 on ESP8266_NODEMCU_ESP12E
 AsyncMQTT_Generic v1.7.0 for ESP8266
 Connecting to Wi-Fi...
@@ -589,7 +594,7 @@ Publish acknowledged.
 
 This is terminal debug output when running [FullyFeatured_ESP32](examples/ESP32/FullyFeatured_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` MQTT server.
 
-```
+```cpp
 Starting FullyFeature_ESP32 on ESP32_DEV
 AsyncMQTT_Generic v1.7.0 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
@@ -655,7 +660,7 @@ Publish acknowledged.
 
 This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP32/FullyFeaturedSSL_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` secured MQTT server (port 8883).
 
-```
+```cpp
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
 AsyncMQTT_Generic v1.7.0 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
@@ -722,7 +727,7 @@ Publish acknowledged
 This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP32/FullyFeaturedSSL_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` secured MQTT server (port 8883). The _ASYNC_MQTT_LOGLEVEL_ is set at 4 to show all the debugging messages.
 
 
-```
+```cpp
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
 AsyncMQTT_Generic v1.7.0 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
@@ -892,7 +897,7 @@ Publish acknowledged
 This is terminal debug output when running [FullyFeaturedSSL_WT32_ETH01](examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01) on **WT32-ETH01** connecting to `broker.emqx.io` secured MQTT server (port 8883).
 
 
-```
+```cpp
 Starting FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 AsyncMQTT_Generic v1.7.0 for ESP32 core v2.0.0+
@@ -950,7 +955,7 @@ Publish acknowledged
 
 This is terminal debug output when running [FullyFeature_STM32](examples/STM32/FullyFeature_STM32) on **STM32F7 NUCLEO_F767ZI** connecting to `broker.emqx.io` MQTT server. The Ethernet loss was tested by disconnecting, then reconnecting the Ethernet cable.
 
-```
+```cpp
 Starting FullyFeature_STM32 on NUCLEO_F767ZI
 AsyncMQTT_Generic v1.7.0 for STM32
 Connected to network. IP = 192.168.2.118
@@ -1071,7 +1076,7 @@ Publish acknowledged.
 
 #### 7. FullyFeature_STM32 on NUCLEO_F767ZI with _ASYNC_MQTT_LOGLEVEL_
 
-```
+```cpp
 Starting FullyFeature_STM32 on NUCLEO_F767ZI
 AsyncMQTT_Generic v1.7.0 for STM32
 Connected to network. IP = 192.168.2.126
@@ -1246,7 +1251,7 @@ Publish acknowledged.
 This is terminal debug output when running [FullyFeatured_STM32_LAN8720](examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720) on **STM32F4 BLACK_F407VE** connecting to `broker.emqx.io` MQTT server.
 
 
-```
+```cpp
 Starting FullyFeatured_STM32_LAN8720 on BLACK_F407VE
 AsyncMQTT_Generic v1.7.0 for STM32
 Connected to network. IP = 192.168.2.132
@@ -1313,7 +1318,7 @@ Publish acknowledged.
 This is terminal debug output when running [FullyFeatured_PortentaH7_WiFi](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi) on **STM32H7 PORTENTA_H7_M7** using `Murata WiFi`, connecting to `broker.emqx.io` MQTT server.
 
 
-```
+```cpp
 Starting FullyFeatured_PortentaH7_WiFi on PORTENTA_H7_M7
 AsyncMQTT_Generic v1.7.0 for Portenta_H7_M7
 Connecting to SSID: HueNet1
@@ -1382,7 +1387,7 @@ Publish acknowledged.
 This is terminal debug output when running [FullyFeatured_PortentaH7_Ethernet](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_Ethernet) on **STM32H7 PORTENTA_H7_M7**, using `built-in Ethernet`, connecting to `broker.emqx.io` MQTT server.
 
 
-```
+```cpp
 Starting FullyFeatured_PortentaH7_Ethernet on PORTENTA_H7_M7
 AsyncMQTT_Generic v1.7.0 for Portenta_H7_M7
 Connected to network. IP = 192.168.2.133
@@ -1508,7 +1513,7 @@ Publish acknowledged.
 This is terminal debug output when running [FullyFeatured_QNEthernet](examples/QNEthernet/FullyFeatured_QNEthernet) on **TEENSY 4.1**, using `built-in Ethernet with QNEthernet Library`, connecting to `broker.emqx.io` MQTT server.
 
 
-```
+```cpp
 Starting FullyFeatured_QNEthernet on TEENSY 4.1
 AsyncMQTT_Generic v1.7.0 for Teensy 4.1 QNEthernet
 Initialize Ethernet using static IP => Connected! IP address:192.168.2.222
@@ -1575,7 +1580,7 @@ Publish acknowledged.
 This is terminal debug output when running [FullyFeatured_ESP8266_Ethernet](examples/ESP8266/FullyFeatured_ESP8266_Ethernet) on **ESP8266_NODEMCU_ESP12E**, using `ENC28J60 Ethernet` with [`lwIP_enc28j60`](https://github.com/esp8266/Arduino/tree/master/libraries/lwIP_enc28j60) Library, connecting to `broker.emqx.io` MQTT server.
 
 
-```
+```cpp
 Starting FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_ENC28J60 Ethernet
 AsyncMQTT_Generic v1.7.0 for ESP8266
 Connecting to network : .....................................
@@ -1644,7 +1649,7 @@ Publish acknowledged.
 This is terminal debug output when running [FullyFeatured_ESP8266_Ethernet](examples/ESP8266/FullyFeatured_ESP8266_Ethernet) on **ESP8266_NODEMCU_ESP12E**, using `W5500 Ethernet` with [`lwIP_w5500`](https://github.com/esp8266/Arduino/tree/master/libraries/lwIP_w5500) Library, connecting to `broker.emqx.io` MQTT server.
 
 
-```
+```cpp
 Starting FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_W5500 Ethernet
 AsyncMQTT_Generic v1.7.0 for ESP8266
 Connecting to network : .
@@ -1712,7 +1717,7 @@ Publish acknowledged.
 This is terminal debug output when running [FullyFeature_RP2040W](examples/RP2040W/FullyFeature_RP2040W) on **RASPBERRY_PI_PICO_W**, using `CYW43439 WiFi`, connecting to `broker.emqx.io` MQTT server.
 
 
-```
+```cpp
 Starting FullyFeature_RP2040W on RASPBERRY_PI_PICO_W
 AsyncMQTT_Generic v1.7.0 for RP2040W CYW43439 WiFi
 Connecting to SSID: HueNet2
@@ -1829,6 +1834,8 @@ Submit issues to: [AsyncMQTT_Generic issues](https://github.com/khoih-prog/Async
  9. Add support to **ESP8266 ENC28J60** using [lwIP_enc28j60](https://github.com/esp8266/Arduino/tree/master/libraries/lwIP_enc28j60) library
 10. Add support **RASPBERRY_PI_PICO_W with CYW43439 WiFi**, using [**arduino-pico core v2.4.0+**](https://github.com/earlephilhower/arduino-pico)
 11. Change to new [Forked ESPAsyncTCP library](https://github.com/khoih-prog/ESPAsyncTCP) for ESP8266 boards, using WiFi or LwIP Ethernet, with [ESP8266 core v3.0.2+](https://github.com/esp8266/Arduino/releases/tag/3.0.2) or WiFi with [ESP8266 core v2.7.4](https://github.com/esp8266/Arduino/releases/tag/2.7.4) to avoid compile errors
+11. Add astyle using `allman` style. Restyle the library
+
 
 ---
 ---

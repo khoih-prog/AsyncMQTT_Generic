@@ -1,16 +1,16 @@
 /****************************************************************************************************************************
   AsyncMqttClient_Generic_Impl.h
-  
+
   AsyncMqttClient_Generic is a library for ESP32, ESP8266, Protenta_H7, STM32F7, etc. with current AsyncTCP support
-  
+
   Based on and modified from :
-  
+
   1) async-mqtt-client (https://github.com/marvinroger/async-mqtt-client)
-  
+
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
- 
+
   Version: 1.7.0
-  
+
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
@@ -37,8 +37,8 @@
 
 /////////////////////////////////////////////////////////
 
-const char* PacketTypeName[] = 
-{ 
+const char* PacketTypeName[] =
+{
   "RESERVED",
   "CONNECT",
   "CONNACK",
@@ -54,7 +54,7 @@ const char* PacketTypeName[] =
   "PINGREQ",
   "PINGRESP",
   "DISCONNECT",
-  "RESERVED2" 
+  "RESERVED2"
 };
 
 /////////////////////////////////////////////////////////
@@ -96,84 +96,84 @@ AsyncMqttClient::AsyncMqttClient()
   , _onUnsubscribeUserCallbacks()
   , _onMessageUserCallbacks()
   , _onPublishUserCallbacks()
-  , _parsingInformation() 
+  , _parsingInformation()
   , _currentParsedPacket(nullptr)
   , _remainingLengthBufferPosition(0)
   , _remainingLengthBuffer{0}
   , _pendingPubRels()
 {
   _parsingInformation.bufferState = AsyncMqttClientInternals::BufferState::NONE;
-  
+
 #if ASYNC_TCP_SSL_ENABLED
-  _client.onConnect([](void* obj, AsyncSSLClient * c) 
+  _client.onConnect([](void* obj, AsyncSSLClient * c)
   {
     (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onConnect();
   }, this);
-  
-  _client.onDisconnect([](void* obj, AsyncSSLClient * c) 
+
+  _client.onDisconnect([](void* obj, AsyncSSLClient * c)
   {
     (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onDisconnect();
   }, this);
-  
+
   // _client.onError([](void* obj, AsyncSSLClient* c, int8_t error) { (static_cast<AsyncMqttClient*>(obj))->_onError(error); }, this);
   // _client.onTimeout([](void* obj, AsyncSSLClient* c, uint32_t time) { (static_cast<AsyncMqttClient*>(obj))->_onTimeout(); }, this);
-  
-  _client.onAck([](void* obj, AsyncSSLClient * c, size_t len, uint32_t time) 
+
+  _client.onAck([](void* obj, AsyncSSLClient * c, size_t len, uint32_t time)
   {
     (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onAck(len);
   }, this);
-  
-  _client.onData([](void* obj, AsyncSSLClient * c, void* data, size_t len) 
+
+  _client.onData([](void* obj, AsyncSSLClient * c, void* data, size_t len)
   {
     (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onData(static_cast<char*>(data), len);
   }, this);
-  
-  _client.onPoll([](void* obj, AsyncSSLClient * c) 
+
+  _client.onPoll([](void* obj, AsyncSSLClient * c)
   {
     (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onPoll();
   }, this);
-  
+
 #else
 
-  _client.onConnect([](void* obj, AsyncClient * c) 
+  _client.onConnect([](void* obj, AsyncClient * c)
   {
     (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onConnect();
   }, this);
-  
-  _client.onDisconnect([](void* obj, AsyncClient * c) 
+
+  _client.onDisconnect([](void* obj, AsyncClient * c)
   {
     (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onDisconnect();
   }, this);
-  
+
   // _client.onError([](void* obj, AsyncClient* c, int8_t error) { (static_cast<AsyncMqttClient*>(obj))->_onError(error); }, this);
   // _client.onTimeout([](void* obj, AsyncClient* c, uint32_t time) { (static_cast<AsyncMqttClient*>(obj))->_onTimeout(); }, this);
-  
-  _client.onAck([](void* obj, AsyncClient * c, size_t len, uint32_t time) 
+
+  _client.onAck([](void* obj, AsyncClient * c, size_t len, uint32_t time)
   {
     (void) c;
     (void) time;
     (static_cast<AsyncMqttClient*>(obj))->_onAck(len);
   }, this);
-  
-  _client.onData([](void* obj, AsyncClient * c, void* data, size_t len) 
+
+  _client.onData([](void* obj, AsyncClient * c, void* data, size_t len)
   {
     (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onData(static_cast<char*>(data), len);
   }, this);
-  
-  _client.onPoll([](void* obj, AsyncClient * c) 
+
+  _client.onPoll([](void* obj, AsyncClient * c)
   {
     (void) c;
     (static_cast<AsyncMqttClient*>(obj))->_onPoll();
   }, this);
-  
+
 #endif
 
   _client.setNoDelay(true);  // send small packets immediately (PINGREQ/DISCONN are only 2 bytes)
@@ -184,15 +184,15 @@ AsyncMqttClient::AsyncMqttClient()
 #elif defined(ESP8266)
   sprintf(_generatedClientId, "esp8266-%06x", ESP.getChipId());
 #elif ASYNC_MQTT_USING_PORTENTA_H7
-  // Will create _clientId from macAddress later in connect() as ID not available now  
+  // Will create _clientId from macAddress later in connect() as ID not available now
 #elif ASYNC_MQTT_USING_STM32
   // Will create _clientId from macAddress later in connect() as ID not available now
 #elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
   // Will create _clientId from TensyID
 #elif ASYNC_MQTT_USING_RP2040W
-  // Will create _clientId from unique hardware ID later in connect() as ID not available now 
+  // Will create _clientId from unique hardware ID later in connect() as ID not available now
 #endif
-  
+
   _clientId = _generatedClientId;
 
   setMaxTopicLength(128);
@@ -204,7 +204,7 @@ AsyncMqttClient::~AsyncMqttClient()
 {
   delete _currentParsedPacket;
   delete[] _parsingInformation.topicBuffer;
-  
+
   _clear();
   _pendingPubRels.clear();
   _pendingPubRels.shrink_to_fit();
@@ -220,7 +220,7 @@ AsyncMqttClient::~AsyncMqttClient()
 AsyncMqttClient& AsyncMqttClient::setKeepAlive(uint16_t keepAlive)
 {
   _keepAlive = keepAlive;
-  
+
   return *this;
 }
 
@@ -229,7 +229,7 @@ AsyncMqttClient& AsyncMqttClient::setKeepAlive(uint16_t keepAlive)
 AsyncMqttClient& AsyncMqttClient::setClientId(const char* clientId)
 {
   _clientId = clientId;
-  
+
   return *this;
 }
 
@@ -238,7 +238,7 @@ AsyncMqttClient& AsyncMqttClient::setClientId(const char* clientId)
 AsyncMqttClient& AsyncMqttClient::setCleanSession(bool cleanSession)
 {
   _cleanSession = cleanSession;
-  
+
   return *this;
 }
 
@@ -249,7 +249,7 @@ AsyncMqttClient& AsyncMqttClient::setMaxTopicLength(uint16_t maxTopicLength)
   _parsingInformation.maxTopicLength = maxTopicLength;
   delete[] _parsingInformation.topicBuffer;
   _parsingInformation.topicBuffer = new char[maxTopicLength + 1];
-  
+
   return *this;
 }
 
@@ -259,20 +259,21 @@ AsyncMqttClient& AsyncMqttClient::setCredentials(const char* username, const cha
 {
   _username = username;
   _password = password;
-  
+
   return *this;
 }
 
 /////////////////////////////////////////////////////////
 
-AsyncMqttClient& AsyncMqttClient::setWill(const char* topic, uint8_t qos, bool retain, const char* payload, size_t length)
+AsyncMqttClient& AsyncMqttClient::setWill(const char* topic, uint8_t qos, bool retain, const char* payload,
+                                          size_t length)
 {
   _willTopic = topic;
   _willQos = qos;
   _willRetain = retain;
   _willPayload = payload;
   _willPayloadLength = length;
-  
+
   return *this;
 }
 
@@ -283,7 +284,7 @@ AsyncMqttClient& AsyncMqttClient::setServer(IPAddress ip, uint16_t port)
   _useIp = true;
   _ip = ip;
   _port = port;
-  
+
   return *this;
 }
 
@@ -294,7 +295,7 @@ AsyncMqttClient& AsyncMqttClient::setServer(const char* host, uint16_t port)
   _useIp = false;
   _host = host;
   _port = port;
-  
+
   return *this;
 }
 
@@ -304,7 +305,7 @@ AsyncMqttClient& AsyncMqttClient::setServer(const char* host, uint16_t port)
 AsyncMqttClient& AsyncMqttClient::setSecure(bool secure)
 {
   _secure = secure;
-  
+
   return *this;
 }
 
@@ -427,22 +428,23 @@ void AsyncMqttClient::_onConnect()
       return;
     }
   }
+
 #endif
 
 #endif
 
   AsyncMqttClientInternals::OutPacket* msg =
     new AsyncMqttClientInternals::ConnectOutPacket(_cleanSession,
-        _username,
-        _password,
-        _willTopic,
-        _willRetain,
-        _willQos,
-        _willPayload,
-        _willPayloadLength,
-        _keepAlive,
-        _clientId);
-        
+                                                   _username,
+                                                   _password,
+                                                   _willTopic,
+                                                   _willRetain,
+                                                   _willQos,
+                                                   _willPayload,
+                                                   _willPayloadLength,
+                                                   _keepAlive,
+                                                   _clientId);
+
   _addFront(msg);
   _handleQueue();
 }
@@ -510,86 +512,86 @@ void AsyncMqttClient::_onData(char* data, size_t len)
           case AsyncMqttClientInternals::PacketType.CONNACK:
             AMQTT_LOGINFO("_onData: rcv CONNACK");
 
-            _currentParsedPacket = 
-              new AsyncMqttClientInternals::ConnAckPacket(&_parsingInformation, 
-                                                          std::bind(&AsyncMqttClient::_onConnAck, this, 
-                                                          std::placeholders::_1, std::placeholders::_2));
+            _currentParsedPacket =
+              new AsyncMqttClientInternals::ConnAckPacket(&_parsingInformation,
+                                                          std::bind(&AsyncMqttClient::_onConnAck, this,
+                                                                    std::placeholders::_1, std::placeholders::_2));
             _client.setRxTimeout(0);
             break;
 
           case AsyncMqttClientInternals::PacketType.PINGRESP:
             AMQTT_LOGINFO("_onData: rcv PINGRESP");
 
-            _currentParsedPacket = 
-              new AsyncMqttClientInternals::PingRespPacket(&_parsingInformation, 
+            _currentParsedPacket =
+              new AsyncMqttClientInternals::PingRespPacket(&_parsingInformation,
                                                            std::bind(&AsyncMqttClient::_onPingResp, this));
             break;
 
           case AsyncMqttClientInternals::PacketType.SUBACK:
             AMQTT_LOGINFO("_onData: rcv SUBACK");
 
-            _currentParsedPacket = 
-              new AsyncMqttClientInternals::SubAckPacket(&_parsingInformation, 
-                                                         std::bind(&AsyncMqttClient::_onSubAck, this, 
-                                                         std::placeholders::_1, std::placeholders::_2));
+            _currentParsedPacket =
+              new AsyncMqttClientInternals::SubAckPacket(&_parsingInformation,
+                                                         std::bind(&AsyncMqttClient::_onSubAck, this,
+                                                                   std::placeholders::_1, std::placeholders::_2));
             break;
 
           case AsyncMqttClientInternals::PacketType.UNSUBACK:
             AMQTT_LOGINFO("_onData: rcv UNSUBACK");
 
-            _currentParsedPacket = 
-              new AsyncMqttClientInternals::UnsubAckPacket(&_parsingInformation, 
-                                                           std::bind(&AsyncMqttClient::_onUnsubAck, this, 
-                                                           std::placeholders::_1));
+            _currentParsedPacket =
+              new AsyncMqttClientInternals::UnsubAckPacket(&_parsingInformation,
+                                                           std::bind(&AsyncMqttClient::_onUnsubAck, this,
+                                                                     std::placeholders::_1));
             break;
 
           case AsyncMqttClientInternals::PacketType.PUBLISH:
             AMQTT_LOGINFO("_onData: rcv PUBLISH");
 
-            _currentParsedPacket = 
-              new AsyncMqttClientInternals::PublishPacket(&_parsingInformation, 
-                                                          std::bind(&AsyncMqttClient::_onMessage, this, 
-                                                          std::placeholders::_1, std::placeholders::_2, std::placeholders::_3,
-                                                          std::placeholders::_4, std::placeholders::_5, std::placeholders::_6,
-                                                          std::placeholders::_7, std::placeholders::_8, std::placeholders::_9),
+            _currentParsedPacket =
+              new AsyncMqttClientInternals::PublishPacket(&_parsingInformation,
+                                                          std::bind(&AsyncMqttClient::_onMessage, this,
+                                                                    std::placeholders::_1, std::placeholders::_2, std::placeholders::_3,
+                                                                    std::placeholders::_4, std::placeholders::_5, std::placeholders::_6,
+                                                                    std::placeholders::_7, std::placeholders::_8, std::placeholders::_9),
                                                           std::bind(&AsyncMqttClient::_onPublish, this, std::placeholders::_1,
-                                                          std::placeholders::_2));
+                                                                    std::placeholders::_2));
             break;
 
           case AsyncMqttClientInternals::PacketType.PUBREL:
             AMQTT_LOGINFO("_onData: rcv PUBREL");
 
-            _currentParsedPacket = 
-              new AsyncMqttClientInternals::PubRelPacket(&_parsingInformation, 
+            _currentParsedPacket =
+              new AsyncMqttClientInternals::PubRelPacket(&_parsingInformation,
                                                          std::bind(&AsyncMqttClient::_onPubRel, this,
-                                                         std::placeholders::_1));
+                                                                   std::placeholders::_1));
             break;
 
           case AsyncMqttClientInternals::PacketType.PUBACK:
             AMQTT_LOGINFO("_onData: rcv PUBACK");
 
-            _currentParsedPacket = 
-              new AsyncMqttClientInternals::PubAckPacket(&_parsingInformation, 
+            _currentParsedPacket =
+              new AsyncMqttClientInternals::PubAckPacket(&_parsingInformation,
                                                          std::bind(&AsyncMqttClient::_onPubAck, this,
-                                                         std::placeholders::_1));
+                                                                   std::placeholders::_1));
             break;
 
           case AsyncMqttClientInternals::PacketType.PUBREC:
             AMQTT_LOGINFO("_onData: rcv PUBREC");
 
-            _currentParsedPacket = 
-              new AsyncMqttClientInternals::PubRecPacket(&_parsingInformation, 
-                                                         std::bind(&AsyncMqttClient::_onPubRec, this, 
-                                                         std::placeholders::_1));
+            _currentParsedPacket =
+              new AsyncMqttClientInternals::PubRecPacket(&_parsingInformation,
+                                                         std::bind(&AsyncMqttClient::_onPubRec, this,
+                                                                   std::placeholders::_1));
             break;
 
           case AsyncMqttClientInternals::PacketType.PUBCOMP:
             AMQTT_LOGINFO("_onData: rcv PUBCOMP");
 
-            _currentParsedPacket = 
-              new AsyncMqttClientInternals::PubCompPacket(&_parsingInformation, 
-                                                          std::bind(&AsyncMqttClient::_onPubComp, this, 
-                                                          std::placeholders::_1));
+            _currentParsedPacket =
+              new AsyncMqttClientInternals::PubCompPacket(&_parsingInformation,
+                                                          std::bind(&AsyncMqttClient::_onPubComp, this,
+                                                                    std::placeholders::_1));
             break;
 
           default:
@@ -600,7 +602,7 @@ void AsyncMqttClient::_onData(char* data, size_t len)
         }
 
         break;
-        
+
       case AsyncMqttClientInternals::BufferState::REMAINING_LENGTH:
         currentByte = data[currentBytePosition++];
         _remainingLengthBuffer[_remainingLengthBufferPosition++] = currentByte;
@@ -621,17 +623,17 @@ void AsyncMqttClient::_onData(char* data, size_t len)
             _onPingResp();
           }
         }
-        
+
         break;
-        
+
       case AsyncMqttClientInternals::BufferState::VARIABLE_HEADER:
         _currentParsedPacket->parseVariableHeader(data, len, &currentBytePosition);
         break;
-        
+
       case AsyncMqttClientInternals::BufferState::PAYLOAD:
         _currentParsedPacket->parsePayload(data, len, &currentBytePosition);
         break;
-        
+
       default:
         currentBytePosition = len;
         break;
@@ -659,7 +661,8 @@ void AsyncMqttClient::_onPoll()
     _sendPing();
     // send ping to verify if the server is still there (ensure this is not a half connection)
   }
-  else if (_state == CONNECTED && _lastPingRequestTime == 0 && (millis() - _lastServerActivity) >= (_keepAlive * 1000 * 0.7))
+  else if (_state == CONNECTED && _lastPingRequestTime == 0
+           && (millis() - _lastServerActivity) >= (_keepAlive * 1000 * 0.7))
   {
     _sendPing();
   }
@@ -758,10 +761,10 @@ void AsyncMqttClient::_handleQueue()
       // On SSL the TCP library returns the total amount of bytes, not just the unencrypted payload length.
       // So we calculate the amount to be written ourselves.
       size_t willSend = std::min(_head->size() - _sent, _client.space());
-      
+
       // flag is set by LWIP anyway, added for clarity
       size_t realSent = _client.add(reinterpret_cast<const char*>(_head->data(_sent)), willSend, ASYNC_WRITE_FLAG_COPY);
-      
+
       _sent += willSend;
       (void)realSent;
       _client.send();
@@ -870,6 +873,7 @@ void AsyncMqttClient::_clearQueue(bool keepSessionData)
         delete packet;
         packet = next;
       }
+
       /* Delete everything when not keeping session data
       */
     }
@@ -979,7 +983,8 @@ void AsyncMqttClient::_onUnsubAck(uint16_t packetId)
 
 /////////////////////////////////////////////////////////
 
-void AsyncMqttClient::_onMessage(char* topic, char* payload, uint8_t qos, bool dup, bool retain, size_t len, size_t index, size_t total, uint16_t packetId)
+void AsyncMqttClient::_onMessage(char* topic, char* payload, uint8_t qos, bool dup, bool retain, size_t len,
+                                 size_t index, size_t total, uint16_t packetId)
 {
   bool notifyPublish = true;
 
@@ -1100,7 +1105,8 @@ void AsyncMqttClient::_onPubAck(uint16_t packetId)
 
 /////////////////////////////////////////////////////////
 
-void AsyncMqttClient::_onPubRec(uint16_t packetId) {
+void AsyncMqttClient::_onPubRec(uint16_t packetId)
+{
 
   _freeCurrentParsedPacket();
 
@@ -1171,62 +1177,62 @@ void AsyncMqttClient::connect()
 
 #if (ASYNC_MQTT_USING_PORTENTA_H7)
 
-  #if (USE_ETHERNET_PORTENTA_H7)
-  
+#if (USE_ETHERNET_PORTENTA_H7)
+
   // 6 HEX bytes
   uint8_t macPortenta[6];
-  
-	Ethernet.MACAddress(macPortenta);
-	
-	snprintf(_generatedClientId, sizeof(_generatedClientId), "h7m7-%02X%02X%02X%02X%02X%02X", 
+
+  Ethernet.MACAddress(macPortenta);
+
+  snprintf(_generatedClientId, sizeof(_generatedClientId), "h7m7-%02X%02X%02X%02X%02X%02X",
            macPortenta[0], macPortenta[1], macPortenta[2], macPortenta[3], macPortenta[4], macPortenta[5]);
-  
+
   _clientId = _generatedClientId;
-  
-  #else
-   
+
+#else
+
   // For WiFi. TODO Get Portenta unique hardwareID to use for both Ethernet and WiFi
-  
+
   snprintf(_generatedClientId, sizeof(_generatedClientId), "h7m7-%06lx", micros());
 
   _clientId = _generatedClientId;
-  
-  #endif
-  
+
+#endif
+
 #elif ASYNC_MQTT_USING_STM32
 
-	uint8_t* macSTM32ptr;
-	
-	macSTM32ptr = Ethernet.MACAddress();
-	
-	snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%02X%02X%02X%02X%02X%02X", 
+  uint8_t* macSTM32ptr;
+
+  macSTM32ptr = Ethernet.MACAddress();
+
+  snprintf(_generatedClientId, sizeof(_generatedClientId), "stm32-%02X%02X%02X%02X%02X%02X",
            macSTM32ptr[0], macSTM32ptr[1], macSTM32ptr[2], macSTM32ptr[3], macSTM32ptr[4], macSTM32ptr[5]);
-  Serial.printf("Array MAC Address: %02X:%02X:%02X:%02X:%02X:%02X \n", 
+  Serial.printf("Array MAC Address: %02X:%02X:%02X:%02X:%02X:%02X \n",
                 macSTM32ptr[0], macSTM32ptr[1], macSTM32ptr[2], macSTM32ptr[3], macSTM32ptr[4], macSTM32ptr[5]);
-		
+
   _clientId = _generatedClientId;
-  
+
 #elif ASYNC_MQTT_USING_TEENSY41_QNETHERNET
   uint8_t macTeensy[6];
-  
-  getTeensyMac(macTeensy);   
-  snprintf(_generatedClientId, sizeof(_generatedClientId), "t41-%02X%02X%02X%02X%02X%02X", 
+
+  getTeensyMac(macTeensy);
+  snprintf(_generatedClientId, sizeof(_generatedClientId), "t41-%02X%02X%02X%02X%02X%02X",
            macTeensy[0], macTeensy[1], macTeensy[2], macTeensy[3], macTeensy[4], macTeensy[5]);
-  
+
   _clientId = _generatedClientId;
 
 #elif ASYNC_MQTT_USING_RP2040W
-  // For WiFi. Use macAddress for WiFi  
+  // For WiFi. Use macAddress for WiFi
   // 6 HEX bytes
   uint8_t macRP2040W[6];
-  
-	WiFi.macAddress(macRP2040W);
-	
-	snprintf(_generatedClientId, sizeof(_generatedClientId), "2040w-%02X%02X%02X%02X%02X%02X", 
+
+  WiFi.macAddress(macRP2040W);
+
+  snprintf(_generatedClientId, sizeof(_generatedClientId), "2040w-%02X%02X%02X%02X%02X%02X",
            macRP2040W[0], macRP2040W[1], macRP2040W[2], macRP2040W[3], macRP2040W[4], macRP2040W[5]);
-  
+
   _clientId = _generatedClientId;
-    
+
 #endif
 
   AMQTT_LOGINFO("CONNECTING");
@@ -1239,6 +1245,7 @@ void AsyncMqttClient::connect()
   _client.setRxTimeout(_keepAlive);
 
 #if ASYNC_TCP_SSL_ENABLED
+
   if (_useIp)
   {
     _client.connect(_ip, _port, _secure);
@@ -1247,7 +1254,9 @@ void AsyncMqttClient::connect()
   {
     _client.connect(_host, _port, _secure);
   }
+
 #else
+
   if (_useIp)
   {
     _client.connect(_ip, _port);
@@ -1256,6 +1265,7 @@ void AsyncMqttClient::connect()
   {
     _client.connect(_host, _port);
   }
+
 #endif
 }
 
@@ -1311,17 +1321,19 @@ uint16_t AsyncMqttClient::unsubscribe(const char* topic)
 
 /////////////////////////////////////////////////////////
 
-uint16_t AsyncMqttClient::publish(const char* topic, uint8_t qos, bool retain, const char* payload, size_t length, bool dup, uint16_t message_id)
+uint16_t AsyncMqttClient::publish(const char* topic, uint8_t qos, bool retain, const char* payload, size_t length,
+                                  bool dup, uint16_t message_id)
 {
   (void) dup;
   (void) message_id;
-  
+
   if (_state != CONNECTED || GET_FREE_MEMORY() < MQTT_MIN_FREE_MEMORY)
     return 0;
 
   AMQTT_LOGINFO("PUBLISH");
 
-  AsyncMqttClientInternals::OutPacket* msg = new AsyncMqttClientInternals::PublishOutPacket(topic, qos, retain, payload, length);
+  AsyncMqttClientInternals::OutPacket* msg = new AsyncMqttClientInternals::PublishOutPacket(topic, qos, retain, payload,
+                                                                                            length);
   _addBack(msg);
 
   return msg->packetId();
@@ -1354,14 +1366,14 @@ uint8_t* AsyncMqttClient::getTeensyMac(uint8_t* _macAddress)
   // 6 bytes
   uint32_t m1 = HW_OCOTP_MAC1;
   uint32_t m2 = HW_OCOTP_MAC0;
-  
+
   _macAddress[0] = m1 >> 8;
   _macAddress[1] = m1 >> 0;
   _macAddress[2] = m2 >> 24;
   _macAddress[3] = m2 >> 16;
   _macAddress[4] = m2 >> 8;
   _macAddress[5] = m2 >> 0;
-  
+
   return _macAddress;
 }
 #endif

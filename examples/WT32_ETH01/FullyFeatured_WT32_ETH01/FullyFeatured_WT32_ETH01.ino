@@ -43,17 +43,22 @@ void ETH_event(WiFiEvent_t event)
   switch (event)
   {
 #if USING_CORE_ESP32_CORE_V200_PLUS
+
     case ARDUINO_EVENT_ETH_START:
       Serial.println("ETH starting");
       break;
+
     case ARDUINO_EVENT_ETH_CONNECTED:
       Serial.println("ETH connected");
       break;
+
     case ARDUINO_EVENT_ETH_GOT_IP:
       Serial.println("ETH got IP");
-      Serial.print("IP address: "); Serial.println(ETH.localIP());
+      Serial.print("IP address: ");
+      Serial.println(ETH.localIP());
       connectToMqtt();
       break;
+
     case ARDUINO_EVENT_ETH_DISCONNECTED:
       Serial.println("ETH lost connection");
 
@@ -61,6 +66,7 @@ void ETH_event(WiFiEvent_t event)
       xTimerStop(mqttReconnectTimer, 0);
 
       break;
+
     case ARDUINO_EVENT_ETH_STOP:
       Serial.println("ETH stops");
 
@@ -69,15 +75,18 @@ void ETH_event(WiFiEvent_t event)
 
       break;
 #else
+
     case SYSTEM_EVENT_ETH_CONNECTED:
       erial.println(F("ETH Connected"));
       break;
 
     case SYSTEM_EVENT_ETH_GOT_IP:
       Serial.println("ETH connected");
-      Serial.println("IP address: "); Serial.println(ETH.localIP());
+      Serial.println("IP address: ");
+      Serial.println(ETH.localIP());
       connectToMqtt();
       break;
+
     case SYSTEM_EVENT_ETH_DISCONNECTED:
     case SYSTEM_EVENT_ETH_STOP:
       Serial.println("ETH lost connection");
@@ -87,6 +96,7 @@ void ETH_event(WiFiEvent_t event)
 
       break;
 #endif
+
     default:
       break;
   }
@@ -99,24 +109,31 @@ void printSeparationLine()
 
 void onMqttConnect(bool sessionPresent)
 {
-  Serial.print("Connected to MQTT broker: "); Serial.print(MQTT_HOST);
-  Serial.print(", port: "); Serial.println(MQTT_PORT);
-  Serial.print("PubTopic: "); Serial.println(PubTopic);
+  Serial.print("Connected to MQTT broker: ");
+  Serial.print(MQTT_HOST);
+  Serial.print(", port: ");
+  Serial.println(MQTT_PORT);
+  Serial.print("PubTopic: ");
+  Serial.println(PubTopic);
 
   printSeparationLine();
-  Serial.print("Session present: "); Serial.println(sessionPresent);
+  Serial.print("Session present: ");
+  Serial.println(sessionPresent);
 
   uint16_t packetIdSub = mqttClient.subscribe(PubTopic, 2);
-  Serial.print("Subscribing at QoS 2, packetId: "); Serial.println(packetIdSub);
+  Serial.print("Subscribing at QoS 2, packetId: ");
+  Serial.println(packetIdSub);
 
   mqttClient.publish(PubTopic, 0, true, "WT32_ETH01 Test");
   Serial.println("Publishing at QoS 0");
 
   uint16_t packetIdPub1 = mqttClient.publish(PubTopic, 1, true, "test 2");
-  Serial.print("Publishing at QoS 1, packetId: "); Serial.println(packetIdPub1);
+  Serial.print("Publishing at QoS 1, packetId: ");
+  Serial.println(packetIdPub1);
 
   uint16_t packetIdPub2 = mqttClient.publish(PubTopic, 2, true, "test 3");
-  Serial.print("Publishing at QoS 2, packetId: "); Serial.println(packetIdPub2);
+  Serial.print("Publishing at QoS 2, packetId: ");
+  Serial.println(packetIdPub2);
 
   printSeparationLine();
 }
@@ -136,14 +153,17 @@ void onMqttDisconnect(AsyncMqttClientDisconnectReason reason)
 void onMqttSubscribe(const uint16_t& packetId, const uint8_t& qos)
 {
   Serial.println("Subscribe acknowledged.");
-  Serial.print("  packetId: "); Serial.println(packetId);
-  Serial.print("  qos: ");      Serial.println(qos);
+  Serial.print("  packetId: ");
+  Serial.println(packetId);
+  Serial.print("  qos: ");
+  Serial.println(qos);
 }
 
 void onMqttUnsubscribe(const uint16_t& packetId)
 {
   Serial.println("Unsubscribe acknowledged.");
-  Serial.print("  packetId: "); Serial.println(packetId);
+  Serial.print("  packetId: ");
+  Serial.println(packetId);
 }
 
 void onMqttMessage(char* topic, char* payload, const AsyncMqttClientMessageProperties& properties,
@@ -152,32 +172,43 @@ void onMqttMessage(char* topic, char* payload, const AsyncMqttClientMessagePrope
   (void) payload;
 
   Serial.println("Publish received.");
-  Serial.print("  topic: ");  Serial.println(topic);
-  Serial.print("  qos: ");    Serial.println(properties.qos);
-  Serial.print("  dup: ");    Serial.println(properties.dup);
-  Serial.print("  retain: "); Serial.println(properties.retain);
-  Serial.print("  len: ");    Serial.println(len);
-  Serial.print("  index: ");  Serial.println(index);
-  Serial.print("  total: ");  Serial.println(total);
+  Serial.print("  topic: ");
+  Serial.println(topic);
+  Serial.print("  qos: ");
+  Serial.println(properties.qos);
+  Serial.print("  dup: ");
+  Serial.println(properties.dup);
+  Serial.print("  retain: ");
+  Serial.println(properties.retain);
+  Serial.print("  len: ");
+  Serial.println(len);
+  Serial.print("  index: ");
+  Serial.println(index);
+  Serial.print("  total: ");
+  Serial.println(total);
 }
 
 void onMqttPublish(const uint16_t& packetId)
 {
   Serial.println("Publish acknowledged.");
-  Serial.print("  packetId: "); Serial.println(packetId);
+  Serial.print("  packetId: ");
+  Serial.println(packetId);
 }
 
 void setup()
 {
   Serial.begin(115200);
+
   while (!Serial && millis() < 5000);
 
-  Serial.print("\nStarting FullyFeature_WT32_ETH01 on "); Serial.print(BOARD_NAME);
+  Serial.print("\nStarting FullyFeature_WT32_ETH01 on ");
+  Serial.print(BOARD_NAME);
   Serial.println(" with " + String(SHIELD_TYPE));
   Serial.println(WEBSERVER_WT32_ETH01_VERSION);
   Serial.println(ASYNC_MQTT_GENERIC_VERSION);
 
-  mqttReconnectTimer = xTimerCreate("mqttTimer", pdMS_TO_TICKS(2000), pdFALSE, (void*)0, reinterpret_cast<TimerCallbackFunction_t>(connectToMqtt));
+  mqttReconnectTimer = xTimerCreate("mqttTimer", pdMS_TO_TICKS(2000), pdFALSE, (void*)0,
+                                    reinterpret_cast<TimerCallbackFunction_t>(connectToMqtt));
 
   mqttClient.onConnect(onMqttConnect);
   mqttClient.onDisconnect(onMqttDisconnect);

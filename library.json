@@ -37,31 +37,31 @@
     {
       "owner": "khoih-prog",
       "name": "AsyncTCP_SSL",
-      "version": ">=1.3.0",
+      "version": ">=1.3.1",
       "platforms": "espressif32"
     },
     {
       "owner": "khoih-prog",
       "name": "Portenta_H7_AsyncTCP",
-      "version": ">=1.3.2",
+      "version": ">=1.4.0",
       "platforms": "ststm32"
     },
     {
       "owner": "khoih-prog",
       "name": "Teensy41_AsyncTCP",
-      "version": ">=1.0.0",
+      "version": ">=1.1.0",
       "platforms": ["teensy", "avr"]
     },
     {
       "owner": "khoih-prog",
       "name": "AsyncTCP_RP2040W",
-      "version": ">=1.0.0",
+      "version": ">=1.1.0",
       "platforms": ["raspberrypi"]
     },
     {
       "owner": "khoih-prog",
       "name": "ESPAsync_WiFiManager",
-      "version": ">=1.14.0",
+      "version": ">=1.15.1",
       "platforms": ["espressif32", "espressif8266"]
     },
     {

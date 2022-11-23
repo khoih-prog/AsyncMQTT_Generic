@@ -1,11 +1,11 @@
 /****************************************************************************************************************************
   defines.h
   AsyncMqttClient_Generic is a library for ESP32, ESP8266, Protenta_H7, STM32F7, etc. with current AsyncTCP support
-  
+
   Based on and modified from :
-  
+
   1) async-mqtt-client (https://github.com/marvinroger/async-mqtt-client)
-  
+
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  ***************************************************************************************************************************************/
 
@@ -15,7 +15,7 @@
 #if !( defined(STM32F0) || defined(STM32F1) || defined(STM32F2) || defined(STM32F3)  ||defined(STM32F4) || defined(STM32F7) || \
        defined(STM32L0) || defined(STM32L1) || defined(STM32L4) || defined(STM32H7)  ||defined(STM32G0) || defined(STM32G4) || \
        defined(STM32WB) || defined(STM32MP1) )
-  #error This code is designed to run on STM32F/L/H/G/WB/MP1 platform! Please check your Tools->Board setting.
+#error This code is designed to run on STM32F/L/H/G/WB/MP1 platform! Please check your Tools->Board setting.
 #endif
 
 #define _ASYNC_MQTT_LOGLEVEL_               1
