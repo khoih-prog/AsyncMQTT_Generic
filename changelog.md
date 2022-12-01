@@ -17,6 +17,7 @@
 ## Table of Contents
 
 * [Changelog](#changelog)
+	* [Releases v1.8.0](#releases-v180)
 	* [Releases v1.7.0](#releases-v170)
 	* [Releases v1.6.1](#releases-v161)
 	* [Releases v1.6.0](#releases-v160)
@@ -33,6 +34,12 @@
 ---
 
 ## Changelog
+
+### Releases v1.8.0
+
+1. Add support to ESP32 boards using `LwIP W5500 Ethernet`
+2. Add support to ESP32 boards using `LwIP ENC28J60 Ethernet`
+3. Use `allman astyle` and add `utils`. Restyle the library
 
 ### Releases v1.7.0
 

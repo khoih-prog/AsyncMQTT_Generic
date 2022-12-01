@@ -45,6 +45,8 @@
   * [3. HOWTO use Serial Port for Debugging](#3-howto-use-serial-port-for-debugging)
 * [HOWTO use ESP8266 with W5x00 or ENC28J60 Ethernet](#HOWTO-use-ESP8266-with-W5x00-or-ENC28J60-Ethernet)
   * [1. ESP8266 Wiring](#1-ESP8266-wiring)
+* [HOWTO use ESP32 with LwIP W5500 or ENC28J60 Ethernet](#HOWTO-use-ESP32-with-LwIP-W5500-or-ENC28J60-Ethernet)
+	* [1. ESP32 Wiring](#1-ESP32-wiring)
 * [Examples](#examples)
   * [1. For ESP32](#1-for-ESP32)
     * [1. FullyFeatured_ESP32](examples/ESP32/FullyFeatured_ESP32)
@@ -58,15 +60,21 @@
   * [4. For STM32 using LAN8742A](#4-For-STM32-using-LAN8742A)
     * [1. FullyFeatured_STM32](examples/STM32/FullyFeatured_STM32) **New**
   * [5. For STM32 using LAN8720](#5-For-STM32-using-LAN8720)
-    * [1. FullyFeatured_STM32_LAN8720](examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720) **New**
+    * [1. FullyFeatured_STM32_LAN8720](examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720)
   * [6. For Portenta_H7 using Murata WiFi](#6-For-Portenta_H7-using-Murata-WiFi)
-    * [1. FullyFeatured_PortentaH7_WiFi](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi) **New** 
+    * [1. FullyFeatured_PortentaH7_WiFi](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi)
   * [7. For Portenta_H7 using built-in Ethernet](#7-For-Portenta_H7-using-built-in-Ethernet)
-    * [1. FullyFeatured_PortentaH7_Ethernet](examples/PortentaH7_Ethernet/FullyFeatured_PortentaH7_Ethernet) **New**
+    * [1. FullyFeatured_PortentaH7_Ethernet](examples/PortentaH7_Ethernet/FullyFeatured_PortentaH7_Ethernet)
   * [8. For Teensy 4.1 using QNEthernet Library](#8-For-Teensy-41-using-QNEthernet-Library)
-    * [1. FullyFeatured_QNEthernet](examples/QNEthernet/FullyFeatured_QNEthernet) **New**
+    * [1. FullyFeatured_QNEthernet](examples/QNEthernet/FullyFeatured_QNEthernet)
   * [9. For RASPBERRY_PI_PICO_W with CYW43439 WiFi](#9-For-RASPBERRY_PI_PICO_W-with-CYW43439-WiFi)
     * [1. FullyFeatured_RP2040W](examples/RP2040W/FullyFeatured_RP2040W) **New**
+  * [10. For ESP32_ENC](#10-for-ESP32_ENC)
+    * [1. FullyFeatured_ESP32_ENC](examples/ESP32_ENC/FullyFeatured_ESP32_ENC) **New**
+    * [2. FullyFeaturedSSL_ESP32_ENC](examples/ESP32_ENC/FullyFeaturedSSL_ESP32_ENC) **New**
+  * [11. For ESP32_W5500](#11-for-ESP32_W5500)
+    * [1. FullyFeatured_ESP32_W5500](examples/ESP32_W5500/FullyFeatured_ESP32_W5500) **New**
+    * [2. FullyFeaturedSSL_ESP32_W5500](examples/ESP32_W5500/FullyFeaturedSSL_ESP32_W5500) **New**
 * [Example FullyFeaturedSSL_ESP32](#example-FullyFeaturedSSL_ESP32)
   * [1. File FullyFeaturedSSL_ESP32.ino](#1-file-FullyFeaturedSSL_ESP32ino)
   * [2. File defines.h](#2-file-definesh)
@@ -85,6 +93,8 @@
   * [12. FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_ENC28J60 Ethernet](#12-FullyFeatured_ESP8266_Ethernet-on-ESP8266_NODEMCU_ESP12E-using-ESP8266_ENC28J60-Ethernet)
   * [13. FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_W5500 Ethernet](#13-FullyFeatured_ESP8266_Ethernet-on-ESP8266_NODEMCU_ESP12E-using-ESP8266_W5500-Ethernet)
   * [14. FullyFeature_RP2040W on RASPBERRY_PI_PICO_W](#14-FullyFeature_RP2040W-on-RASPBERRY_PI_PICO_W)
+  * [15. FullyFeatureSSL_ESP32_ENC on ESP32_DEV with ESP32_ENC28J60](#15-FullyFeatureSSL_ESP32_ENC-on-ESP32_DEV-with-ESP32_ENC28J60)
+  * [16. FullyFeatureSSL_ESP32_W5500 on ESP32_DEV with ESP32_W5500](#16-FullyFeatureSSL_ESP32_W5500-on-ESP32_DEV-with-ESP32_W5500)
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Issues](#issues)
@@ -113,7 +123,7 @@ Hopefully the `bearssl` feature of the new ESP8266 cores will be added to the [f
 
 #### Features
 
-This [**AsyncMQTT_Generic library**](https://github.com/khoih-prog/AsyncMQTT_Generic) is based on and modified from [**Marvin Roger's async-mqtt-client Library**](https://github.com/marvinroger/async-mqtt-client), to provide support to many more boards besides ESP32/ESP8266, such as **STM32F, Portenta_H7, Teensy 4.1, etc. boards**. Those supported boards can be used with **ESP8266/ESP32’s WiFi, LAN8742A Ethernet, Portenta_H7 WiFi/Ethernet, Teensy 4.1 QNEthernet, RASPBERRY_PI_PICO_W with CYW43439 WiFi.**
+This [**AsyncMQTT_Generic library**](https://github.com/khoih-prog/AsyncMQTT_Generic) is based on and modified from [**Marvin Roger's async-mqtt-client Library**](https://github.com/marvinroger/async-mqtt-client), to provide support to many more boards besides ESP32/ESP8266, such as **STM32F, Portenta_H7, Teensy 4.1, etc. boards**. Those supported boards can be used with **ESP8266/ESP32’s WiFi, LAN8742A Ethernet, Portenta_H7 WiFi/Ethernet, Teensy 4.1 QNEthernet, RASPBERRY_PI_PICO_W with CYW43439 WiFi, ESP32 with LwIP W5500 or ENC28J60.**
 
 #### Why Async is better
 
@@ -162,6 +172,10 @@ This [**AsyncMQTT_Generic** library](https://github.com/khoih-prog/AsyncMQTT_Gen
  7. **Teensy 4.1 using QNEthernet Library**
  
  8. **RASPBERRY_PI_PICO_W with CYW43439 WiFi** using [**arduino-pico core v2.4.0+**](https://github.com/earlephilhower/arduino-pico)
+ 
+ 9. **ESP32 boards using LwIP ENC28J60 Ethernet**
+
+10. **ESP32 boards using LwIP W5500 Ethernet**
   
 --- 
  
@@ -179,19 +193,21 @@ This [**AsyncMQTT_Generic** library](https://github.com/khoih-prog/AsyncMQTT_Gen
  3. [`ESP8266 Core 3.0.2+`](https://github.com/esp8266/Arduino) for ESP8266-based boards. [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/esp8266/Arduino/releases/latest/).
  4. [`Arduino Core for STM32 v2.3.0+`](https://github.com/stm32duino/Arduino_Core_STM32) for STM32F/L/H/G/WB/MP1 boards using built-in LAN8742A. [![GitHub release](https://img.shields.io/github/release/stm32duino/Arduino_Core_STM32.svg)](https://github.com/stm32duino/Arduino_Core_STM32/releases/latest). Use core v2.2.0- for LAN8720.
  5. [`Arduino mbed_portenta core 3.4.1+`](https://github.com/arduino/ArduinoCore-mbed) for Arduino (Use Arduino Board Manager) Portenta_H7-based boards. [![GitHub release](https://img.shields.io/github/release/arduino/ArduinoCore-mbed.svg)](https://github.com/arduino/ArduinoCore-mbed/releases/latest)
- 6. [`Earle Philhower's arduino-pico core v2.6.3+`](https://github.com/earlephilhower/arduino-pico) for **RASPBERRY_PI_PICO_W with CYW43439 WiFi**, etc. [![GitHub release](https://img.shields.io/github/release/earlephilhower/arduino-pico.svg)](https://github.com/earlephilhower/arduino-pico/releases/latest)
+ 6. [`Earle Philhower's arduino-pico core v2.6.4+`](https://github.com/earlephilhower/arduino-pico) for **RASPBERRY_PI_PICO_W with CYW43439 WiFi**, etc. [![GitHub release](https://img.shields.io/github/release/earlephilhower/arduino-pico.svg)](https://github.com/earlephilhower/arduino-pico/releases/latest)
  7. [`Teensy core v1.57+`](https://www.pjrc.com/teensy/td_download.html) for Teensy 4.1
  8. [`KH_Forked ESPAsyncTCP v1.3.0+`](https://github.com/khoih-prog/ESPAsyncTCP) for ESP8266. **To install manually for Arduino IDE**
  9. [`AsyncTCP v1.1.1+`](https://github.com/me-no-dev/AsyncTCP) for ESP32.
 10. [`STM32Ethernet library v1.3.0+`](https://github.com/stm32duino/STM32Ethernet) for STM32 using built-in Ethernet LAN8742A on (Nucleo-144, Discovery). [![GitHub release](https://img.shields.io/github/release/stm32duino/STM32Ethernet.svg)](https://github.com/stm32duino/STM32Ethernet/releases/latest)
 11. [`LwIP library v2.1.2+`](https://github.com/stm32duino/LwIP) for STM32 using built-in Ethernet LAN8742A on (Nucleo-144, Discovery). [![GitHub release](https://img.shields.io/github/release/stm32duino/LwIP.svg)](https://github.com/stm32duino/LwIP/releases/latest)
 12. [`KH_Forked STM32AsyncTCP library v1.0.1+`](https://github.com/khoih-prog/STM32AsyncTCP) for built-in Ethernet on (Nucleo-144, Discovery). **To install manually for Arduino IDE**
-13. [`WebServer_WT32_ETH01 library v1.5.1+`](https://github.com/khoih-prog/WebServer_WT32_ETH01) to use WT32_ETH01 (ESP32 + LAN8720). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_WT32_ETH01.svg?)](https://www.ardu-badge.com/WebServer_WT32_ETH01).
-14. [`Portenta_H7_AsyncTCP library v1.4.0+`](https://github.com/khoih-prog/Portenta_H7_AsyncTCP) to use **Portenta_H7 using either Murata WiFi or Vision-shield Ethernet**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/Portenta_H7_AsyncTCP.svg?)](https://www.ardu-badge.com/Portenta_H7_AsyncTCP).
-15. [`Teensy41_AsyncTCP library v1.1.0+`](https://github.com/khoih-prog/Teensy41_AsyncTCP) to use **Teensy 4.1 using QNEthernet Library**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/Teensy41_AsyncTCP.svg?)](https://www.ardu-badge.com/Teensy41_AsyncTCP).
-16. [`AsyncTCP_RP2040W library v1.1.0+`](https://github.com/khoih-prog/AsyncTCP_RP2040W) to use **RASPBERRY_PI_PICO_W with CYW43439 WiFi**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncTCP_RP2040W.svg?)](https://www.ardu-badge.com/AsyncTCP_RP2040W).
-17. [`AsyncTCP_SSL library v1.3.1+`](https://github.com/khoih-prog/AsyncTCP_SSL) to use **TLS/SSL for ESP32**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncTCP_SSL.svg?)](https://www.ardu-badge.com/AsyncTCP_SSL).
-18. [`ESPAsync_WiFiManager library v1.15.1+`](https://github.com/khoih-prog/ESPAsync_WiFiManager) for ESP32/ESP8266 using some examples. [![GitHub release](https://img.shields.io/github/release/khoih-prog/ESPAsync_WiFiManager.svg)](https://github.com/khoih-prog/ESPAsync_WiFiManager/releases)
+13. [`WebServer_WT32_ETH01 library v1.5.1+`](https://github.com/khoih-prog/WebServer_WT32_ETH01) to use WT32_ETH01 (ESP32 + LAN8720). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_WT32_ETH01.svg?)](https://www.ardu-badge.com/WebServer_WT32_ETH01)
+14. [`WebServer_ESP32_W5500 library v1.5.1+`](https://github.com/khoih-prog/WebServer_ESP32_W5500) to use (ESP32 + LwIP W5500). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_ESP32_W5500.svg?)](https://www.ardu-badge.com/WebServer_ESP32_W5500)
+15. [`WebServer_ESP32_ENC library v1.5.1+`](https://github.com/khoih-prog/WebServer_ESP32_ENC) to use (ESP32 + LwIP ENC28J60). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_ESP32_ENC.svg?)](https://www.ardu-badge.com/WebServer_ESP32_ENC)
+16. [`Portenta_H7_AsyncTCP library v1.4.0+`](https://github.com/khoih-prog/Portenta_H7_AsyncTCP) to use **Portenta_H7 using either Murata WiFi or Vision-shield Ethernet**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/Portenta_H7_AsyncTCP.svg?)](https://www.ardu-badge.com/Portenta_H7_AsyncTCP).
+17. [`Teensy41_AsyncTCP library v1.1.0+`](https://github.com/khoih-prog/Teensy41_AsyncTCP) to use **Teensy 4.1 using QNEthernet Library**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/Teensy41_AsyncTCP.svg?)](https://www.ardu-badge.com/Teensy41_AsyncTCP).
+18. [`AsyncTCP_RP2040W library v1.1.0+`](https://github.com/khoih-prog/AsyncTCP_RP2040W) to use **RASPBERRY_PI_PICO_W with CYW43439 WiFi**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncTCP_RP2040W.svg?)](https://www.ardu-badge.com/AsyncTCP_RP2040W).
+19. [`AsyncTCP_SSL library v1.3.1+`](https://github.com/khoih-prog/AsyncTCP_SSL) to use **TLS/SSL for ESP32**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncTCP_SSL.svg?)](https://www.ardu-badge.com/AsyncTCP_SSL).
+20. [`ESPAsync_WiFiManager library v1.15.1+`](https://github.com/khoih-prog/ESPAsync_WiFiManager) for ESP32/ESP8266 using some examples. [![GitHub release](https://img.shields.io/github/release/khoih-prog/ESPAsync_WiFiManager.svg)](https://github.com/khoih-prog/ESPAsync_WiFiManager/releases)
 
 ---
 ---
@@ -331,8 +347,8 @@ Please have a look at [**ESP_WiFiManager Issue 39: Not able to read analog port 
 
 #### 2. ESP32 ADCs functions
 
-- ADC1 controls ADC function for pins **GPIO32-GPIO39**
-- ADC2 controls ADC function for pins **GPIO0, 2, 4, 12-15, 25-27**
+- `ADC1` controls `ADC` function for pins **GPIO32-GPIO39**
+- `ADC2` controls `ADC` function for pins **GPIO0, 2, 4, 12-15, 25-27**
 
 #### 3.. ESP32 WiFi uses ADC2 for WiFi functions
 
@@ -354,10 +370,10 @@ Look in file [**adc_common.c**](https://github.com/espressif/esp-idf/blob/master
 > adc2_spinlock should be acquired first, then adc2_wifi_lock or rtc_spinlock.
 
 
-- In order to use ADC2 for other functions, we have to **acquire complicated firmware locks and very difficult to do**
-- So, it's not advisable to use ADC2 with WiFi/BlueTooth (BT/BLE).
-- Use ADC1, and pins GPIO32-GPIO39
-- If somehow it's a must to use those pins serviced by ADC2 (**GPIO0, 2, 4, 12, 13, 14, 15, 25, 26 and 27**), use the **fix mentioned at the end** of [**ESP_WiFiManager Issue 39: Not able to read analog port when using the autoconnect example**](https://github.com/khoih-prog/ESP_WiFiManager/issues/39) to work with ESP32 WiFi/BlueTooth (BT/BLE).
+- In order to use `ADC2` for other functions, we have to **acquire complicated firmware locks and very difficult to do**
+- So, it's not advisable to use `ADC2` with WiFi/BlueTooth (BT/BLE).
+- Use `ADC1`, and pins **GPIO32-GPIO39**
+- If somehow it's a must to use those pins serviced by `ADC2` (**GPIO0, 2, 4, 12, 13, 14, 15, 25, 26 and 27**), use the **fix mentioned at the end** of [**ESP_WiFiManager Issue 39: Not able to read analog port when using the autoconnect example**](https://github.com/khoih-prog/ESP_WiFiManager/issues/39) to work with ESP32 WiFi/BlueTooth (BT/BLE).
 
     
 ---
@@ -461,6 +477,28 @@ https://github.com/khoih-prog/AsyncMQTT_Generic/blob/6a9d4e6e3701f35e3c7a4619599
 |GND|<--->|GND|
 |VCC|<--->|+3.3V|
 
+---
+---
+
+### HOWTO use ESP32 with LwIP W5500 or ENC28J60 Ethernet
+
+#### 1. ESP32 Wiring
+
+This is the wiring for ESP8266 `W5500` or `ENC28J60` Ethernet when using `SS = GPIO5`
+
+https://github.com/khoih-prog/AsyncHTTPRequest_Generic/blob/ce452fb60f63c14b1deb12ca63524f3a74976194/examples/ESP32_ENC/AsyncHTTPRequest_ESP32_ENC/AsyncHTTPRequest_ESP32_ENC.ino#L60-L70
+
+
+|W5x00/ENC28J60 Ethernet|<--->|ESP32|
+|:-:|:-:|:-:|
+|MOSI|<--->|MOSI = GPIO23|
+|MISO|<--->|MISO = GPIO19|
+|SCK|<--->|SCK = GPIO18|
+|SS|<--->|GPIO5|
+|INT|<--->|GPIO4|
+|GND|<--->|GND|
+|VCC|<--->|+3.3V|
+
 
 ---
 ---
@@ -492,21 +530,31 @@ https://github.com/khoih-prog/AsyncMQTT_Generic/blob/6a9d4e6e3701f35e3c7a4619599
 
 #### 6. For Portenta_H7 using Murata WiFi
 
- 1. [FullyFeatured_PortentaH7_WiFi](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi) **New** 
+ 1. [FullyFeatured_PortentaH7_WiFi](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi)
  
 #### 7. For Portenta_H7 using built-in Ethernet
 
- 1. [FullyFeatured_PortentaH7_Ethernet](examples/PortentaH7_Ethernet/FullyFeatured_PortentaH7_Ethernet) **New** 
+ 1. [FullyFeatured_PortentaH7_Ethernet](examples/PortentaH7_Ethernet/FullyFeatured_PortentaH7_Ethernet)
  
 #### 8. For Teensy 4.1 using QNEthernet Library
 
- 1. [FullyFeatured_QNEthernet](examples/QNEthernet/FullyFeatured_QNEthernet) **New** 
+ 1. [FullyFeatured_QNEthernet](examples/QNEthernet/FullyFeatured_QNEthernet)
  
 #### 9. or RASPBERRY_PI_PICO_W with CYW43439 WiFi
 
  1. [FullyFeatured_RP2040W](examples/RP2040W/FullyFeatured_RP2040W) **New**
 
-    
+#### 10. For ESP32_ENC
+
+ 1. [FullyFeatured_ESP32_ENC](examples/ESP32_ENC/FullyFeatured_ESP32_ENC) **New**
+ 2. [FullyFeaturedSSL_ESP32_ENC](examples/ESP32_ENC/FullyFeaturedSSL_ESP32_ENC) **New**
+ 
+#### 11. For ESP32_W5500
+
+ 1. [FullyFeatured_ESP32_W5500](examples/ESP32_W5500/FullyFeatured_ESP32_W5500) **New**
+ 2. [FullyFeaturedSSL_ESP32_W5500](examples/ESP32_W5500/FullyFeaturedSSL_ESP32_W5500) **New**
+ 
+     
 ---
 ---
 
@@ -534,7 +582,7 @@ This is terminal debug output when running [FullyFeatured_ESP8266](examples/ESP8
 
 ```cpp
 Starting FullyFeature_ESP8266 on ESP8266_NODEMCU_ESP12E
-AsyncMQTT_Generic v1.7.0 for ESP8266
+AsyncMQTT_Generic v1.8.0 for ESP8266
 Connecting to Wi-Fi...
 Connected to Wi-Fi. IP address: 192.168.2.82
 Connecting to MQTT...
@@ -596,7 +644,7 @@ This is terminal debug output when running [FullyFeatured_ESP32](examples/ESP32/
 
 ```cpp
 Starting FullyFeature_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.7.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.8.0 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -662,7 +710,7 @@ This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP
 
 ```cpp
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.7.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.8.0 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -729,7 +777,7 @@ This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP
 
 ```cpp
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.7.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.8.0 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -899,8 +947,8 @@ This is terminal debug output when running [FullyFeaturedSSL_WT32_ETH01](example
 
 ```cpp
 Starting FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
-AsyncMQTT_Generic v1.7.0 for ESP32 core v2.0.0+
+WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
+AsyncMQTT_Generic v1.8.0 for ESP32 core v2.0.0+
 ETH starting
 ETH connected
 ETH got IP
@@ -957,7 +1005,7 @@ This is terminal debug output when running [FullyFeature_STM32](examples/STM32/F
 
 ```cpp
 Starting FullyFeature_STM32 on NUCLEO_F767ZI
-AsyncMQTT_Generic v1.7.0 for STM32
+AsyncMQTT_Generic v1.8.0 for STM32
 Connected to network. IP = 192.168.2.118
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1078,7 +1126,7 @@ Publish acknowledged.
 
 ```cpp
 Starting FullyFeature_STM32 on NUCLEO_F767ZI
-AsyncMQTT_Generic v1.7.0 for STM32
+AsyncMQTT_Generic v1.8.0 for STM32
 Connected to network. IP = 192.168.2.126
 Connecting to MQTT...
 [AMQTT] CONNECTING
@@ -1253,7 +1301,7 @@ This is terminal debug output when running [FullyFeatured_STM32_LAN8720](example
 
 ```cpp
 Starting FullyFeatured_STM32_LAN8720 on BLACK_F407VE
-AsyncMQTT_Generic v1.7.0 for STM32
+AsyncMQTT_Generic v1.8.0 for STM32
 Connected to network. IP = 192.168.2.132
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1320,7 +1368,7 @@ This is terminal debug output when running [FullyFeatured_PortentaH7_WiFi](examp
 
 ```cpp
 Starting FullyFeatured_PortentaH7_WiFi on PORTENTA_H7_M7
-AsyncMQTT_Generic v1.7.0 for Portenta_H7_M7
+AsyncMQTT_Generic v1.8.0 for Portenta_H7_M7
 Connecting to SSID: HueNet1
 Connected to SSID: HueNet1
 Local IP Address: 192.168.2.134
@@ -1389,7 +1437,7 @@ This is terminal debug output when running [FullyFeatured_PortentaH7_Ethernet](e
 
 ```cpp
 Starting FullyFeatured_PortentaH7_Ethernet on PORTENTA_H7_M7
-AsyncMQTT_Generic v1.7.0 for Portenta_H7_M7
+AsyncMQTT_Generic v1.8.0 for Portenta_H7_M7
 Connected to network. IP = 192.168.2.133
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1515,7 +1563,7 @@ This is terminal debug output when running [FullyFeatured_QNEthernet](examples/Q
 
 ```cpp
 Starting FullyFeatured_QNEthernet on TEENSY 4.1
-AsyncMQTT_Generic v1.7.0 for Teensy 4.1 QNEthernet
+AsyncMQTT_Generic v1.8.0 for Teensy 4.1 QNEthernet
 Initialize Ethernet using static IP => Connected! IP address:192.168.2.222
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1582,7 +1630,7 @@ This is terminal debug output when running [FullyFeatured_ESP8266_Ethernet](exam
 
 ```cpp
 Starting FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_ENC28J60 Ethernet
-AsyncMQTT_Generic v1.7.0 for ESP8266
+AsyncMQTT_Generic v1.8.0 for ESP8266
 Connecting to network : .....................................
 Ethernet DHCP IP address: 192.168.2.187
 Connecting to MQTT...
@@ -1651,7 +1699,7 @@ This is terminal debug output when running [FullyFeatured_ESP8266_Ethernet](exam
 
 ```cpp
 Starting FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_W5500 Ethernet
-AsyncMQTT_Generic v1.7.0 for ESP8266
+AsyncMQTT_Generic v1.8.0 for ESP8266
 Connecting to network : .
 Ethernet DHCP IP address: 192.168.2.188
 Connecting to MQTT...
@@ -1719,7 +1767,7 @@ This is terminal debug output when running [FullyFeature_RP2040W](examples/RP204
 
 ```cpp
 Starting FullyFeature_RP2040W on RASPBERRY_PI_PICO_W
-AsyncMQTT_Generic v1.7.0 for RP2040W CYW43439 WiFi
+AsyncMQTT_Generic v1.8.0 for RP2040W CYW43439 WiFi
 Connecting to SSID: HueNet2
 Connected to SSID: HueNet2
 Local IP Address: 192.168.2.180
@@ -1777,8 +1825,133 @@ Publish received.
   total: 13
 Publish acknowledged.
   packetId: 3
-
 ```
+
+---
+
+
+#### 15. FullyFeatureSSL_ESP32_ENC on ESP32_DEV with ESP32_ENC28J60
+
+This is terminal debug output when running [FullyFeatureSSL_ESP32_ENC](examples/ESP32_ENC/FullyFeatureSSL_ESP32_ENC) on `ESP32_DEV with ESP32_ENC28J60`, connecting to `broker.emqx.io` MQTTS server
+
+
+```cpp
+Starting FullyFeatureSSL_ESP32_ENC on ESP32_DEV with ESP32_ENC28J60
+WebServer_ESP32_ENC v1.5.1 for core v2.0.0+
+AsyncMQTT_Generic v1.8.0 for ESP32 core v2.0.0+
+ETH starting
+ETH connected
+ETH got IP
+IP address: 192.168.2.96
+Connecting to MQTT...
+Connected to MQTT broker: broker.emqx.io, port: 8883
+PubTopic: async-mqtt/ESP32_ENC_SSL_Pub
+************************************************
+Session present: 0
+Subscribing at QoS 2, packetId: 1
+Publishing at QoS 0
+Publishing at QoS 1, packetId: 2
+Publishing at QoS 2, packetId: 3
+************************************************
+Subscribe acknowledged.
+  packetId: 1
+  qos: 2
+Publish received.
+  topic: async-mqtt/ESP32_ENC_SSL_Pub
+  qos: 0
+  dup: 0
+  retain: 0
+  len: 14
+  index: 0
+  total: 14
+Publish acknowledged
+  packetId: 2
+Publish received.
+  topic: async-mqtt/ESP32_ENC_SSL_Pub
+  qos: 1
+  dup: 0
+  retain: 0
+  len: 6
+  index: 0
+  total: 6
+Publish received.
+  topic: async-mqtt/ESP32_ENC_SSL_Pub
+  qos: 2
+  dup: 0
+  retain: 0
+  len: 6
+  index: 0
+  total: 6
+Publish acknowledged
+  packetId: 3
+```
+
+---
+
+#### 16. FullyFeatureSSL_ESP32_W5500 on ESP32_DEV with ESP32_W5500
+
+This is terminal debug output when running [FullyFeatureSSL_ESP32_W5500](examples/ESP32_W5500/FullyFeatureSSL_ESP32_W5500) on `ESP32_DEV with W5500`, connecting to `broker.emqx.io` MQTTS server
+
+
+```cpp
+Starting FullyFeatureSSL_ESP32_W5500 on ESP32_DEV with ESP32_W5500
+WebServer_ESP32_W5500 v1.5.1 for core v2.0.0+
+AsyncMQTT_Generic v1.7.0 for ESP32 core v2.0.0+
+ETH starting
+ETH connected
+ETH got IP
+IP address: 192.168.2.103
+Connecting to MQTT...
+Connected to MQTT broker: broker.emqx.io, port: 8883
+PubTopic: async-mqtt/ESP32_W5500_SSL_Pub
+************************************************
+Session present: 0
+Subscribing at QoS 2, packetId: 1
+Publishing at QoS 0
+Publishing at QoS 1, packetId: 2
+Publishing at QoS 2, packetId: 3
+************************************************
+Subscribe acknowledged.
+  packetId: 1
+  qos: 2
+Publish received.
+  topic: async-mqtt/ESP32_W5500_SSL_Pub
+  qos: 2
+  dup: 0
+  retain: 1
+  len: 6
+  index: 0
+  total: 6
+Publish received.
+  topic: async-mqtt/ESP32_W5500_SSL_Pub
+  qos: 0
+  dup: 0
+  retain: 0
+  len: 16
+  index: 0
+  total: 16
+Publish acknowledged
+  packetId: 2
+Publish received.
+  topic: async-mqtt/ESP32_W5500_SSL_Pub
+  qos: 1
+  dup: 0
+  retain: 0
+  len: 6
+  index: 0
+  total: 6
+Publish received.
+  topic: async-mqtt/ESP32_W5500_SSL_Pub
+  qos: 2
+  dup: 0
+  retain: 0
+  len: 6
+  index: 0
+  total: 6
+Publish acknowledged
+  packetId: 3
+```
+
 
 ---
 ---
@@ -1835,7 +2008,8 @@ Submit issues to: [AsyncMQTT_Generic issues](https://github.com/khoih-prog/Async
 10. Add support **RASPBERRY_PI_PICO_W with CYW43439 WiFi**, using [**arduino-pico core v2.4.0+**](https://github.com/earlephilhower/arduino-pico)
 11. Change to new [Forked ESPAsyncTCP library](https://github.com/khoih-prog/ESPAsyncTCP) for ESP8266 boards, using WiFi or LwIP Ethernet, with [ESP8266 core v3.0.2+](https://github.com/esp8266/Arduino/releases/tag/3.0.2) or WiFi with [ESP8266 core v2.7.4](https://github.com/esp8266/Arduino/releases/tag/2.7.4) to avoid compile errors
 11. Add astyle using `allman` style. Restyle the library
-
+12. Add support to ESP32 boards using `LwIP W5500 Ethernet`, **(SSL and non-SSL)**
+13. Add support to ESP32 boards using `LwIP ENC28J60 Ethernet`, **(SSL and non-SSL)**
 
 ---
 ---
