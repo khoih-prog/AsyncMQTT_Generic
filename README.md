@@ -486,7 +486,7 @@ https://github.com/khoih-prog/AsyncMQTT_Generic/blob/6a9d4e6e3701f35e3c7a4619599
 
 This is the wiring for ESP8266 `W5500` or `ENC28J60` Ethernet when using `SS = GPIO5`
 
-https://github.com/khoih-prog/AsyncMQTT_Generic/blob/f848a405a49ac1a893a96f0332c2c6d7f4b0e65f/examples/ESP32_W5500/FullyFeaturedSSL_ESP32_W5500/defines.h#L21-L32
+https://github.com/khoih-prog/AsyncMQTT_Generic/blob/f848a405a49ac1a893a96f0332c2c6d7f4b0e65f/examples/ESP32_W5500/FullyFeaturedSSL_ESP32_W5500/defines.h#L26-L32
 
 
 |W5x00/ENC28J60 Ethernet|<--->|ESP32|
