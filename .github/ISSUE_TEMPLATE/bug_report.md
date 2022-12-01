@@ -36,7 +36,7 @@ If applicable, add screenshots to help explain your problem.
 Please ensure to specify the following:
 
 * Arduino IDE version (e.g. 1.8.19) or Platform.io version
-* `ESP8266`,`ESP32`, `STM32`, `arduino-pico` or `Teensyduino` Core Version (e.g. ESP8266 core v3.0.2, ESP32 v2.0.5, STM32 v2.3.0, arduino-pico v2.6.3 or Teensyduino v1.57)
+* `ESP8266` or`ESP32` Core Version (e.g. ESP8266 core v3.0.2, ESP32 v2.0.5)
 * Contextual information (e.g. what you were trying to achieve)
 * Simplest possible steps to reproduce
 * Anything that might be relevant in your opinion, such as:
@@ -54,7 +54,6 @@ Linux xy-Inspiron-3593 5.15.0-53-generic #59~20.04.1-Ubuntu SMP Thu Oct 20 15:10
 
 Context:
 I encountered a crash while using this library
-
 Steps to reproduce:
 1. ...
 2. ...
@@ -62,13 +61,17 @@ Steps to reproduce:
 4. ...
 ```
 
+### Additional context
+
+Add any other context about the problem here.
+
 ---
 
 ### Sending Feature Requests
 
 Feel free to post feature requests. It's helpful if you can explain exactly why the feature would be useful.
 
-There are usually some outstanding feature requests in the [existing issues list](https://github.com/khoih-prog/AsyncMQTT_Generic/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement), feel free to add comments to them.
+There are usually some outstanding feature requests in the [existing issues list](https://github.com/khoih-prog/AsyncHTTPSRequest_Generic/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement), feel free to add comments to them.
 
 ---
 
@@ -81,13 +84,13 @@ Please use the `astyle` to reformat the updated library code as follows (demo fo
 1. Change directory to the library GitHub
 
 ```
-xy@xy-Inspiron-3593:~$ cd Arduino/xy/AsyncMQTT_Generic_GitHub/
-xy@xy-Inspiron-3593:~/Arduino/xy/AsyncMQTT_Generic_GitHub$
+xy@xy-Inspiron-3593:~$ cd Arduino/xy/AsyncHTTPSRequest_Generic_GitHub/
+xy@xy-Inspiron-3593:~/Arduino/xy/AsyncHTTPSRequest_Generic_GitHub$
 ```
 
 2. Issue astyle command
 
 ```
-xy@xy-Inspiron-3593:~/Arduino/xy/AsyncMQTT_Generic_GitHub$ bash utils/restyle.sh
+xy@xy-Inspiron-3593:~/Arduino/xy/AsyncHTTPSRequest_Generic_GitHub$ bash utils/restyle.sh
 ```
 
