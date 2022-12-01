@@ -71,7 +71,7 @@ Add any other context about the problem here.
 
 Feel free to post feature requests. It's helpful if you can explain exactly why the feature would be useful.
 
-There are usually some outstanding feature requests in the [existing issues list](https://github.com/khoih-prog/AsyncHTTPSRequest_Generic/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement), feel free to add comments to them.
+There are usually some outstanding feature requests in the [existing issues list](https://github.com/khoih-prog/AsyncMQTT_Generic/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement), feel free to add comments to them.
 
 ---
 
@@ -84,13 +84,13 @@ Please use the `astyle` to reformat the updated library code as follows (demo fo
 1. Change directory to the library GitHub
 
 ```
-xy@xy-Inspiron-3593:~$ cd Arduino/xy/AsyncHTTPSRequest_Generic_GitHub/
-xy@xy-Inspiron-3593:~/Arduino/xy/AsyncHTTPSRequest_Generic_GitHub$
+xy@xy-Inspiron-3593:~$ cd Arduino/xy/AsyncMQTT_Generic_GitHub/
+xy@xy-Inspiron-3593:~/Arduino/xy/AsyncMQTT_Generic_GitHub$
 ```
 
 2. Issue astyle command
 
 ```
-xy@xy-Inspiron-3593:~/Arduino/xy/AsyncHTTPSRequest_Generic_GitHub$ bash utils/restyle.sh
+xy@xy-Inspiron-3593:~/Arduino/xy/AsyncMQTT_Generic_GitHub$ bash utils/restyle.sh
 ```
 
