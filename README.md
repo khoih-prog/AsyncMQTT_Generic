@@ -9,6 +9,7 @@
 <a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Donate to my libraries using BuyMeACoffee" style="height: 50px !important;width: 181px !important;" ></a>
 <a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange.svg?logo=buy-me-a-coffee&logoColor=FFDD00" style="height: 20px !important;width: 200px !important;" ></a>
 
+
 ---
 ---
 
@@ -47,32 +48,34 @@
 	* [1. ESP32 Wiring](#1-ESP32-wiring)
 * [Examples](#examples)
   * [1. For ESP32](#1-for-ESP32)
-    * [1. FullyFeatured_ESP32](examples/ESP32/FullyFeatured_ESP32)
-    * [2. FullyFeaturedSSL_ESP32](examples/ESP32/FullyFeaturedSSL_ESP32)
+    * [1. FullyFeatured_ESP32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/FullyFeatured_ESP32)
+    * [2. FullyFeaturedSSL_ESP32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/FullyFeaturedSSL_ESP32)
+    * [3. AsyncWebServer_MQTT](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/AsyncWebServer_MQTT) **New**
   * [2. For ESP8266](#2-for-ESP8266)
-    * [1. FullyFeatured_ESP8266](examples/ESP8266/FullyFeatured_ESP8266)
-    * [2. FullyFeatured_ESP8266_Ethernet](examples/ESP8266/FullyFeatured_ESP8266_Ethernet)
+    * [1. FullyFeatured_ESP8266](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP8266/FullyFeatured_ESP8266)
+    * [2. FullyFeatured_ESP8266_Ethernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP8266/FullyFeatured_ESP8266_Ethernet)
   * [3. For WT32_ETH01](#3-for-WT32_ETH01)
-    * [1. FullyFeatured_WT32_ETH01](examples/WT32_ETH01/FullyFeatured_WT32_ETH01)
-    * [2. FullyFeaturedSSL_WT32_ETH01](examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01)
+    * [1. FullyFeatured_WT32_ETH01](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/WT32_ETH01/FullyFeatured_WT32_ETH01)
+    * [2. FullyFeaturedSSL_WT32_ETH01](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01)
   * [4. For STM32 using LAN8742A](#4-For-STM32-using-LAN8742A)
-    * [1. FullyFeatured_STM32](examples/STM32/FullyFeatured_STM32) **New**
+    * [1. FullyFeatured_STM32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/STM32/FullyFeatured_STM32)
   * [5. For STM32 using LAN8720](#5-For-STM32-using-LAN8720)
-    * [1. FullyFeatured_STM32_LAN8720](examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720)
+    * [1. FullyFeatured_STM32_LAN8720](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720)
   * [6. For Portenta_H7 using Murata WiFi](#6-For-Portenta_H7-using-Murata-WiFi)
-    * [1. FullyFeatured_PortentaH7_WiFi](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi)
+    * [1. FullyFeatured_PortentaH7_WiFi](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi)
   * [7. For Portenta_H7 using built-in Ethernet](#7-For-Portenta_H7-using-built-in-Ethernet)
-    * [1. FullyFeatured_PortentaH7_Ethernet](examples/PortentaH7_Ethernet/FullyFeatured_PortentaH7_Ethernet)
+    * [1. FullyFeatured_PortentaH7_Ethernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/PortentaH7_Ethernet/FullyFeatured_PortentaH7_Ethernet)
   * [8. For Teensy 4.1 using QNEthernet Library](#8-For-Teensy-41-using-QNEthernet-Library)
-    * [1. FullyFeatured_QNEthernet](examples/QNEthernet/FullyFeatured_QNEthernet)
+    * [1. FullyFeatured_QNEthernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/QNEthernet/FullyFeatured_QNEthernet)
   * [9. For RASPBERRY_PI_PICO_W with CYW43439 WiFi](#9-For-RASPBERRY_PI_PICO_W-with-CYW43439-WiFi)
-    * [1. FullyFeatured_RP2040W](examples/RP2040W/FullyFeatured_RP2040W) **New**
+    * [1. FullyFeatured_RP2040W](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/RP2040W/FullyFeatured_RP2040W)
+    * [2. AsyncWebServer_MQTT_RP2040W](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/RP2040W/AsyncWebServer_MQTT_RP2040W) **New**
   * [10. For ESP32_ENC](#10-for-ESP32_ENC)
-    * [1. FullyFeatured_ESP32_ENC](examples/ESP32_ENC/FullyFeatured_ESP32_ENC) **New**
-    * [2. FullyFeaturedSSL_ESP32_ENC](examples/ESP32_ENC/FullyFeaturedSSL_ESP32_ENC) **New**
+    * [1. FullyFeatured_ESP32_ENC](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32_ENC/FullyFeatured_ESP32_ENC)
+    * [2. FullyFeaturedSSL_ESP32_ENC](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32_ENC/FullyFeaturedSSL_ESP32_ENC)
   * [11. For ESP32_W5500](#11-for-ESP32_W5500)
-    * [1. FullyFeatured_ESP32_W5500](examples/ESP32_W5500/FullyFeatured_ESP32_W5500) **New**
-    * [2. FullyFeaturedSSL_ESP32_W5500](examples/ESP32_W5500/FullyFeaturedSSL_ESP32_W5500) **New**
+    * [1. FullyFeatured_ESP32_W5500](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32_W5500/FullyFeatured_ESP32_W5500)
+    * [2. FullyFeaturedSSL_ESP32_W5500](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32_W5500/FullyFeaturedSSL_ESP32_W5500)
 * [Example FullyFeaturedSSL_ESP32](#example-FullyFeaturedSSL_ESP32)
   * [1. File FullyFeaturedSSL_ESP32.ino](#1-file-FullyFeaturedSSL_ESP32ino)
   * [2. File defines.h](#2-file-definesh)
@@ -180,6 +183,7 @@ This [**AsyncMQTT_Generic** library](https://github.com/khoih-prog/AsyncMQTT_Gen
 #### To-be-supported Boards
   
  1. Any future board with supporting AsyncTCP library
+ 2. **ESP32 boards using LwIP W6100 Ethernet**
 
 ---
 ---
@@ -187,25 +191,26 @@ This [**AsyncMQTT_Generic** library](https://github.com/khoih-prog/AsyncMQTT_Gen
 ## Prerequisites
 
  1. [`Arduino IDE 1.8.19+` for Arduino](https://github.com/arduino/Arduino). [![GitHub release](https://img.shields.io/github/release/arduino/Arduino.svg)](https://github.com/arduino/Arduino/releases/latest)
- 2. [`ESP32 Core 2.0.5+`](https://github.com/espressif/arduino-esp32) for ESP32-based boards. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
- 3. [`ESP8266 Core 3.0.2+`](https://github.com/esp8266/Arduino) for ESP8266-based boards. [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/esp8266/Arduino/releases/latest/).
- 4. [`Arduino Core for STM32 v2.3.0+`](https://github.com/stm32duino/Arduino_Core_STM32) for STM32F/L/H/G/WB/MP1 boards using built-in LAN8742A. [![GitHub release](https://img.shields.io/github/release/stm32duino/Arduino_Core_STM32.svg)](https://github.com/stm32duino/Arduino_Core_STM32/releases/latest). Use core v2.2.0- for LAN8720.
- 5. [`Arduino mbed_portenta core 3.4.1+`](https://github.com/arduino/ArduinoCore-mbed) for Arduino (Use Arduino Board Manager) Portenta_H7-based boards. [![GitHub release](https://img.shields.io/github/release/arduino/ArduinoCore-mbed.svg)](https://github.com/arduino/ArduinoCore-mbed/releases/latest)
- 6. [`Earle Philhower's arduino-pico core v2.6.4+`](https://github.com/earlephilhower/arduino-pico) for **RASPBERRY_PI_PICO_W with CYW43439 WiFi**, etc. [![GitHub release](https://img.shields.io/github/release/earlephilhower/arduino-pico.svg)](https://github.com/earlephilhower/arduino-pico/releases/latest)
- 7. [`Teensy core v1.57+`](https://www.pjrc.com/teensy/td_download.html) for Teensy 4.1
+ 2. [`ESP32 Core 2.0.6+`](https://github.com/espressif/arduino-esp32) for ESP32-based boards. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
+ 3. [`ESP8266 Core 3.1.1+`](https://github.com/esp8266/Arduino) for ESP8266-based boards. [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/esp8266/Arduino/releases/latest/).
+ 4. [`Arduino Core for STM32 v2.4.0+`](https://github.com/stm32duino/Arduino_Core_STM32) for STM32F/L/H/G/WB/MP1 boards using built-in LAN8742A. [![GitHub release](https://img.shields.io/github/release/stm32duino/Arduino_Core_STM32.svg)](https://github.com/stm32duino/Arduino_Core_STM32/releases/latest). Use core v2.2.0- for LAN8720.
+ 5. [`Arduino mbed_portenta core 3.5.4+`](https://github.com/arduino/ArduinoCore-mbed) for Arduino (Use Arduino Board Manager) Portenta_H7-based boards. [![GitHub release](https://img.shields.io/github/release/arduino/ArduinoCore-mbed.svg)](https://github.com/arduino/ArduinoCore-mbed/releases/latest)
+ 6. [`Earle Philhower's arduino-pico core v2.7.1+`](https://github.com/earlephilhower/arduino-pico) for **RASPBERRY_PI_PICO_W with CYW43439 WiFi**, etc. [![GitHub release](https://img.shields.io/github/release/earlephilhower/arduino-pico.svg)](https://github.com/earlephilhower/arduino-pico/releases/latest)
+ 7. [`Teensy core v1.57+`](https://github.com/PaulStoffregen/cores) for Teensy 4.1.  [![GitHub release](https://img.shields.io/github/release/PaulStoffregen/cores.svg)](https://github.com/PaulStoffregen/cores/releases/latest)
  8. [`KH_Forked ESPAsyncTCP v1.3.0+`](https://github.com/khoih-prog/ESPAsyncTCP) for ESP8266. **To install manually for Arduino IDE**
  9. [`AsyncTCP v1.1.1+`](https://github.com/me-no-dev/AsyncTCP) for ESP32.
 10. [`STM32Ethernet library v1.3.0+`](https://github.com/stm32duino/STM32Ethernet) for STM32 using built-in Ethernet LAN8742A on (Nucleo-144, Discovery). [![GitHub release](https://img.shields.io/github/release/stm32duino/STM32Ethernet.svg)](https://github.com/stm32duino/STM32Ethernet/releases/latest)
 11. [`LwIP library v2.1.2+`](https://github.com/stm32duino/LwIP) for STM32 using built-in Ethernet LAN8742A on (Nucleo-144, Discovery). [![GitHub release](https://img.shields.io/github/release/stm32duino/LwIP.svg)](https://github.com/stm32duino/LwIP/releases/latest)
 12. [`KH_Forked STM32AsyncTCP library v1.0.1+`](https://github.com/khoih-prog/STM32AsyncTCP) for built-in Ethernet on (Nucleo-144, Discovery). **To install manually for Arduino IDE**
 13. [`WebServer_WT32_ETH01 library v1.5.1+`](https://github.com/khoih-prog/WebServer_WT32_ETH01) to use WT32_ETH01 (ESP32 + LAN8720). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_WT32_ETH01.svg?)](https://www.ardu-badge.com/WebServer_WT32_ETH01)
-14. [`WebServer_ESP32_W5500 library v1.5.1+`](https://github.com/khoih-prog/WebServer_ESP32_W5500) to use (ESP32 + LwIP W5500). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_ESP32_W5500.svg?)](https://www.ardu-badge.com/WebServer_ESP32_W5500)
-15. [`WebServer_ESP32_ENC library v1.5.1+`](https://github.com/khoih-prog/WebServer_ESP32_ENC) to use (ESP32 + LwIP ENC28J60). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_ESP32_ENC.svg?)](https://www.ardu-badge.com/WebServer_ESP32_ENC)
+14. [`WebServer_ESP32_W5500 library v1.5.3+`](https://github.com/khoih-prog/WebServer_ESP32_W5500) to use (ESP32 + LwIP W5500). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_ESP32_W5500.svg?)](https://www.ardu-badge.com/WebServer_ESP32_W5500)
+15. [`WebServer_ESP32_ENC library v1.5.3+`](https://github.com/khoih-prog/WebServer_ESP32_ENC) to use (ESP32 + LwIP ENC28J60). To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_ESP32_ENC.svg?)](https://www.ardu-badge.com/WebServer_ESP32_ENC)
 16. [`Portenta_H7_AsyncTCP library v1.4.0+`](https://github.com/khoih-prog/Portenta_H7_AsyncTCP) to use **Portenta_H7 using either Murata WiFi or Vision-shield Ethernet**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/Portenta_H7_AsyncTCP.svg?)](https://www.ardu-badge.com/Portenta_H7_AsyncTCP).
 17. [`Teensy41_AsyncTCP library v1.1.0+`](https://github.com/khoih-prog/Teensy41_AsyncTCP) to use **Teensy 4.1 using QNEthernet Library**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/Teensy41_AsyncTCP.svg?)](https://www.ardu-badge.com/Teensy41_AsyncTCP).
 18. [`AsyncTCP_RP2040W library v1.1.0+`](https://github.com/khoih-prog/AsyncTCP_RP2040W) to use **RASPBERRY_PI_PICO_W with CYW43439 WiFi**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncTCP_RP2040W.svg?)](https://www.ardu-badge.com/AsyncTCP_RP2040W).
 19. [`AsyncTCP_SSL library v1.3.1+`](https://github.com/khoih-prog/AsyncTCP_SSL) to use **TLS/SSL for ESP32**. To install, check [![arduino-library-badge](https://www.ardu-badge.com/badge/AsyncTCP_SSL.svg?)](https://www.ardu-badge.com/AsyncTCP_SSL).
 20. [`ESPAsync_WiFiManager library v1.15.1+`](https://github.com/khoih-prog/ESPAsync_WiFiManager) for ESP32/ESP8266 using some examples. [![GitHub release](https://img.shields.io/github/release/khoih-prog/ESPAsync_WiFiManager.svg)](https://github.com/khoih-prog/ESPAsync_WiFiManager/releases)
+21. [`AsyncWebServer_RP2040W library v1.4.1+`](https://github.com/khoih-prog/AsyncWebServer_RP2040W) for **RP2040W** using some examples. [![GitHub release](https://img.shields.io/github/release/khoih-prog/AsyncWebServer_RP2040W.svg)](https://github.com/khoih-prog/AsyncWebServer_RP2040W/releases)
 
 ---
 ---
@@ -505,66 +510,68 @@ https://github.com/khoih-prog/AsyncMQTT_Generic/blob/f848a405a49ac1a893a96f0332c
 
 #### 1. For ESP32
 
- 1. [FullyFeatured_ESP32](examples/ESP32/FullyFeatured_ESP32)
- 2. [FullyFeaturedSSL_ESP32](examples/ESP32/FullyFeaturedSSL_ESP32)
+ 1. [FullyFeatured_ESP32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/FullyFeatured_ESP32)
+ 2. [FullyFeaturedSSL_ESP32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/FullyFeaturedSSL_ESP32)
+ 3. [AsyncWebServer_MQTT](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/AsyncWebServer_MQTT) **New**
 
 #### 2. For ESP8266
 
- 1. [FullyFeatured_ESP8266](examples/ESP8266/FullyFeatured_ESP8266)
- 2. [FullyFeatured_ESP8266_Ethernet](examples/ESP8266/FullyFeatured_ESP8266_Ethernet) **Use with core v3.0.2+**
+ 1. [FullyFeatured_ESP8266](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP8266/FullyFeatured_ESP8266)
+ 2. [FullyFeatured_ESP8266_Ethernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP8266/FullyFeatured_ESP8266_Ethernet) **Use with core v3.0.2+**
 
 #### 3. For WT32_ETH01
 
- 1. [FullyFeatured_WT32_ETH01](examples/WT32_ETH01/FullyFeatured_WT32_ETH01)
- 2. [FullyFeaturedSSL_WT32_ETH01](examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01)
+ 1. [FullyFeatured_WT32_ETH01](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/WT32_ETH01/FullyFeatured_WT32_ETH01)
+ 2. [FullyFeaturedSSL_WT32_ETH01](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01)
  
 #### 4. For STM32 using LAN8742A
 
- 1. [FullyFeatured_STM32](examples/STM32/FullyFeatured_STM32) **New**
+ 1. [FullyFeatured_STM32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/STM32/FullyFeatured_STM32)
  
 #### 5. For STM32 using LAN8720
 
- 1. [FullyFeatured_STM32_LAN8720](examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720) **Use with core v2.2.0-**
+ 1. [FullyFeatured_STM32_LAN8720](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720) **Use with core v2.2.0-**
 
 #### 6. For Portenta_H7 using Murata WiFi
 
- 1. [FullyFeatured_PortentaH7_WiFi](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi)
+ 1. [FullyFeatured_PortentaH7_WiFi](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi)
  
 #### 7. For Portenta_H7 using built-in Ethernet
 
- 1. [FullyFeatured_PortentaH7_Ethernet](examples/PortentaH7_Ethernet/FullyFeatured_PortentaH7_Ethernet)
+ 1. [FullyFeatured_PortentaH7_Ethernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/PortentaH7_Ethernet/FullyFeatured_PortentaH7_Ethernet)
  
 #### 8. For Teensy 4.1 using QNEthernet Library
 
- 1. [FullyFeatured_QNEthernet](examples/QNEthernet/FullyFeatured_QNEthernet)
+ 1. [FullyFeatured_QNEthernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/QNEthernet/FullyFeatured_QNEthernet)
  
 #### 9. or RASPBERRY_PI_PICO_W with CYW43439 WiFi
 
- 1. [FullyFeatured_RP2040W](examples/RP2040W/FullyFeatured_RP2040W) **New**
+ 1. [FullyFeatured_RP2040W](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/RP2040W/FullyFeatured_RP2040W)
+ 2. [AsyncWebServer_MQTT_RP2040W](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/RP2040W/AsyncWebServer_MQTT_RP2040W) **New**
 
 #### 10. For ESP32_ENC
 
- 1. [FullyFeatured_ESP32_ENC](examples/ESP32_ENC/FullyFeatured_ESP32_ENC) **New**
- 2. [FullyFeaturedSSL_ESP32_ENC](examples/ESP32_ENC/FullyFeaturedSSL_ESP32_ENC) **New**
+ 1. [FullyFeatured_ESP32_ENC](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32_ENC/FullyFeatured_ESP32_ENC)
+ 2. [FullyFeaturedSSL_ESP32_ENC](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32_ENC/FullyFeaturedSSL_ESP32_ENC)
  
 #### 11. For ESP32_W5500
 
- 1. [FullyFeatured_ESP32_W5500](examples/ESP32_W5500/FullyFeatured_ESP32_W5500) **New**
- 2. [FullyFeaturedSSL_ESP32_W5500](examples/ESP32_W5500/FullyFeaturedSSL_ESP32_W5500) **New**
+ 1. [FullyFeatured_ESP32_W5500](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32_W5500/FullyFeatured_ESP32_W5500)
+ 2. [FullyFeaturedSSL_ESP32_W5500](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32_W5500/FullyFeaturedSSL_ESP32_W5500)
  
      
 ---
 ---
 
-### Example [FullyFeaturedSSL_ESP32](examples/ESP32/FullyFeaturedSSL_ESP32)
+### Example [FullyFeaturedSSL_ESP32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/FullyFeaturedSSL_ESP32)
 
-#### 1. File [FullyFeaturedSSL_ESP32.ino](examples/ESP32/FullyFeaturedSSL_ESP32/FullyFeaturedSSL_ESP32.ino)
+#### 1. File [FullyFeaturedSSL_ESP32.ino](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/FullyFeaturedSSL_ESP32/FullyFeaturedSSL_ESP32.ino)
 
 https://github.com/khoih-prog/AsyncMQTT_Generic/blob/e6b4541542e4190c5d765017c3d4fe43d5faa84f/examples/ESP32/FullyFeaturedSSL_ESP32/FullyFeaturedSSL_ESP32.ino#L13-L225
 
 
 
-#### 2. File [defines.h](examples/ESP32/FullyFeaturedSSL_ESP32/defines.h)
+#### 2. File [defines.h](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/FullyFeaturedSSL_ESP32/defines.h)
 
 https://github.com/khoih-prog/AsyncMQTT_Generic/blob/e6b4541542e4190c5d765017c3d4fe43d5faa84f/examples/ESP32/FullyFeaturedSSL_ESP32/defines.h#L12-L20
 
@@ -576,11 +583,11 @@ https://github.com/khoih-prog/AsyncMQTT_Generic/blob/e6b4541542e4190c5d765017c3d
 
 #### 1. FullyFeature_ESP8266 on ESP8266_NODEMCU_ESP12E
 
-This is terminal debug output when running [FullyFeatured_ESP8266](examples/ESP8266/FullyFeatured_ESP8266) on **ESP8266_NODEMCU_ESP12E** connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeatured_ESP8266](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP8266/FullyFeatured_ESP8266) on **ESP8266_NODEMCU_ESP12E** connecting to `broker.emqx.io` MQTT server.
 
 ```cpp
 Starting FullyFeature_ESP8266 on ESP8266_NODEMCU_ESP12E
-AsyncMQTT_Generic v1.8.0 for ESP8266
+AsyncMQTT_Generic v1.8.1 for ESP8266
 Connecting to Wi-Fi...
 Connected to Wi-Fi. IP address: 192.168.2.82
 Connecting to MQTT...
@@ -638,11 +645,11 @@ Publish acknowledged.
 
 #### 2. FullyFeature_ESP32 on ESP32_DEV
 
-This is terminal debug output when running [FullyFeatured_ESP32](examples/ESP32/FullyFeatured_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeatured_ESP32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/FullyFeatured_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` MQTT server.
 
 ```cpp
 Starting FullyFeature_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.8.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.8.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -704,11 +711,11 @@ Publish acknowledged.
 
 #### 3. FullyFeatureSSL_ESP32 on ESP32_DEV
 
-This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP32/FullyFeaturedSSL_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` secured MQTT server (port 8883).
+This is terminal debug output when running [FullyFeaturedSSL_ESP32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/FullyFeaturedSSL_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` secured MQTT server (port 8883).
 
 ```cpp
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.8.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.8.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -770,12 +777,12 @@ Publish acknowledged
 
 #### 4. FullyFeatureSSL_ESP32 on ESP32_DEV with _ASYNC_MQTT_LOGLEVEL_
 
-This is terminal debug output when running [FullyFeaturedSSL_ESP32](examples/ESP32/FullyFeaturedSSL_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` secured MQTT server (port 8883). The _ASYNC_MQTT_LOGLEVEL_ is set at 4 to show all the debugging messages.
+This is terminal debug output when running [FullyFeaturedSSL_ESP32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32/FullyFeaturedSSL_ESP32) on **ESP32_DEV** connecting to `broker.emqx.io` secured MQTT server (port 8883). The _ASYNC_MQTT_LOGLEVEL_ is set at 4 to show all the debugging messages.
 
 
 ```cpp
 Starting FullyFeatureSSL_ESP32 on ESP32_DEV
-AsyncMQTT_Generic v1.8.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.8.1 for ESP32 core v2.0.0+
 Connecting to Wi-Fi...
 WiFi ready
 WiFi STA starting
@@ -940,13 +947,13 @@ Publish acknowledged
 
 #### 5. FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
 
-This is terminal debug output when running [FullyFeaturedSSL_WT32_ETH01](examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01) on **WT32-ETH01** connecting to `broker.emqx.io` secured MQTT server (port 8883).
+This is terminal debug output when running [FullyFeaturedSSL_WT32_ETH01](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/WT32_ETH01/FullyFeaturedSSL_WT32_ETH01) on **WT32-ETH01** connecting to `broker.emqx.io` secured MQTT server (port 8883).
 
 
 ```cpp
 Starting FullyFeatureSSL_WT32_ETH01 on WT32-ETH01 with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
-AsyncMQTT_Generic v1.8.0 for ESP32 core v2.0.0+
+AsyncMQTT_Generic v1.8.1 for ESP32 core v2.0.0+
 ETH starting
 ETH connected
 ETH got IP
@@ -999,11 +1006,11 @@ Publish acknowledged
 #### 6. FullyFeature_STM32 on NUCLEO_F767ZI
 
 
-This is terminal debug output when running [FullyFeature_STM32](examples/STM32/FullyFeature_STM32) on **STM32F7 NUCLEO_F767ZI** connecting to `broker.emqx.io` MQTT server. The Ethernet loss was tested by disconnecting, then reconnecting the Ethernet cable.
+This is terminal debug output when running [FullyFeature_STM32](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/STM32/FullyFeature_STM32) on **STM32F7 NUCLEO_F767ZI** connecting to `broker.emqx.io` MQTT server. The Ethernet loss was tested by disconnecting, then reconnecting the Ethernet cable.
 
 ```cpp
 Starting FullyFeature_STM32 on NUCLEO_F767ZI
-AsyncMQTT_Generic v1.8.0 for STM32
+AsyncMQTT_Generic v1.8.1 for STM32
 Connected to network. IP = 192.168.2.118
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1124,7 +1131,7 @@ Publish acknowledged.
 
 ```cpp
 Starting FullyFeature_STM32 on NUCLEO_F767ZI
-AsyncMQTT_Generic v1.8.0 for STM32
+AsyncMQTT_Generic v1.8.1 for STM32
 Connected to network. IP = 192.168.2.126
 Connecting to MQTT...
 [AMQTT] CONNECTING
@@ -1294,12 +1301,12 @@ Publish acknowledged.
 #### 8. FullyFeatured_STM32_LAN8720 on BLACK_F407VE
 
 
-This is terminal debug output when running [FullyFeatured_STM32_LAN8720](examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720) on **STM32F4 BLACK_F407VE** connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeatured_STM32_LAN8720](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/STM32_LAN8720/FullyFeatured_STM32_LAN8720) on **STM32F4 BLACK_F407VE** connecting to `broker.emqx.io` MQTT server.
 
 
 ```cpp
 Starting FullyFeatured_STM32_LAN8720 on BLACK_F407VE
-AsyncMQTT_Generic v1.8.0 for STM32
+AsyncMQTT_Generic v1.8.1 for STM32
 Connected to network. IP = 192.168.2.132
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1361,12 +1368,12 @@ Publish acknowledged.
 #### 9. FullyFeatured_PortentaH7_WiFi on PORTENTA_H7_M7
 
 
-This is terminal debug output when running [FullyFeatured_PortentaH7_WiFi](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi) on **STM32H7 PORTENTA_H7_M7** using `Murata WiFi`, connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeatured_PortentaH7_WiFi](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_WiFi) on **STM32H7 PORTENTA_H7_M7** using `Murata WiFi`, connecting to `broker.emqx.io` MQTT server.
 
 
 ```cpp
 Starting FullyFeatured_PortentaH7_WiFi on PORTENTA_H7_M7
-AsyncMQTT_Generic v1.8.0 for Portenta_H7_M7
+AsyncMQTT_Generic v1.8.1 for Portenta_H7_M7
 Connecting to SSID: HueNet1
 Connected to SSID: HueNet1
 Local IP Address: 192.168.2.134
@@ -1430,12 +1437,12 @@ Publish acknowledged.
 
 #### 10. FullyFeatured_Portenta_H7_Ethernet on PORTENTA_H7_M7
 
-This is terminal debug output when running [FullyFeatured_PortentaH7_Ethernet](examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_Ethernet) on **STM32H7 PORTENTA_H7_M7**, using `built-in Ethernet`, connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeatured_PortentaH7_Ethernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/PortentaH7_WiFi/FullyFeatured_PortentaH7_Ethernet) on **STM32H7 PORTENTA_H7_M7**, using `built-in Ethernet`, connecting to `broker.emqx.io` MQTT server.
 
 
 ```cpp
 Starting FullyFeatured_PortentaH7_Ethernet on PORTENTA_H7_M7
-AsyncMQTT_Generic v1.8.0 for Portenta_H7_M7
+AsyncMQTT_Generic v1.8.1 for Portenta_H7_M7
 Connected to network. IP = 192.168.2.133
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1556,12 +1563,12 @@ Publish acknowledged.
 
 #### 11. FullyFeatured_QNEthernet on TEENSY 4.1 using QNEthernet
 
-This is terminal debug output when running [FullyFeatured_QNEthernet](examples/QNEthernet/FullyFeatured_QNEthernet) on **TEENSY 4.1**, using `built-in Ethernet with QNEthernet Library`, connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeatured_QNEthernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/QNEthernet/FullyFeatured_QNEthernet) on **TEENSY 4.1**, using `built-in Ethernet with QNEthernet Library`, connecting to `broker.emqx.io` MQTT server.
 
 
 ```cpp
 Starting FullyFeatured_QNEthernet on TEENSY 4.1
-AsyncMQTT_Generic v1.8.0 for Teensy 4.1 QNEthernet
+AsyncMQTT_Generic v1.8.1 for Teensy 4.1 QNEthernet
 Initialize Ethernet using static IP => Connected! IP address:192.168.2.222
 Connecting to MQTT...
 Connected to MQTT broker: broker.emqx.io, port: 1883
@@ -1623,12 +1630,12 @@ Publish acknowledged.
 
 #### 12. FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_ENC28J60 Ethernet
 
-This is terminal debug output when running [FullyFeatured_ESP8266_Ethernet](examples/ESP8266/FullyFeatured_ESP8266_Ethernet) on **ESP8266_NODEMCU_ESP12E**, using `ENC28J60 Ethernet` with [`lwIP_enc28j60`](https://github.com/esp8266/Arduino/tree/master/libraries/lwIP_enc28j60) Library, connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeatured_ESP8266_Ethernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP8266/FullyFeatured_ESP8266_Ethernet) on **ESP8266_NODEMCU_ESP12E**, using `ENC28J60 Ethernet` with [`lwIP_enc28j60`](https://github.com/esp8266/Arduino/tree/master/libraries/lwIP_enc28j60) Library, connecting to `broker.emqx.io` MQTT server.
 
 
 ```cpp
 Starting FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_ENC28J60 Ethernet
-AsyncMQTT_Generic v1.8.0 for ESP8266
+AsyncMQTT_Generic v1.8.1 for ESP8266
 Connecting to network : .....................................
 Ethernet DHCP IP address: 192.168.2.187
 Connecting to MQTT...
@@ -1692,12 +1699,12 @@ Publish acknowledged.
 
 #### 13. FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_W5500 Ethernet
 
-This is terminal debug output when running [FullyFeatured_ESP8266_Ethernet](examples/ESP8266/FullyFeatured_ESP8266_Ethernet) on **ESP8266_NODEMCU_ESP12E**, using `W5500 Ethernet` with [`lwIP_w5500`](https://github.com/esp8266/Arduino/tree/master/libraries/lwIP_w5500) Library, connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeatured_ESP8266_Ethernet](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP8266/FullyFeatured_ESP8266_Ethernet) on **ESP8266_NODEMCU_ESP12E**, using `W5500 Ethernet` with [`lwIP_w5500`](https://github.com/esp8266/Arduino/tree/master/libraries/lwIP_w5500) Library, connecting to `broker.emqx.io` MQTT server.
 
 
 ```cpp
 Starting FullyFeatured_ESP8266_Ethernet on ESP8266_NODEMCU_ESP12E using ESP8266_W5500 Ethernet
-AsyncMQTT_Generic v1.8.0 for ESP8266
+AsyncMQTT_Generic v1.8.1 for ESP8266
 Connecting to network : .
 Ethernet DHCP IP address: 192.168.2.188
 Connecting to MQTT...
@@ -1760,12 +1767,12 @@ Publish acknowledged.
 
 #### 14. FullyFeature_RP2040W on RASPBERRY_PI_PICO_W
 
-This is terminal debug output when running [FullyFeature_RP2040W](examples/RP2040W/FullyFeature_RP2040W) on **RASPBERRY_PI_PICO_W**, using `CYW43439 WiFi`, connecting to `broker.emqx.io` MQTT server.
+This is terminal debug output when running [FullyFeature_RP2040W](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/RP2040W/FullyFeature_RP2040W) on **RASPBERRY_PI_PICO_W**, using `CYW43439 WiFi`, connecting to `broker.emqx.io` MQTT server.
 
 
 ```cpp
 Starting FullyFeature_RP2040W on RASPBERRY_PI_PICO_W
-AsyncMQTT_Generic v1.8.0 for RP2040W CYW43439 WiFi
+AsyncMQTT_Generic v1.8.1 for RP2040W CYW43439 WiFi
 Connecting to SSID: HueNet2
 Connected to SSID: HueNet2
 Local IP Address: 192.168.2.180
@@ -1830,13 +1837,13 @@ Publish acknowledged.
 
 #### 15. FullyFeatureSSL_ESP32_ENC on ESP32_DEV with ESP32_ENC28J60
 
-This is terminal debug output when running [FullyFeatureSSL_ESP32_ENC](examples/ESP32_ENC/FullyFeatureSSL_ESP32_ENC) on `ESP32_DEV with ESP32_ENC28J60`, connecting to `broker.emqx.io` MQTTS server
+This is terminal debug output when running [FullyFeatureSSL_ESP32_ENC](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32_ENC/FullyFeatureSSL_ESP32_ENC) on `ESP32_DEV with ESP32_ENC28J60`, connecting to `broker.emqx.io` MQTTS server
 
 
 ```cpp
 Starting FullyFeatureSSL_ESP32_ENC on ESP32_DEV with ESP32_ENC28J60
-WebServer_ESP32_ENC v1.5.1 for core v2.0.0+
-AsyncMQTT_Generic v1.8.0 for ESP32 core v2.0.0+
+WebServer_ESP32_ENC v1.5.3 for core v2.0.0+
+AsyncMQTT_Generic v1.8.1 for ESP32 core v2.0.0+
 ETH starting
 ETH connected
 ETH got IP
@@ -1888,12 +1895,12 @@ Publish acknowledged
 
 #### 16. FullyFeatureSSL_ESP32_W5500 on ESP32_DEV with ESP32_W5500
 
-This is terminal debug output when running [FullyFeatureSSL_ESP32_W5500](examples/ESP32_W5500/FullyFeatureSSL_ESP32_W5500) on `ESP32_DEV with W5500`, connecting to `broker.emqx.io` MQTTS server
+This is terminal debug output when running [FullyFeatureSSL_ESP32_W5500](https://github.com/khoih-prog/AsyncMQTT_Generic/tree/main/examples/ESP32_W5500/FullyFeatureSSL_ESP32_W5500) on `ESP32_DEV with W5500`, connecting to `broker.emqx.io` MQTTS server
 
 
 ```cpp
 Starting FullyFeatureSSL_ESP32_W5500 on ESP32_DEV with ESP32_W5500
-WebServer_ESP32_W5500 v1.5.1 for core v2.0.0+
+WebServer_ESP32_W5500 v1.5.3 for core v2.0.0+
 AsyncMQTT_Generic v1.7.0 for ESP32 core v2.0.0+
 ETH starting
 ETH connected
@@ -2008,6 +2015,10 @@ Submit issues to: [AsyncMQTT_Generic issues](https://github.com/khoih-prog/Async
 11. Add astyle using `allman` style. Restyle the library
 12. Add support to ESP32 boards using `LwIP W5500 Ethernet`, **(SSL and non-SSL)**
 13. Add support to ESP32 boards using `LwIP ENC28J60 Ethernet`, **(SSL and non-SSL)**
+14. Add `AsyncWebServer_MQTT` for ESP32 example to demo how to use `AsyncWebServer` and `AsyncMQTT_Generic` together
+15. Add `AsyncWebServer_MQTT_RP2040W` example to demo how to use `AsyncWebServer_RP2040W` and `AsyncMQTT_Generic` together
+16. Improve `README.md` so that links can be used in other sites, such as `PIO`
+
 
 ---
 ---
@@ -2029,6 +2040,7 @@ Submit issues to: [AsyncMQTT_Generic issues](https://github.com/khoih-prog/Async
 ### Contributing
 
 If you want to contribute to this project:
+
 - Report bugs and errors
 - Ask for enhancements
 - Create issues and pull requests

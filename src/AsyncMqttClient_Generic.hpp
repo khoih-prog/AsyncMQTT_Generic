@@ -9,8 +9,8 @@
   
   Built by Khoi Hoang https://github.com/khoih-prog/AsyncMqttClient_Generic
  
-  Version: 1.8.0
-  
+  Version: 1.8.1
+
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0    K Hoang     10/03/2022 Initial coding to support only ESP32 (with SSL) and ESP8266 (without SSL)
@@ -25,6 +25,7 @@
   1.6.1    K Hoang     17/08/2022 Better workaround for RP2040W WiFi.status() bug using ping() to local gateway
   1.7.0    K Hoang     13/09/2022 Fix ESP32 and ESP8266 compile error
   1.8.0    K Hoang     30/11/2022 Add support to ESP32 boards using LwIP W5500 or ENC28J60 Ethernet
+  1.8.1    K Hoang     28/01/2023 Add AsyncWebServer_MQTT and AsyncWebServer_MQTT_RP2040W examples
  *****************************************************************************************************************************/
 
 #pragma once
@@ -43,15 +44,15 @@
 
 /////////////////////////////////////////////////////////
 
-#define ASYNC_MQTT_GENERIC_SHORT_VERSION        "AsyncMQTT_Generic v1.8.0" 
+#define ASYNC_MQTT_GENERIC_SHORT_VERSION        "AsyncMQTT_Generic v1.8.1" 
 
 /////////////////////////////////////////////////////////
 
 #define ASYNC_MQTT_GENERIC_VERSION_MAJOR       1
 #define ASYNC_MQTT_GENERIC_VERSION_MINOR       8
-#define ASYNC_MQTT_GENERIC_VERSION_PATCH       0
+#define ASYNC_MQTT_GENERIC_VERSION_PATCH       1
 
-#define ASYNC_MQTT_GENERIC_VERSION_INT         1008000
+#define ASYNC_MQTT_GENERIC_VERSION_INT         1008001
 
 /////////////////////////////////////////////////////////
 
